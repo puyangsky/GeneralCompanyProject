@@ -10,7 +10,7 @@
 <head>
     <script type="text/javascript" src="/js/jquery-1.9.1.min.js"></script>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Insert title here</title>
+    <title>添加用户</title>
     <script type="text/javascript">
         $(document).ready(function(){
             $("#add").click(function(){
@@ -28,20 +28,20 @@
                         alert("user--->" + data);
                     }
                 });
-
-//                $.ajax({
-//                    url:"/user/getUser/1",
-//                    type:"get",
-//                    data:user,
-//                    success:function(data){
-//                        alert("userName--->" + data.userName);
-//
-//                    }
-//                });
-
-
-
             });
+            $("#get").click(function() {
+                $.ajax({
+                    url:"/user/getUsers",
+                    type:"GET",
+                    data:"",
+                    success: function (data) {
+                        alert("done");
+
+                    }
+                });
+            });
+
+
         });
     </script>
 </head>
@@ -52,7 +52,9 @@
 密码：<input type="password" name="password" id="password"/>
 
 <input type="button" value="添加" id="add">
-
-
+<br><br>
+<h1>获取用户列表</h1>
+<br>
+<button value="获取" id="get">获取</button>
 </body>
 </html>
