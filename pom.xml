@@ -150,8 +150,9 @@
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
-            <version>4.2.2.Final</version>
+            <version>4.2.4.Final</version>
         </dependency>
+
     </dependencies>
 
     <build>
