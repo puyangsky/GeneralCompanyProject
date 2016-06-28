@@ -11,28 +11,6 @@ import java.util.List;
  */
 public class JsonUtil {
     public static String toJsonString(UserEntity userEntity) {
-//        StringBuilder sb = new StringBuilder();
-//        sb.append("{");
-//        sb.append("\"id\":");
-//        sb.append("\"" + user.getId() + "\"");
-//        sb.append(",\"username\":");
-//        sb.append("\"" + user.getUsername() + "\"");
-//        sb.append(",\"password\":");
-//        sb.append("\"" + user.getPassword() + "\"");
-//        sb.append(",\"hometown\":");
-//        sb.append("\"" + user.getHometown() + "\"");
-//        sb.append(",\"gender\":");
-//        sb.append("\"" + user.getGender() + "\"");
-//        sb.append(",\"birthday\":");
-//        sb.append("\"" + user.getBirthday() + "\"");
-//        sb.append(",\"inarmydate\":");
-//        sb.append("\"" + user.getInarmydate() + "\"");
-//        sb.append(",\"outarmydate\":");
-//        sb.append("\"" + user.getOutarmydate() + "\"");
-//        sb.append(",\"department\":");
-//        sb.append("\"" + user.getDepartment() + "\"");
-//        sb.append("}");
-//        return sb.toString();
         JSONObject jo = new JSONObject();
         jo.put("id", userEntity.getId());
         jo.put("username", userEntity.getUsername());

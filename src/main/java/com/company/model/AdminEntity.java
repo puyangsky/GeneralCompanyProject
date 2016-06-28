@@ -12,7 +12,11 @@ public class AdminEntity {
     private String username;
     private String password;
 
+    public AdminEntity() {
+    }
+
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY )
     @Column(name = "id")
     public int getId() {
         return id;

@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Administrator
-  Date: 2016/6/23
-  Time: 13:02
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -19,7 +12,7 @@
                 console.log(userName + password);
                 var user={"username":userName,"password":password};
                 $.ajax({
-                    url:"/user/addUser",
+                    url:"/user/adduser",
                     type:"POST",
                     contentType: "application/json;charse=UTF-8",
                     dataType:"json",
@@ -31,7 +24,7 @@
             });
             $("#get").click(function() {
                 $.ajax({
-                    url:"/user/getUsers",
+                    url:"/user/getusers",
                     type:"GET",
                     data:"",
                     success: function (data) {
