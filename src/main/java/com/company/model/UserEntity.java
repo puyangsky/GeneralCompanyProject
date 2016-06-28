@@ -5,7 +5,7 @@ import javax.xml.registry.infomodel.User;
 import java.sql.Date;
 
 /**
- * Created by Administrator on 2016/6/23.
+ * Created by puyangsky on 2016/6/23.
  */
 @Entity
 @Table(name = "user", schema = "", catalog = "test")

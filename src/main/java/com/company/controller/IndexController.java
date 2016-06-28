@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
- * Created by Administrator on 2016/6/23.
+ * Created by puyangsky on 2016/6/23.
  */
 @Controller
 @RequestMapping("/user")

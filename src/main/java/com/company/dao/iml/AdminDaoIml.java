@@ -8,7 +8,7 @@ import org.hibernate.SessionFactory;
 import javax.annotation.Resource;
 
 /**
- * Created by Administrator on 2016/6/28.
+ * Created by puyangsky on 2016/6/28.
  */
 public class AdminDaoIml implements AdminDao {
 

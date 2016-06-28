@@ -8,7 +8,7 @@ import javax.annotation.Resource;
 import java.util.List;
 
 /**
- * Created by Administrator on 2016/6/23.
+ * Created by puyangsky on 2016/6/23.
  */
 @Service
 public class UserService {

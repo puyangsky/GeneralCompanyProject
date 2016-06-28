@@ -6,7 +6,7 @@ import com.company.model.AdminEntity;
 import javax.annotation.Resource;
 
 /**
- * Created by Administrator on 2016/6/28.
+ * Created by puyangsky on 2016/6/28.
  */
 public class AdminService {
     @Resource
@@ -14,6 +14,6 @@ public class AdminService {
 
     public boolean login(AdminEntity adminEntity) {
         AdminEntity entity = dao.login(adminEntity.getUsername());
-        return entity.getPassword() == adminEntity.getPassword();
+        return entity.getPassword().equals(adminEntity.getPassword());
     }
 }

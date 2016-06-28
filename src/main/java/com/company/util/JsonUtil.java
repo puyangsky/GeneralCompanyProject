@@ -7,7 +7,7 @@ import com.company.model.UserEntity;
 import java.util.List;
 
 /**
- * Created by Administrator on 2016/6/23.
+ * Created by puyangsky on 2016/6/23.
  */
 public class JsonUtil {
     public static String toJsonString(UserEntity userEntity) {

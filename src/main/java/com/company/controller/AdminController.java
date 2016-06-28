@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.annotation.Resource;
 
 /**
- * Created by Administrator on 2016/6/28.
+ * Created by puyangsky on 2016/6/28.
  */
 @Controller
 @RequestMapping("/admin")
