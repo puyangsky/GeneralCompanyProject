@@ -18,6 +18,9 @@
     <!-- 静态资源(js/image)的访问 -->
     <mvc:resources location="/WEB-INF/resources/js/" mapping="/js/**"/>
     <mvc:resources location="/WEB-INF/resources/css/" mapping="/css/**"/>
+    <mvc:resources location="/WEB-INF/resources/img/" mapping="/img/**"/>
+    <mvc:resources location="/WEB-INF/resources/tmp/" mapping="/tmp/**"/>
+
     <bean class = "org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
         <property name="messageConverters">
             <array>

@@ -55,4 +55,20 @@ public class AdminController {
         }
         return "login";
     }
+
+    @RequestMapping(value = "/logout", method = RequestMethod.GET)
+    public String logout(HttpServletRequest request) {
+        if (request.getSession().getAttribute("user") != null) {
+            request.getSession().removeAttribute("user");
+        }
+        return "login";
+    }
+
+    @RequestMapping(value = "/changepwd", method = RequestMethod.GET)
+    public String changePassword(HttpServletRequest request) {
+        if (request.getSession().getAttribute("user") != null) {
+            return "changepwd";
+        }
+        return "login";
+    }
 }
