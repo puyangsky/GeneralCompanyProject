@@ -8,55 +8,6 @@
     <title></title>
     <link href="/css/Common.css" rel="stylesheet" />
     <link href="/css/Index2.css" rel="stylesheet" />
-    <script src="/js/jquery-1.9.1.min.js"></script>
-    <script src="/js/bootstrap.min.js"></script>
-    <script src="/tmp/layer-v2.3/layer/layer.js"></script>
-    <script src="/tmp/laypage-v1.3/laypage/laypage.js"></script>
-    <script src="/js/Index2.js"></script>
-    <script>
-        $(document).ready(function () {
-            $.ajax({
-                url:"http://localhost:8080/user/getusers",
-                type:"GET",
-                dataType:"JSONP",
-                data:"",
-                jsonp:"callback",
-                success: function (data) {
-                    console.log(data);
-                    for(var i=0;i<data.length;i++) {
-                        var birthday = data[i].birthday;
-                        try {
-                            var id = data[i].id;
-                            var username = data[i].username;
-                            var gender = data[i].gender;
-                            var hometown = data[i].hometown;
-                            var date = new Date(birthday);
-                            var Y = date.getFullYear() + '-';
-                            var M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
-                            var D = date.getDate();
-                            var formatbirthday = Y+M+D;
-                        }catch(ex) {
-                            id = "空";
-                            username = "空";
-                            gender = "空";
-                            hometown = "空";
-                            formatbirthday = "空";
-                            console.log(ex);
-                        }
-                        var trbegin = "<tr>";
-                        var trbody = "<td>" + id + "</td>";
-                        trbody += "<td>" + username + "</td>";
-                        trbody += "<td>" + formatbirthday + "</td>";
-                        trbody += "<td>" + gender + "</td>";
-                        trbody += "<td>" + hometown + "</td>";
-                        var trend = "</tr>";
-                        var tr = trbegin + trbody + trend;
-                        $("#tbody").append(tr);
-                    }
-                }
-            });
-        });
-    </script>
 </head>
 <body>
     <div class="container-fluid">
@@ -99,21 +50,21 @@
                             </div>
                         </div>
                         <div class="control-group">
-                            <label class="control-label" for="Chinese">语文</label>
+                            <label class="control-label" for="Password">密码</label>
                             <div class="controls">
-                                <input type="text" id="Chinese" placeholder="语文">
+                                <input type="text" id="Password" placeholder="密码">
                             </div>
                         </div>
                         <div class="control-group">
-                            <label class="control-label" for="Math">数学</label>
+                            <label class="control-label" for="Gender">性别</label>
                             <div class="controls">
-                                <input type="text" id="Math" placeholder="数学">
+                                <input type="text" id="Gender" placeholder="性别">
                             </div>
                         </div>
                         <div class="control-group">
-                            <label class="control-label" for="English">英语</label>
+                            <label class="control-label" for="Hometown">家乡</label>
                             <div class="controls">
-                                <input type="text" id="English" placeholder="英语">
+                                <input type="text" id="Hometown" placeholder="家乡">
                             </div>
                         </div>
                     </form>
@@ -126,5 +77,11 @@
             </div>
         </div>
     </div>
+
+    <script src="/js/jquery-1.9.1.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/tmp/layer-v2.3/layer/layer.js"></script>
+    <script src="/tmp/laypage-v1.3/laypage/laypage.js"></script>
+    <script src="/js/Index2.js"></script>
 </body>
 </html>

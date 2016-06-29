@@ -11,7 +11,7 @@ public interface UserDao {
     public UserEntity getUserById(int id);
     public List getAllUser();
     public List<UserEntity> getUsersById(List<Integer> ids);
-    public void addUser(UserEntity userEntity);
+    public int addUser(UserEntity userEntity);
     public int delUserById(int id);
     public int updateUser(UserEntity userEntity);
 }

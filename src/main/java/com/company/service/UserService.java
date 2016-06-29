@@ -29,8 +29,8 @@ public class UserService {
         return dao.getAllUser();
     }
 
-    public void addUser(UserEntity userEntity) {
-        dao.addUser(userEntity);
+    public int addUser(UserEntity userEntity) {
+        return dao.addUser(userEntity);
     }
 
     public boolean delUser(int id) {

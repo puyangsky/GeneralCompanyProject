@@ -45,8 +45,14 @@ public class UserDaoIml implements UserDao {
     }
 
     @Override
-    public void addUser(UserEntity userEntity) {
-        sessionFactory.openSession().save(userEntity);
+    public int addUser(UserEntity userEntity) {
+        try {
+            sessionFactory.openSession().save(userEntity);
+            return 1;
+        } catch (Exception e) {
+            return 0;
+        }
+
     }
 
     @Override

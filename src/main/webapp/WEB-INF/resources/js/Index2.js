@@ -1,13 +1,54 @@
 ﻿
 var curr = 1;
 $(function () {
-    //load(curr);
+    loadData();
 });;
 
-
+function loadData() {
+    $.ajax({
+        url:"/user/getusers",
+        type:"GET",
+        dataType:"JSONP",
+        data:"",
+        jsonp:"callback",
+        success: function (data) {
+            console.log(data);
+            for(var i=0;i<data.length;i++) {
+                var birthday = data[i].birthday;
+                try {
+                    var id = data[i].id;
+                    var username = data[i].username;
+                    var gender = data[i].gender;
+                    var hometown = data[i].hometown;
+                    var date = new Date(birthday);
+                    var Y = date.getFullYear() + '-';
+                    var M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
+                    var D = date.getDate();
+                    var formatbirthday = Y+M+D;
+                }catch(ex) {
+                    id = "空";
+                    username = "空";
+                    gender = "空";
+                    hometown = "空";
+                    formatbirthday = "空";
+                    console.log(ex);
+                }
+                var trbegin = "<tr>";
+                var trbody = "<td>" + id + "</td>";
+                trbody += "<td>" + username + "</td>";
+                trbody += "<td>" + formatbirthday + "</td>";
+                trbody += "<td>" + gender + "</td>";
+                trbody += "<td>" + hometown + "</td>";
+                var trend = "</tr>";
+                var tr = trbegin + trbody + trend;
+                $("#tbody").append(tr);
+            }
+        }
+    });
+}
 function load(curr) {
     $.ajax({
-        url: "#",
+        url: "",
         timeout: 300000,
         dataType: "json",
         type: "get",
@@ -57,36 +98,37 @@ function add() {
         layer.tips('不能为空', '#userName');
         return;
     }
-    if ($("#Chinese").val() == "") {
-        layer.tips('不能为空', '#Chinese');
+    if ($("#Password").val() == "") {
+        layer.tips('不能为空', '#Password');
         return;
     }
-    if ($("#Math").val() == "") {
-        layer.tips('不能为空', '#Math');
+    if ($("#Gender").val() == "") {
+        layer.tips('不能为空', '#Gender');
         return;
     }
-    if ($("#English").val() == "") {
-        layer.tips('不能为空', '#English');
+    if ($("#Hometown").val() == "") {
+        layer.tips('不能为空', '#Hometown');
         return;
     }
-    var formdata = {
-        flag: "add",
-        userName: $("#userName").val(),
-        Chinese: $("#Chinese").val(),
-        Math: $("#Math").val(),
-        English: $("#English").val()
-    }
+    var user={
+        "username": $("#userName").val(),
+        "password": $("#Password").val(),
+        "gender": $("#Gender").val(),
+        "hometown": $("#Hometown").val()
+    };
     $.ajax({
-        url: "#",
+        url: "/user/adduser",
         timeout: 300000,
-        dataType: "json",
+        contentType: "application/json;charse=UTF-8",
         type: "post",
-        data: formdata,
+        data: JSON.stringify(user),
         success: function (data) {
+            console.log(data.result);
             $("#addModal").modal("hide");
             layer.alert(data.msg);
             $("input").val("");
-            load(curr);
+            //loadData();
+            location.href = "/tmp/table.html";
         }
     })
 }
