@@ -14,6 +14,7 @@ public class AdminService {
 
     public boolean login(AdminEntity adminEntity) {
         AdminEntity entity = dao.login(adminEntity.getUsername());
+        if (entity == null) return false;
         return entity.getPassword().equals(adminEntity.getPassword());
     }
 }

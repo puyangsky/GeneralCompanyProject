@@ -16,12 +16,23 @@
                 $.ajax({
                     url:"/admin/login",
                     type:"POST",
-                    data:JSON.stringify(admin),
                     dataType:"json",
+                    data:JSON.stringify(admin),
                     contentType:"application/json;charset=UTF-8",
                     success:function(data) {
-                        alert(data);
                         console.log(data);
+                        if(data.result == true) {
+                            alert("登录成功");
+                            location.href = "/admin/admin"
+                        }else {
+                            alert("登录失败，请重新输入用户名和密码");
+                            location.href = "/admin";
+                        }
+                    },
+                    error:function(data) {
+                        alert("error");
+                        console.log(data);
+                        location.href = "/admin";
                     }
                 });
             });
