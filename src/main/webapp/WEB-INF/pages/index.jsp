@@ -22,7 +22,7 @@
           <tr>
             <td height="50" align="right" class="font_15"><table width="95%" border="0" cellspacing="0" cellpadding="0">
               <tr>
-                <td align="center"><strong><a href="http://localhost:8080">网站首页</a></strong></td>
+                <td align="center"><strong><a href="http://osvt.net:11111/home">网站首页</a></strong></td>
                 <td align="center"><img src="/img/shux.jpg" width="2" height="16" /></td>
                 <td align="center"><strong><a href="/dashboard/about.html">关于我们</a></strong></td>
                 <td align="center"><img src="/img/shux.jpg" width="2" height="16" /></td>
@@ -112,7 +112,7 @@
       <tr>
         <td width="195" align="center"><img src="/img/in_34.jpg" width="174" height="34" /></td>
         <td width="39" align="center"><img src="/img/in_31.jpg" width="4" height="50" /></td>
-        <td width="766" align="left" class="font_999">地址：上海延安中路829号达安广场503C   电话：021-62088509   传真：021-33592792<br />
+        <td width="766" align="left" class="font_999">地址：北京市丰台区黄土岗高场村2号A座3003室   电话：010-57258985<br />
           Copyright © 2013 - 2014 北京威远中保劳务服务有限公司 版权所有</td>
       </tr>
     </table></td>

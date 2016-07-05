@@ -25,6 +25,14 @@ public class UserService {
         return null;
     }
 
+    public boolean login(UserEntity user) {
+        UserEntity userEntity = dao.getUserByUsername(user.getUsername());
+        if (userEntity == null) {
+            return false;
+        }
+        return userEntity.getPassword().equals(user.getPassword());
+    }
+
     public List<UserEntity> getAllUser() {
         return dao.getAllUser();
     }

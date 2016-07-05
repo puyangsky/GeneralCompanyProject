@@ -40,7 +40,7 @@ public class AdminController {
         }
         boolean pass = service.login(entity);
         if(pass) {
-            request.getSession().setAttribute("user", entity.getUsername());
+            request.getSession().setAttribute("admin", entity.getUsername());
         }
         JSONObject json = new JSONObject();
         json.put("result", pass);
@@ -49,7 +49,7 @@ public class AdminController {
 
     @RequestMapping(value = "/admin", method = RequestMethod.GET)
     public String admin(HttpServletRequest request) {
-        if(request.getSession().getAttribute("user") != null) {
+        if(request.getSession().getAttribute("admin") != null) {
             System.out.println("登录成功！");
             return "admin";
         }
@@ -58,15 +58,15 @@ public class AdminController {
 
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
     public String logout(HttpServletRequest request) {
-        if (request.getSession().getAttribute("user") != null) {
-            request.getSession().removeAttribute("user");
+        if (request.getSession().getAttribute("admin") != null) {
+            request.getSession().removeAttribute("admin");
         }
         return "login";
     }
 
     @RequestMapping(value = "/changepwd", method = RequestMethod.GET)
     public String changePassword(HttpServletRequest request) {
-        if (request.getSession().getAttribute("user") != null) {
+        if (request.getSession().getAttribute("admin") != null) {
             return "changepwd";
         }
         return "login";

@@ -13,4 +13,10 @@ public class HelloController {
 //		model.addAttribute("message", "Hello world!");
 		return "index";
 	}
+
+    @RequestMapping(value = "/home", method = RequestMethod.GET)
+	public String index() {
+//		model.addAttribute("message", "Hello world!");
+		return "index";
+	}
 }

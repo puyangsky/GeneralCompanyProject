@@ -45,6 +45,14 @@ public class UserDaoIml implements UserDao {
     }
 
     @Override
+    public UserEntity getUserByUsername(String username) {
+        String hql = "from UserEntity u where u.username=?";
+        Query query = sessionFactory.openSession().createQuery(hql);
+        query.setString(0, username);
+        return (UserEntity) query.uniqueResult();
+    }
+
+    @Override
     public int addUser(UserEntity userEntity) {
         try {
             sessionFactory.openSession().save(userEntity);

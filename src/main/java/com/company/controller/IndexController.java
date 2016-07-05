@@ -1,9 +1,11 @@
 package com.company.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.company.model.AdminEntity;
 import com.company.model.UserEntity;
 import com.company.service.UserService;
 import com.company.util.JsonUtil;
+import com.company.util.StringCheck;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
@@ -34,6 +36,33 @@ public class IndexController {
         String result = callback + "(" + JsonUtil.toJsonString(userEntity) + ")";
         return result;
     }
+
+
+    @RequestMapping(value = "/login", method = RequestMethod.POST,
+            produces = "application/json; charset=utf-8")
+    @ResponseBody
+    public String login(@RequestBody UserEntity entity, HttpServletRequest request) {
+        System.out.println(entity.getUsername());
+        if (StringCheck.isNullOrEmpty(entity.getUsername()) || StringCheck.isNullOrEmpty(entity.getPassword())) {
+            JSONObject json = new JSONObject();
+            json.put("result", "parameter invalid");
+            return json.toString();
+        }
+        boolean pass = userService.login(entity);
+        String res;
+        if(pass) {
+            request.getSession().setAttribute("user", entity.getUsername());
+            res = "true";
+        }
+        else {
+            res = "false";
+        }
+        JSONObject json = new JSONObject();
+        json.put("result", res);
+        return json.toString();
+    }
+
+
 
     @RequestMapping(value = "/adduser", method = RequestMethod.POST)
     @ResponseBody
