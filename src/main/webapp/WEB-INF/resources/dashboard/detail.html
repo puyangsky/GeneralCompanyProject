@@ -6,24 +6,47 @@
     <!--<link rel="stylesheet" href="http://apps.bdimg.com/libs/bootstrap/3.3.0/css/bootstrap.min.css">-->
     <link rel="stylesheet" href="/css/bootstrap-responsive.min.css">
     <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="shortcut icon" href="/img/favicon.ico">
     <style type="text/css">
         .input-small-large {
             width: 189px;
         }
         .main-title {
             text-align: center;
-            font-family: bold;
         }
         fieldset {
             padding: 20px;
         }
+        .fieldfont {
+            font-weight: bold;
+        }
+        #btns {
+            text-align:center;
+        }
+        #reset {
+            margin-left: 40px;
+            margin-top: 20px;
+        }
+        #submit {
+            margin-top: 20px;
+        }
+        #backdiv{
+            margin: 20px 100px 10px 0;
+        }
+        #back {
+            float: right;
+        }
+
     </style>
 </head>
 <body>
+<div id="backdiv">
+    <button id="back" class="btn btn-info" type="button">返回首页</button>
+</div>
     <div class="container" style="width: 75%">
         <form class="form-horizontal">
             <fieldset>
-                <div id="legend" class="">
+                <div id="legend" class="fieldfont">
                     <legend class="main-title">人员信息登记表</legend>
                 </div>
             </fieldset>
@@ -34,7 +57,7 @@
                 <div class="control-group">
 
                     <!-- Text input-->
-                    <label class="control-label" for="input01">姓名</label>
+                    <label class="control-label" >姓名</label>
                     <div class="controls">
                         <input type="text" id="username" placeholder="姓名" class="input-xlarge">
                         <p class="help-block"></p>
@@ -46,7 +69,7 @@
                         <div class="control-group">
 
                             <!-- Text input-->
-                            <label class="control-label" for="input01">性别</label>
+                            <label class="control-label" >性别</label>
                             <div class="controls">
                                 <input type="text" id="gender" placeholder="性别" class="input-xlarge">
                                 <p class="help-block"></p>
@@ -69,7 +92,7 @@
                 <div class="control-group">
 
                     <!-- Text input-->
-                    <label class="control-label" for="input01">出生日期</label>
+                    <label class="control-label" >出生日期</label>
                     <div class="controls">
                         <input type="text" id="birthday" placeholder="出生日期" class="input-xlarge">
                         <p class="help-block"></p>
@@ -79,7 +102,7 @@
                       <td>  <div class="control-group">
 
                 <!-- Text input-->
-                <label class="control-label" for="input01">身份证号</label>
+                <label class="control-label" >身份证号</label>
                 <div class="controls">
                     <input type="text" id="idnumber" placeholder="身份证号" class="input-xlarge">
                     <p class="help-block"></p>
@@ -88,7 +111,7 @@
                 <td><div class="control-group">
 
                     <!-- Text input-->
-                    <label class="control-label" for="input01">最高学历</label>
+                    <label class="control-label" >最高学历</label>
                     <div class="controls">
                         <input type="text" id="xueli" placeholder="最高学历" class="input-xlarge">
                         <p class="help-block"></p>
@@ -102,7 +125,7 @@
                 <div class="control-group">
 
                     <!-- Text input-->
-                    <label class="control-label" for="input01">婚姻状况</label>
+                    <label class="control-label" >婚姻状况</label>
                     <div class="controls">
                         <input type="text" id="marriage" placeholder="婚姻状况" class="input-xlarge">
                         <p class="help-block"></p>
@@ -129,7 +152,7 @@
                 <div class="control-group">
 
                     <!-- Text input-->
-                    <label class="control-label" for="input01">血型</label>
+                    <label class="control-label" >血型</label>
                     <div class="controls">
                         <input type="text" id="blood" placeholder="血型" class="input-xlarge">
                         <p class="help-block"></p>
@@ -184,7 +207,7 @@
                 <div class="control-group">
 
                     <!-- Text input-->
-                    <label class="control-label" for="input01">邮寄送达地址</label>
+                    <label class="control-label" >邮寄送达地址</label>
                     <div class="controls">
                         <input type="text" id="arriveaddress" placeholder="邮寄送达地址" class="input-xlarge">
                         <p class="help-block"></p>
@@ -196,7 +219,7 @@
                 <div class="control-group">
 
                     <!-- Text input-->
-                    <label class="control-label" for="input01">邮政编码</label>
+                    <label class="control-label" >邮政编码</label>
                     <div class="controls">
                         <input type="text" id="addressnumber" placeholder="邮政编码" class="input-xlarge">
                         <p class="help-block"></p>
@@ -206,7 +229,7 @@
                 <div class="control-group">
 
                     <!-- Text input-->
-                    <label class="control-label" for="input01">联系电话</label>
+                    <label class="control-label" >联系电话</label>
                     <div class="controls">
                         <input type="text" id="tel" placeholder="联系电话" class="input-xlarge">
                         <p class="help-block"></p>
@@ -218,7 +241,7 @@
                 <div class="control-group">
 
                     <!-- Text input-->
-                    <label class="control-label" for="input01">户籍所在地地址</label>
+                    <label class="control-label" >户籍所在地地址</label>
                     <div class="controls">
                         <input type="text" id="homeaddress" placeholder="户籍所在地地址" class="input-xlarge">
                         <p class="help-block"></p>
@@ -228,7 +251,7 @@
                 <div class="control-group">
 
                     <!-- Text input-->
-                    <label class="control-label" for="input01">邮政编码</label>
+                    <label class="control-label" >邮政编码</label>
                     <div class="controls">
                         <input type="text" id="homeaddressnumber" placeholder="邮政编码" class="input-xlarge">
                         <p class="help-block"></p>
@@ -238,7 +261,7 @@
                 <div class="control-group">
 
                     <!-- Text input-->
-                    <label class="control-label" for="input01">E-mail</label>
+                    <label class="control-label" >E-mail</label>
                     <div class="controls">
                         <input type="text" id="email" placeholder="E-mail" class="input-xlarge">
                         <p class="help-block"></p>
@@ -339,7 +362,7 @@
                 <div class="control-group">
 
                     <!-- Text input-->
-                    <label class="control-label" for="input01">每星期上班总时数</label>
+                    <label class="control-label" >每星期上班总时数</label>
                     <div class="controls">
                         <input type="text" placeholder="每星期上班总时数" class="input-xlarge">
                         <p class="help-block"></p>
@@ -349,7 +372,7 @@
                 <div class="control-group">
 
                     <!-- Text input-->
-                    <label class="control-label" for="input01">始于/下午（时）</label>
+                    <label class="control-label" >始于/下午（时）</label>
                     <div class="controls">
                         <input type="text" placeholder="始于/下午（时）" class="input-xlarge">
                         <p class="help-block"></p>
@@ -359,7 +382,7 @@
                 <div class="control-group">
 
                     <!-- Text input-->
-                    <label class="control-label" for="input01">住处距离</label>
+                    <label class="control-label" >住处距离</label>
                     <div class="controls">
                         <input type="text" placeholder="住处距离" class="input-xlarge">
                         <p class="help-block"></p>
@@ -369,7 +392,7 @@
                 <div class="control-group">
 
                     <!-- Text input-->
-                    <label class="control-label" for="input01">希望待遇</label>
+                    <label class="control-label" >希望待遇</label>
                     <div class="controls">
                         <input type="text" placeholder="希望待遇" class="input-xlarge">
                         <p class="help-block"></p>
@@ -379,7 +402,7 @@
                 <div class="control-group">
 
                     <!-- Text input-->
-                    <label class="control-label" for="input01">交通工具</label>
+                    <label class="control-label" >交通工具</label>
                     <div class="controls">
                         <input type="text" placeholder="交通工具" class="input-xlarge">
                         <p class="help-block"></p>
@@ -389,7 +412,7 @@
             </table>
 
             <fieldset>
-                <div id="legend1" class="">
+                <div id="legend1" class="fieldfont">
                     <legend class="main-title">家庭状况</legend>
                 </div>
             </fieldset>
@@ -500,7 +523,7 @@
             </table>
 
             <fieldset>
-                <div id="legend2" class="">
+                <div id="legend2" class="fieldfont">
                     <legend class="main-title">紧急联络人为员工在无法联络时代收邮件的代理人</legend>
                 </div>
             </fieldset>
@@ -510,7 +533,7 @@
                         <div class="control-group">
 
                             <!-- Text input-->
-                            <label class="control-label" for="input01">紧急联络人</label>
+                            <label class="control-label" >紧急联络人</label>
                             <div class="controls">
                                 <input type="text" placeholder="紧急联络人" class="input-xlarge">
                                 <p class="help-block"></p>
@@ -521,7 +544,7 @@
                         <div class="control-group">
 
                             <!-- Text input-->
-                            <label class="control-label" for="input01">与本人关系</label>
+                            <label class="control-label" >与本人关系</label>
                             <div class="controls">
                                 <input type="text" placeholder="与本人关系" class="input-xlarge">
                                 <p class="help-block"></p>
@@ -532,7 +555,7 @@
                         <div class="control-group">
 
                             <!-- Text input-->
-                            <label class="control-label" for="input01">固定电话</label>
+                            <label class="control-label" >固定电话</label>
                             <div class="controls">
                                 <input type="text" placeholder="固定电话" class="input-xlarge">
                                 <p class="help-block"></p>
@@ -545,7 +568,7 @@
                         <div class="control-group">
 
                             <!-- Text input-->
-                            <label class="control-label" for="input01">移动电话</label>
+                            <label class="control-label" >移动电话</label>
                             <div class="controls">
                                 <input type="text" placeholder="移动电话" class="input-xlarge">
                                 <p class="help-block"></p>
@@ -556,7 +579,7 @@
                         <div class="control-group">
 
                             <!-- Text input-->
-                            <label class="control-label" for="input01">紧急联络人地址</label>
+                            <label class="control-label" >紧急联络人地址</label>
                             <div class="controls">
                                 <input type="text" placeholder="紧急联络人地址" class="input-xlarge">
                                 <p class="help-block"></p>
@@ -567,7 +590,7 @@
             </table>
 
             <fieldset>
-                <div id="legend3" class="">
+                <div id="legend3" class="fieldfont">
                     <legend class="main-title">主要学习经历（从中学起）</legend>
                 </div>
             </fieldset>
@@ -677,7 +700,7 @@
             </table>
 
             <fieldset>
-                <div id="legend4" class="">
+                <div id="legend4" class="fieldfont">
                     <legend class="main-title">主要工作经历（如有曾在本公司的工作经历则必须注明）</legend>
                 </div>
             </fieldset>
@@ -823,11 +846,16 @@
                     </td>
                 </tr>
             </table>
-
         </form>
+        <div id="btns">
+            <button id="submit" type="button" class="btn btn-primary">提交</button>
+            <button id="reset" type="button" class="btn btn-primary">重置</button>
+        </div>
     </div>
-    <script src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
-    <script src="http://apps.bdimg.com/libs/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <!--<script src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>-->
+    <script src="/js/jquery-1.9.1.min.js"></script>
+    <!--<script src="http://apps.bdimg.com/libs/bootstrap/3.3.0/js/bootstrap.min.js"></script>-->
+    <script src="/js/bootstrap.min.js"></script>
 </body>
 </html>
 

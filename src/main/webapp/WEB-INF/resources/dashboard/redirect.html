@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <Meta http-equiv="Refresh" Content="5; Url=http://bj-wyzb.cn:11111/dashboard/detail.html">
+    <title>提示页</title>
+    <script type="text/javascript" src="/js/jquery-1.8.0.min.js"></script>
+    <!--<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>-->
+    <script>
+        $(document).ready(function() {
+            var i = 5;
+            function clock() {
+                i = i -1;
+//                alert(i);
+                if(i>=0) {
+                    $("#second").html(i);
+                }
+            }
+            setInterval(clock, 1000);
+        });
+    </script>
+    <style rel="stylesheet"type="text/css">
+        body {
+            background: #c5d4cb;
+        }
+        #username, #second {
+            display: inline;
+        }
+        #container {
+            padding-top: 10%;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <h2 align="center">欢迎您，<div id="username"></div><div id="second">5</div>秒后跳转到详细信息注册页，请完善您的个人信息，谢谢！</h2>
+        <div align="center"><a href="http://bj-wyzb.cn:11111/dashboard/detail.html">点击立即跳转</a></div>
+    </div>
+</body>
+</html>

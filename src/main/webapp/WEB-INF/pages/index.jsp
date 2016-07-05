@@ -4,9 +4,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>威远中保</title>
-<link href="/css/css.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="/js/jquery-1.8.0.min.js"></script>
-<script type="text/javascript" src="/js/jquery.jslides.js"></script>
+    <link href="/css/css.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="/js/jquery.jslides.js"></script>
+    <script type="text/javascript" src="/js/jquery-1.8.0.min.js"></script>
     <script>
         $(document).ready(function () {
             $("#loginuser").hide();
@@ -51,7 +51,7 @@
           <tr>
             <td height="50" align="right" class="font_15"><table width="95%" border="0" cellspacing="0" cellpadding="0">
               <tr>
-                <td align="center"><strong><a href="http://osvt.net:11111/home">网站首页</a></strong></td>
+                <td align="center"><strong><a href="http://bj-wyzb.cn:11111/home">网站首页</a></strong></td>
                 <td align="center"><img src="/img/shux.jpg" width="2" height="16" /></td>
                 <td align="center"><strong><a href="/dashboard/about.html">关于我们</a></strong></td>
                 <td align="center"><img src="/img/shux.jpg" width="2" height="16" /></td>
@@ -116,7 +116,7 @@
             <tr>
               <td height="103" colspan="3" align="left" ><table width="100%" border="0" align="center" cellpadding="3" cellspacing="0">
                   <tr>
-                    <td width="71%" align="left" class="xuxian"><a href="/dashboard/newsite.html" target="_blank">·欢洗“盈宝卫浴” TOTO全国优惠促销</a></td>
+                    <td width="71%" align="left" class="xuxian"><a href="/dashboard/newsite.html" target="_blank">·欢洗“威远中保” TOTO全国优惠促销</a></td>
                     <td width="25%" align="left" class="xuxian">2013-11-11</td>
                   </tr>
                   <tr>
@@ -124,7 +124,7 @@
                     <td align="left" class="xuxian">2013-11-11</td>
                   </tr>
                   <tr>
-                    <td align="left" class="xuxian"><a href="/dashboard/newsite.html" target="_blank">·盈宝卫浴旗舰展厅盛装登陆无锡</a></td>
+                    <td align="left" class="xuxian"><a href="/dashboard/newsite.html" target="_blank">·威远中保旗舰展厅盛装登陆无锡</a></td>
                     <td align="left" class="xuxian">2013-11-11</td>
                   </tr>
               </table></td>
