@@ -7,6 +7,35 @@
 <link href="/css/css.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="/js/jquery-1.8.0.min.js"></script>
 <script type="text/javascript" src="/js/jquery.jslides.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#loginuser").hide();
+            $.ajax({
+                url: "/user/getLoginUser",
+                type:"GET",
+                dataType:"json",
+                contentType:"application/json;charset=UTF-8",
+                success:function(data) {
+//                    alert("success:" + data);
+                    console.log(data);
+                    if(data.user == "null") {
+                        $("#loginuser").hide();
+                    }else{
+                        var username = data.user;
+                        $("#loginuser").show();
+                        $("#loginusername").html(username.trim());
+                        console.log(username.trim());
+                        $("#unlogin").hide();
+                    }
+                },
+                error: function (data) {
+                    alert("error:" + data);
+                }
+            });
+        });
+        
+    </script>
+    
 </head>
 
 <body>
@@ -17,7 +46,7 @@
         <td width="328" height="99" align="center" background="/img/in_04.jpg"><img src="/img/in_07.jpg" width="287" height="51" /></td>
         <td width="672" valign="middle"><table width="100%" border="0" cellpadding="0" cellspacing="0" class="font_wr">
           <tr>
-            <td height="35" align="right"><a href="/dashboard/login.html">登录</a> - <a href="/dashboard/register.html">注册信息</a> 　 </td>
+            <td height="35" align="right"><div id="unlogin"><a href="/dashboard/login.html">登录</a> - <a href="/dashboard/register.html">注册</a></div><div id="loginuser">欢迎您，<div id="loginusername"></div>，<a href="/user/logout">登出</a></div></td>
           </tr>
           <tr>
             <td height="50" align="right" class="font_15"><table width="95%" border="0" cellspacing="0" cellpadding="0">

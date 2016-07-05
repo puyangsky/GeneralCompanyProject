@@ -36,17 +36,68 @@
             margin-bottom: 15px;
             padding: 7px 9px;
         }
+        #warn, #warn1 {
+            color: #ff0000;
+            display: none;
+            padding-bottom: 15px;
+        }
 
     </style>
+
+    <script type="text/javascript" src="/js/jquery-1.9.1.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $("#register").click(function () {
+                var username = $("#username").val();
+                var password = $("#password").val();
+                var repwd = $("#repassword").val();
+                if(repwd != password) {
+                    $("#warn").show();
+                    return;
+                }
+                var user = {"username": username, "password":password};
+                $.ajax({
+                    url:"/user/register",
+                    type:"POST",
+                    dataType:"json",
+                    data:JSON.stringify(user),
+                    contentType:"application/json;charset=UTF-8",
+                    success:function(data) {
+                        console.log(data);
+                        if(data.result == "200") {
+                            alert("注册成功");
+                            location.href = "/dashboard/detail.html";
+                        }else if(data.result == "400"){
+                            alert("注册失败，请重新输入用户名和密码");
+                            location.href = "/dashboard/register.html";
+                        }else if(data.result == "500"){
+                            alert("注册失败，用户名已存在");
+                            $("#warn1").show();
+//                            location.href = "/dashboard/register.html";
+                        }
+                    },
+                    error:function(data) {
+                        alert("error");
+                        console.log(data);
+                        location.href = "/dashboard/register.html";
+                    }
+                });
+            });
+        });
+
+    </script>
+
 </head>
 <body>
 <div class="container">
     <form class="form-signin">
         <h2 class="form-signin-heading">注册页</h2>
-        <input type="text" class="input-block-level" placeholder="用户名">
-        <input type="password" class="input-block-level" placeholder="密码">
-        <input type="password" class="input-block-level" placeholder="确认密码">
-        <button class="btn btn-large btn-primary" type="submit">注册</button>
+        <input type="text" id="username" class="input-block-level" placeholder="用户名">
+        <div id="warn1">用户名已存在，请重新输入用户名！</div>
+        <input type="password" id="password" class="input-block-level" placeholder="密码">
+        <input type="password" id="repassword" class="input-block-level" placeholder="确认密码">
+        <div id="warn">两次密码不一样！</div>
+        <input id="register" type="button" class="btn btn-large btn-primary" value="注册"/>
     </form>
 </div>
 </body>

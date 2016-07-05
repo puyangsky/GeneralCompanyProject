@@ -63,6 +63,50 @@ public class IndexController {
     }
 
 
+    @RequestMapping(value = "/getLoginUser", method = RequestMethod.GET)
+    @ResponseBody
+    public String getLoginUser(HttpServletRequest request) {
+        JSONObject json = new JSONObject();
+        if (request.getSession().getAttribute("user") == null) {
+            json.put("user", "null");
+            return json.toString();
+        }
+        else {
+            json.put("user", request.getSession().getAttribute("user").toString());
+            return json.toString();
+        }
+    }
+
+    @RequestMapping(value = "/logout", method = RequestMethod.GET)
+    public String logout(HttpServletRequest request) {
+        if (request.getSession().getAttribute("user") != null) {
+            request.getSession().removeAttribute("user");
+        }
+        return "index";
+    }
+
+    @RequestMapping(value = "/register", method = RequestMethod.POST,
+            produces = "application/json; charset=utf-8")
+    @ResponseBody
+    public String register(@RequestBody UserEntity entity, HttpServletRequest request) {
+        JSONObject json = new JSONObject();
+        System.out.println(entity.getUsername());
+        UserEntity user = userService.getUserByUsername(entity.getUsername());
+        if (user != null) {
+            json.put("result", "500");
+            return json.toString();
+        }
+        int res = userService.addUser(entity);
+        String result;
+        if(res > 0) {
+            request.getSession().setAttribute("user", entity.getUsername());
+            result = "200";
+        } else {
+            result = "400";
+        }
+        json.put("result", result);
+        return json.toString();
+    }
 
     @RequestMapping(value = "/adduser", method = RequestMethod.POST)
     @ResponseBody

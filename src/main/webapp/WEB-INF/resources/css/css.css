@@ -106,3 +106,8 @@ A.a666:active {
 #pagination li { display:block; list-style:none; width:10px; height:10px; float:left; margin-left:15px; border-radius:5px; background:#FFF }
 #pagination li a { display:block; width:100%; height:100%; padding:0; margin:0;  text-indent:-9999px;}
 #pagination li.current { background:#0092CE}
+
+#loginusername, #loginuser, #unlogin {
+    display:inline;
+    font-size: small;
+}
