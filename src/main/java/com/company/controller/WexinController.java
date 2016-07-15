@@ -16,11 +16,16 @@ public class WexinController {
 
     @RequestMapping("index")
     public String index() {
-        return "wxindex";
+        return "wxdetail";
     }
 
     @RequestMapping("login")
     public String login(){
         return "wxlogin";
+    }
+
+    @RequestMapping("detail")
+    public String detail() {
+        return "wxdetail";
     }
 }

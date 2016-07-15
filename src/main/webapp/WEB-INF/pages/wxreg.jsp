@@ -68,7 +68,7 @@
                         if(data.result == "200") {
                             $("#toast").show();
                             setTimeout(function () {
-                                location.href = "/wx/index";
+                                location.href = "/wx/detail";
                             }, 2000);
                         }else if(data.result == "400"){
                             $("#warn4").show();
@@ -90,44 +90,43 @@
                     }
                 });
             });
-
-
         });
 
     </script>
 </head>
 <body>
 
-<h1 class="page_title">威远中保首页</h1>
-<div class="weui_cells weui_cells_form">
-    <div class="weui_cell">
-        <div class="weui_cell_hd">
-            <label class="weui_label">用户名</label>
+    <h1 class="page_title">注册页</h1>
+    <div class="weui_cells weui_cells_form">
+        <div class="weui_cell">
+            <div class="weui_cell_hd">
+                <label class="weui_label">用户名</label>
+            </div>
+            <div class="weui_cell_bd weui_cell_primary">
+                <input id="username" class="weui_input" type="text" pattern="[a-zA-Z0-9]*" placeholder="请输入用户名(英文和数字)"/>
+            </div>
         </div>
-        <div class="weui_cell_bd weui_cell_primary">
-            <input id="username" class="weui_input" type="text" pattern="[a-zA-Z0-9]*" placeholder="请输入用户名(英文和数字)"/>
+        <div class="weui_cell">
+            <div class="weui_cell_hd"><label class="weui_label">密码</label></div>
+            <div class="weui_cell_bd weui_cell_primary">
+                <input id="password" class="weui_input" type="password" placeholder="请输入密码(不少于9位)"/>
+            </div>
         </div>
+        <div class="weui_cell">
+            <div class="weui_cell_hd"><label class="weui_label">确认密码</label></div>
+            <div class="weui_cell_bd weui_cell_primary">
+                <input id="repassword" class="weui_input" type="password" placeholder="请输入确认密码"/>
+            </div>
+        </div>
+        <div class="weui_toptips weui_warn" id="warn">两次密码不一致</div>
+        <div class="weui_toptips weui_warn" id="warn1">用户名已存在</div>
+        <div class="weui_toptips weui_warn" id="warn2">用户名不能为空</div>
+        <div class="weui_toptips weui_warn" id="warn3">密码不能为空</div>
+        <div class="weui_toptips weui_warn" id="warn4">注册失败，请重新输入</div>
+        <%--<div class="btndiv">--%>
+        <%--<a href="javascript:;"  class="weui_btn weui_btn_primary">注册</a>--%>
+        <%--</div>--%>
     </div>
-    <div class="weui_cell">
-        <div class="weui_cell_hd"><label class="weui_label">密码</label></div>
-        <div class="weui_cell_bd weui_cell_primary">
-            <input id="password" class="weui_input" type="password" placeholder="请输入密码(不少于9位)"/>
-        </div>
-    </div>
-    <div class="weui_cell">
-        <div class="weui_cell_hd"><label class="weui_label">确认密码</label></div>
-        <div class="weui_cell_bd weui_cell_primary">
-            <input id="repassword" class="weui_input" type="password" placeholder="请输入确认密码"/>
-        </div>
-    </div>
-    <div class="weui_toptips weui_warn" id="warn">两次密码不一致</div>
-    <div class="weui_toptips weui_warn" id="warn1">用户名已存在</div>
-    <div class="weui_toptips weui_warn" id="warn2">用户名不能为空</div>
-    <div class="weui_toptips weui_warn" id="warn3">密码不能为空</div>
-    <div class="weui_toptips weui_warn" id="warn4">注册失败，请重新输入</div>
-    <%--<div class="btndiv">--%>
-    <%--<a href="javascript:;"  class="weui_btn weui_btn_primary">注册</a>--%>
-    <%--</div>--%>
     <div class="weui_btn_area">
         <a class="weui_btn weui_btn_primary" id="regbtn" href="javascript:" >注册</a>
     </div>
@@ -138,7 +137,7 @@
             <p class="weui_toast_content">注册成功</p>
         </div>
     </div>
-</div>
+
 
 
 

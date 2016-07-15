@@ -21,10 +21,36 @@
             font-weight:400;
             margin:0 15%
         }
+        #upload_process {
+            display: none;
+        }
     </style>
     <script type="text/javascript" src="/js/jquery-1.9.1.min.js"></script>
     <script>
         $(document).ready(function() {
+            function pic_change() {
+                $("#upload_img").addClass("weui_uploader_status");
+                var process = 0;
+                var timer = window.setInterval(function () {
+                    $("#upload_process").html(process + "%");
+                    $("#upload_process").show();
+                    process += 10;
+                    console.log(process);
+                    if(process > 100) {
+                        $("#upload_process").hide();
+                        $("#upload_img").removeClass("weui_uploader_status");
+                        clearInterval(timer);
+                    }
+                }, 1000);
+
+            }
+
+//            $("#upload_btn").change(function () {
+//                console.log("helli");
+//                window.URL.createObjectURL
+//                $("#upload_img").attr("src", $("#upload_btn").val());
+//            });
+
             $("#regbtn").click(function () {
                 var username = $("#username").val();
                 var password = $("#password").val();
@@ -91,32 +117,75 @@
 </head>
 <body>
 
-<h1 class="page_title">威远中保首页</h1>
+<h1 class="page_title">详细信息填写</h1>
 <div class="weui_cells weui_cells_form">
     <div class="weui_cell">
         <div class="weui_cell_hd">
-            <label class="weui_label">用户名</label>
+            <label class="weui_label">姓名</label>
         </div>
         <div class="weui_cell_bd weui_cell_primary">
-            <input id="username" class="weui_input" type="text" pattern="[a-zA-Z0-9]*" placeholder="请输入用户名(英文和数字)"/>
+            <input id="username" class="weui_input" type="text" placeholder="请输入用户名(中文)"/>
         </div>
     </div>
+
+    <div class="weui_cells_title">性别</div>
+    <div class="weui_cells weui_cells_checkbox">
+        <label class="weui_cell weui_check_label" for="s11">
+            <div class="weui_cell_hd">
+                <input type="checkbox" class="weui_check" name="checkbox1" id="s11" checked="checked">
+                <i class="weui_icon_checked"></i>
+            </div>
+            <div class="weui_cell_bd weui_cell_primary">
+                <p>男</p>
+            </div>
+        </label>
+        <label class="weui_cell weui_check_label" for="s12">
+            <div class="weui_cell_hd">
+                <input type="checkbox" name="checkbox1" class="weui_check" id="s12">
+                <i class="weui_icon_checked"></i>
+            </div>
+            <div class="weui_cell_bd weui_cell_primary">
+                <p>女</p>
+            </div>
+        </label>
+    </div>
+
     <div class="weui_cell">
-        <div class="weui_cell_hd"><label class="weui_label">密码</label></div>
         <div class="weui_cell_bd weui_cell_primary">
-            <input id="password" class="weui_input" type="password" placeholder="请输入密码(不少于9位)"/>
+            <div class="weui_uploader">
+                <div class="weui_uploader_hd weui_cell">
+                    <div class="weui_cell_bd weui_cell_primary">照片上传</div>
+                </div>
+                <div class="weui_uploader_bd">
+                    <%--<ul class="weui_uploader_files">--%>
+                        <%--<li id="upload_img" class="weui_uploader_file" style="background-image:url(http://localhost:8080/img/default_pic.jpg)">--%>
+                            <%--<div id="upload_process" class="weui_uploader_status_content"></div>--%>
+                        <%--</li>--%>
+
+                        <%--&lt;%&ndash;<li class="weui_uploader_file weui_uploader_status" style="background-image:url(http://shp.qpic.cn/weixinsrc_pic/pScBR7sbqjOBJomcuvVJ6iacVrbMJaoJZkFUIq4nzQZUIqzTKziam7ibg/)">&ndash;%&gt;--%>
+                            <%--&lt;%&ndash;<div class="weui_uploader_status_content">50%</div>&ndash;%&gt;--%>
+                        <%--&lt;%&ndash;</li>&ndash;%&gt;--%>
+                    <%--</ul>--%>
+                    <div>
+                        <img id="upload_img" class="weui_uploader_file" src="/img/default_pic.jpg">
+                    </div>
+                    <div class="weui_uploader_input_wrp">
+                        <input id="upload_btn" class="weui_uploader_input" onchange="uploadImg(this)" type="file" accept="image/*" multiple />
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-    <div class="weui_cell">
-        <div class="weui_cell_hd"><label class="weui_label">确认密码</label></div>
-        <div class="weui_cell_bd weui_cell_primary">
-            <input id="repassword" class="weui_input" type="password" placeholder="请输入确认密码"/>
-        </div>
-    </div>
-    <div class="weui_toptips weui_warn" id="warn">两次密码不一致</div>
-    <div class="weui_toptips weui_warn" id="warn1">用户名已存在</div>
-    <div class="weui_toptips weui_warn" id="warn2">用户名不能为空</div>
-    <div class="weui_toptips weui_warn" id="warn3">密码不能为空</div>
+
+
+
+
+
+
+
+
+
+    <div class="weui_toptips weui_warn" id="warn"></div>
     <%--<div class="btndiv">--%>
         <%--<a href="javascript:;"  class="weui_btn weui_btn_primary">注册</a>--%>
     <%--</div>--%>
@@ -132,7 +201,12 @@
     </div>
 </div>
 
-
+<script>
+    function uploadImg(sender) {
+        console.log(window.URL.createObjectURL(sender.files[0]));
+        $("#upload_img").attr("src", window.URL.createObjectURL(sender.files[0]));
+    }
+</script>
 
 </body>
 </html>
