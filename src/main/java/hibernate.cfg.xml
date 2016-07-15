@@ -4,7 +4,7 @@
         "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
     <session-factory>
-        <property name="connection.url">jdbc:mysql://127.0.0.1:3306/test?zeroDateTimeBehavior=convertToNull&amp;useUnicode=true&amp;characterEncoding=utf-8</property>
+        <property name="connection.url">jdbc:mysql://localhost:3306/test?zeroDateTimeBehavior=convertToNull&amp;useUnicode=true&amp;characterEncoding=utf-8</property>
         <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
         <mapping resource="com/company/mapping/AdminEntity.hbm.xml"/>
         <mapping class="com.company.model.AdminEntity"/>
