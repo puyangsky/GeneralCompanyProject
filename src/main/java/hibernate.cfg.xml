@@ -4,11 +4,12 @@
         "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
     <session-factory>
-        <property name="connection.url">jdbc:mysql://localhost:3306/test?zeroDateTimeBehavior=convertToNull&amp;useUnicode=true&amp;characterEncoding=utf-8</property>
+        <property name="connection.url">jdbc:mysql://192.168.27.148:3306</property>
         <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
         <mapping resource="com/company/mapping/AdminEntity.hbm.xml"/>
         <mapping class="com.company.model.AdminEntity"/>
         <mapping resource="com/company/mapping/UserEntity.hbm.xml"/>
+        <mapping class="com.company.model.UserEntity"/>
         <mapping class="com.company.model.UserEntity"/>
         <!-- DB schema will be updated if needed -->
         <!-- <property name="hbm2ddl.auto">update</property> -->

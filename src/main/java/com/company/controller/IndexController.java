@@ -111,7 +111,7 @@ public class IndexController {
     @RequestMapping(value = "/adduser", method = RequestMethod.POST)
     @ResponseBody
     public String addUser(@RequestBody UserEntity userEntity) {
-        System.out.println("username:"+userEntity.getUsername()+ "---password:"+ userEntity.getPassword());
+//        System.out.println("username:"+userEntity.getUsername()+ "---password:"+ userEntity.getPassword());
         System.out.println(JsonUtil.toJsonString(userEntity));
 
         int result = userService.addUser(userEntity);

@@ -11,7 +11,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
-    <title>WeUI</title>
+    <title>注册页</title>
     <link rel="stylesheet" href="/css/weui.min.css"/>
     <style type="text/css">
         .page_title {
@@ -134,7 +134,7 @@
         <div class="weui_mask_transparent"></div>
         <div class="weui_toast">
             <i class="weui_icon_toast"></i>
-            <p class="weui_toast_content">注册成功</p>
+            <p class="weui_toast_content">注册成功，即将跳转至详情页</p>
         </div>
     </div>
 

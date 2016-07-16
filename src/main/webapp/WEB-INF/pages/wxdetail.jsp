@@ -11,7 +11,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
-    <title>WeUI</title>
+    <title>详细信息页</title>
     <link rel="stylesheet" href="/css/weui.min.css"/>
     <style type="text/css">
         .page_title {
@@ -35,29 +35,6 @@
     <script type="text/javascript" src="/js/jquery-1.9.1.min.js"></script>
     <script>
         $(document).ready(function() {
-            function pic_change() {
-                $("#upload_img").addClass("weui_uploader_status");
-                var process = 0;
-                var timer = window.setInterval(function () {
-                    $("#upload_process").html(process + "%");
-                    $("#upload_process").show();
-                    process += 10;
-                    console.log(process);
-                    if(process > 100) {
-                        $("#upload_process").hide();
-                        $("#upload_img").removeClass("weui_uploader_status");
-                        clearInterval(timer);
-                    }
-                }, 1000);
-
-            }
-
-//            $("#upload_btn").change(function () {
-//                console.log("helli");
-//                window.URL.createObjectURL
-//                $("#upload_img").attr("src", $("#upload_btn").val());
-//            });
-
             $("#regbtn").click(function () {
                 var username = $("#username").val();
                 var password = $("#password").val();
@@ -251,7 +228,7 @@
                 <p>有</p>
             </div>
             <div class="weui_cell_ft">
-                <input type="radio" class="weui_check" name="radio1" id="x13"  checked="checked">
+                <input type="radio" class="weui_check" name="radio0" id="x13"  checked="checked">
                 <span class="weui_icon_checked"></span>
             </div>
         </label>
@@ -261,7 +238,7 @@
                 <p>无</p>
             </div>
             <div class="weui_cell_ft">
-                <input type="radio" name="radio1" class="weui_check" id="x14">
+                <input type="radio" name="radio0" class="weui_check" id="x14">
                 <span class="weui_icon_checked"></span>
             </div>
         </label>
