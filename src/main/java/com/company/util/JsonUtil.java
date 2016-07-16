@@ -22,7 +22,7 @@ public class JsonUtil {
         jo.put("hometown", userEntity.getHometown());
         jo.put("gender", userEntity.getGender());
         jo.put("birthday", userEntity.getBirthday());
-        jo.put("inarmydate", userEntity.getInarmydate());
+        jo.put("realname", userEntity.getRealname());
         jo.put("outarmydate", userEntity.getOutarmydate());
         jo.put("department", userEntity.getDepartment());
         jo.put("avatar", userEntity.getAvatar());
@@ -142,7 +142,7 @@ public class JsonUtil {
             jo.put("hometown", userEntity.getHometown());
             jo.put("gender", userEntity.getGender());
             jo.put("birthday", userEntity.getBirthday());
-            jo.put("inarmydate", userEntity.getInarmydate());
+            jo.put("realname", userEntity.getRealname());
             jo.put("outarmydate", userEntity.getOutarmydate());
             jo.put("department", userEntity.getDepartment());
             jo.put("avatar", userEntity.getAvatar());

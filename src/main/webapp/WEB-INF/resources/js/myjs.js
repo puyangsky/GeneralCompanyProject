@@ -1,3 +1,5 @@
-function addRow() {
+$(document).ready(function () {
+    $("#regbtn").click(function () {
 
-}
+    });
+});
