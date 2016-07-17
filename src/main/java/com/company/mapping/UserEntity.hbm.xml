@@ -6,14 +6,9 @@
 
     <class name="com.company.model.UserEntity" table="user" schema="" catalog="test">
         <id name="id" column="id"/>
-        <property name="username" column="username"/>
-        <property name="password" column="password"/>
-        <property name="hometown" column="hometown"/>
         <property name="gender" column="gender"/>
         <property name="birthday" column="birthday"/>
         <property name="realname" column="realname"/>
-        <property name="outarmydate" column="outarmydate"/>
-        <property name="department" column="department"/>
         <property name="avatar" column="avatar"/>
         <property name="tel" column="tel"/>
         <property name="idnum" column="idnum"/>

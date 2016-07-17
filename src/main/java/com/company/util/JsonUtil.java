@@ -17,14 +17,9 @@ public class JsonUtil {
             return jo.toString();
         }
         jo.put("id", userEntity.getId());
-        jo.put("username", userEntity.getUsername());
-        jo.put("password", userEntity.getPassword());
-        jo.put("hometown", userEntity.getHometown());
         jo.put("gender", userEntity.getGender());
         jo.put("birthday", userEntity.getBirthday());
         jo.put("realname", userEntity.getRealname());
-        jo.put("outarmydate", userEntity.getOutarmydate());
-        jo.put("department", userEntity.getDepartment());
         jo.put("avatar", userEntity.getAvatar());
         jo.put("tel", userEntity.getTel());
         jo.put("idnum", userEntity.getIdnum());
@@ -137,14 +132,9 @@ public class JsonUtil {
         for (UserEntity userEntity : userEntities) {
             JSONObject jo = new JSONObject();
             jo.put("id", userEntity.getId());
-            jo.put("username", userEntity.getUsername());
-            jo.put("password", userEntity.getPassword());
-            jo.put("hometown", userEntity.getHometown());
             jo.put("gender", userEntity.getGender());
             jo.put("birthday", userEntity.getBirthday());
             jo.put("realname", userEntity.getRealname());
-            jo.put("outarmydate", userEntity.getOutarmydate());
-            jo.put("department", userEntity.getDepartment());
             jo.put("avatar", userEntity.getAvatar());
             jo.put("tel", userEntity.getTel());
             jo.put("idnum", userEntity.getIdnum());

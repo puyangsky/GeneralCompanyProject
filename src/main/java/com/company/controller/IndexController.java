@@ -37,13 +37,31 @@ public class IndexController {
         return result;
     }
 
+    @RequestMapping(value = "/getuserbyemail/{email}", method = RequestMethod.GET,
+            produces = "application/json; charset=utf-8")
+    @ResponseBody
+    public String getUserByEmail(@PathVariable String email, HttpServletRequest request) {
+        System.out.println("email>>>" + email);
+        UserEntity userEntity = userService.getUserByEmail(email);
+        String json = "";
+        if (userEntity != null) {
+            System.out.println(JsonUtil.toJsonString(userEntity));
+            json = JsonUtil.toJsonString(userEntity);
+        }
+        String callback = request.getParameter("callback");
+        // 这个拼接是为了让前端的JSONP可以知道callback，可以实现CORS
+        String result = callback + "(" + json + ")";
+        System.out.println(result);
+        return result;
+    }
+
 
     @RequestMapping(value = "/login", method = RequestMethod.POST,
             produces = "application/json; charset=utf-8")
     @ResponseBody
     public String login(@RequestBody UserEntity entity, HttpServletRequest request) {
-        System.out.println(entity.getUsername());
-        if (StringCheck.isNullOrEmpty(entity.getUsername()) || StringCheck.isNullOrEmpty(entity.getPassword())) {
+        System.out.println(entity.getEmail());
+        if (StringCheck.isNullOrEmpty(entity.getEmail())) {
             JSONObject json = new JSONObject();
             json.put("result", "parameter invalid");
             return json.toString();
@@ -51,7 +69,7 @@ public class IndexController {
         boolean pass = userService.login(entity);
         String res;
         if(pass) {
-            request.getSession().setAttribute("user", entity.getUsername());
+            request.getSession().setAttribute("user", entity.getEmail());
             res = "true";
         }
         else {
@@ -90,8 +108,8 @@ public class IndexController {
     @ResponseBody
     public String register(@RequestBody UserEntity entity, HttpServletRequest request) {
         JSONObject json = new JSONObject();
-        System.out.println(entity.getUsername());
-        UserEntity user = userService.getUserByUsername(entity.getUsername());
+        System.out.println(entity.getEmail());
+        UserEntity user = userService.getUserByEmail(entity.getEmail());
         if (user != null) {
             json.put("result", "500");
             return json.toString();
@@ -99,7 +117,7 @@ public class IndexController {
         int res = userService.addUser(entity);
         String result;
         if(res > 0) {
-            request.getSession().setAttribute("user", entity.getUsername());
+            request.getSession().setAttribute("user", entity.getEmail());
             result = "200";
         } else {
             result = "400";
@@ -111,18 +129,13 @@ public class IndexController {
     @RequestMapping(value = "/adduser", method = RequestMethod.POST)
     @ResponseBody
     public String addUser(@RequestBody UserEntity userEntity) {
-//        System.out.println("username:"+userEntity.getUsername()+ "---password:"+ userEntity.getPassword());
+
         System.out.println(JsonUtil.toJsonString(userEntity));
 
         int result = userService.addUser(userEntity);
         JSONObject json = new JSONObject();
-        if (result > 0) {
-            json.put("result", "1");
-            return json.toString();
-        }else {
-            json.put("result", "0");
-            return json.toString();
-        }
+        json.put("result", result);
+        return json.toString();
     }
 
     @RequestMapping(value = "/v1/getusers", method = RequestMethod.GET)

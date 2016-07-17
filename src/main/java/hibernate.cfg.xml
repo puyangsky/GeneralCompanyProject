@@ -11,6 +11,7 @@
         <mapping resource="com/company/mapping/UserEntity.hbm.xml"/>
         <mapping class="com.company.model.UserEntity"/>
         <mapping class="com.company.model.UserEntity"/>
+        <mapping class="com.company.model.UserEntity"/>
         <!-- DB schema will be updated if needed -->
         <!-- <property name="hbm2ddl.auto">update</property> -->
     </session-factory>

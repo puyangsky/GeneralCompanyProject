@@ -32,150 +32,34 @@
         }
     </style>
     <script type="text/javascript" src="/js/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="/js/myjs.js"></script>
     <script>
         $(document).ready(function() {
+            var existEmail = getCookie("email");
+            if(existEmail != null) {
+                $("#title").html("编辑详细信息");
+                setInfo(existEmail + ".abc");
+            }
             $("#regbtn").click(function () {
-//                var realusername = $("#realusername").val();
-//                if(realusername == "") {
-//                    $("#warn").html("姓名不能为空");
-//                    $("#warn").show();
-//                    setTimeout(function () {
-//                        $("#warn").hide();
-//                    }, 3000);
-//                    return;
-//                }
-//                var gender = $('input[name="radio1"]:checked').val();
-//
-//                var birth = $("#birth").val();
-//                if(birth == "") {
-//                    $("#warn").html("请选择出生日期");
-//                    $("#warn").show();
-//                    setTimeout(function () {
-//                        $("#warn").hide();
-//                    }, 3000);
-//                    return;
-//                }
-//                var tel = $("#tel").val();
-//                if(tel == "") {
-//                    $("#warn").html("手机号码不能为空");
-//                    $("#warn").show();
-//                    setTimeout(function () {
-//                        $("#warn").hide();
-//                    }, 3000);
-//                    return;
-//                }
-//                var idnumber = $("#idnumber").val();
-//                if(idnumber == "") {
-//                    $("#warn").html("身份证不能为空");
-//                    $("#warn").show();
-//                    setTimeout(function () {
-//                        $("#warn").hide();
-//                    }, 3000);
-//                    return;
-//                }
-//                var email = $("#email").val();
-//                if(email == "") {
-//                    $("#warn").html("邮箱不能为空");
-//                    $("#warn").show();
-//                    setTimeout(function () {
-//                        $("#warn").hide();
-//                    }, 3000);
-//                    return;
-//                }
-//                var xueli = $("#xueli").val();
-//                if(email == "") {
-//                    $("#warn").html("学历不能为空");
-//                    $("#warn").show();
-//                    setTimeout(function () {
-//                        $("#warn").hide();
-//                    }, 3000);
-//                    return;
-//                }
-//                var hunyin = $("#hunyin").val();
-//                if(hunyin == "") {
-//                    $("#warn").html("婚姻状况不能为空");
-//                    $("#warn").show();
-//                    setTimeout(function () {
-//                        $("#warn").hide();
-//                    }, 3000);
-//                    return;
-//                }
-//                var xuexing = $("#xuexing").val();
-//                if(xuexing == "") {
-//                    $("#warn").html("血型不能为空");
-//                    $("#warn").show();
-//                    setTimeout(function () {
-//                        $("#warn").hide();
-//                    }, 3000);
-//                    return;
-//                }
-//                var jiankangzheng = $('input[name="radio0"]:checked').val();
-//
-//                var hight = $("#hight").val();
-//                if(hight == "") {
-//                    $("#warn").html("身高不能为空");
-//                    $("#warn").show();
-//                    setTimeout(function () {
-//                        $("#warn").hide();
-//                    }, 3000);
-//                    return;
-//                }
-//                var weight = $("#weight").val();
-//                if(weight == "") {
-//                    $("#warn").html("体重不能为空");
-//                    $("#warn").show();
-//                    setTimeout(function () {
-//                        $("#warn").hide();
-//                    }, 3000);
-//                    return;
-//                }
-//                var wishsalary = $("#wishsalary").val();
-//                if(wishsalary == "") {
-//                    $("#warn").html("期望月薪不能为空");
-//                    $("#warn").show();
-//                    setTimeout(function () {
-//                        $("#warn").hide();
-//                    }, 3000);
-//                    return;
-//                }
-//                var address = $("#address").val();
-//                if(address == "") {
-//                    $("#warn").html("邮寄送达地址不能为空");
-//                    $("#warn").show();
-//                    setTimeout(function () {
-//                        $("#warn").hide();
-//                    }, 3000);
-//                    return;
-//                }
-//                var addressnum = $("#addressnum").val();
-//                if(addressnum == "") {
-//                    $("#warn").html("邮政编码不能为空");
-//                    $("#warn").show();
-//                    setTimeout(function () {
-//                        $("#warn").hide();
-//                    }, 3000);
-//                    return;
-//                }
-//                var hujiaddress = $("#hujiaddress").val();
-//                if(hujiaddress == "") {
-//                    $("#warn").html("户籍所在地地址不能为空");
-//                    $("#warn").show();
-//                    setTimeout(function () {
-//                        $("#warn").hide();
-//                    }, 3000);
-//                    return;
-//                }
-//                var hujiaddressnum = $("#hujiaddressnum").val();
-//                if(hujiaddressnum == "") {
-//                    $("#warn").html("户籍所在地邮政编码不能为空");
-//                    $("#warn").show();
-//                    setTimeout(function () {
-//                        $("#warn").hide();
-//                    }, 3000);
-//                    return;
-//                }
-//                var huji = $('input[name="radio4"]:checked').val();
-//                var shenfen = $('input[name="radio2"]:checked').val();
+                var realusername = $("#realusername").val();
+                var gender = $('input[name="radio1"]:checked').val();
+                var birth = $("#birth").val();
+                var tel = $("#tel").val();
+                var idnumber = $("#idnumber").val();
+                var email = $("#email").val();
+                var xueli = $("#xueli").val();
+                var hunyin = $("#hunyin").val();
+                var xuexing = $("#xuexing").val();
+                var jiankangzheng = $('input[name="radio0"]:checked').val();
+                var hight = $("#hight").val();
+                var weight = $("#weight").val();
+                var wishsalary = $("#wishsalary").val();
+                var address = $("#address").val();
+                var addressnum = $("#addressnum").val();
+                var hujiaddress = $("#hujiaddress").val();
+                var hujiaddressnum = $("#hujiaddressnum").val();
+                var huji = $('input[name="radio4"]:checked').val();
+                var shenfen = $('input[name="radio2"]:checked').val();
                 var worktime = "";
                 if($("#s11").prop("checked"))
                     worktime += $("#s11").attr('value');
@@ -191,131 +75,395 @@
                     worktime += $("#s16").attr('value');
                 if($("#s17").prop("checked"))
                     worktime += $("#s17").attr('value');
-
                 var workhours = $("#workhours").val();
-                if(workhours == "") {
-                    $("#warn").html("每星期上班总时数不能为空");
-                    $("#warn").show();
-                    setTimeout(function () {
-                        $("#warn").hide();
-                    }, 3000);
-                    return;
-                }
                 var starttime = $("#starttime").val();
-                if(starttime == "") {
-                    $("#warn").html("始于/下午（时）不能为空");
-                    $("#warn").show();
-                    setTimeout(function () {
-                        $("#warn").hide();
-                    }, 3000);
-                    return;
-                }
                 var distance = $("#distance").val();
-                if(distance == "") {
-                    $("#warn").html("住处距离不能为空");
-                    $("#warn").show();
-                    setTimeout(function () {
-                        $("#warn").hide();
-                    }, 3000);
-                    return;
-                }
                 var wishoffer = $("#wishoffer").val();
-                if(wishoffer == "") {
-                    $("#warn").html("希望待遇不能为空");
-                    $("#warn").show();
-                    setTimeout(function () {
-                        $("#warn").hide();
-                    }, 3000);
-                    return;
-                }
                 var vehicle = $("#vehicle").val();
-                if(vehicle == "") {
-                    $("#warn").html("交通工具不能为空");
-                    $("#warn").show();
-                    setTimeout(function () {
-                        $("#warn").hide();
-                    }, 3000);
-                    return;
+
+                var a11 = $("#a11").val();
+                var a12 = $("#a12").val();
+                var a13 = $("#a13").val();
+                var a14 = $("#a14").val();
+                var a15 = $("#a15").val();
+                var a21 = $("#a21").val();
+                var a22 = $("#a22").val();
+                var a23 = $("#a23").val();
+                var a24 = $("#a24").val();
+                var a25 = $("#a25").val();
+                var a31 = $("#a31").val();
+                var a32 = $("#a32").val();
+                var a33 = $("#a33").val();
+                var a34 = $("#a34").val();
+                var a35 = $("#a35").val();
+
+                var z1 = $("#z1").val();
+                var z2 = $("#z2").val();
+                var z3 = $("#z3").val();
+                var z4 = $("#z4").val();
+                var z5 = $("#z5").val();
+
+                var b11 = $("#b11").val();
+                var b12 = $("#b12").val();
+                var b13 = $("#b13").val();
+                var b14 = $("#b14").val();
+                var b15 = $("#b15").val();
+                var b21 = $("#b21").val();
+                var b22 = $("#b22").val();
+                var b23 = $("#b23").val();
+                var b24 = $("#b24").val();
+                var b25 = $("#b25").val();
+                var b31 = $("#b31").val();
+                var b32 = $("#b32").val();
+                var b33 = $("#b33").val();
+                var b34 = $("#b34").val();
+                var b35 = $("#b35").val();
+                var b41 = $("#b41").val();
+                var b42 = $("#b42").val();
+                var b43 = $("#b43").val();
+                var b44 = $("#b44").val();
+                var b45 = $("#b45").val();
+                var b51 = $("#b51").val();
+                var b52 = $("#b52").val();
+                var b53 = $("#b53").val();
+                var b54 = $("#b54").val();
+                var b55 = $("#b55").val();
+
+                var c11 = $("#c11").val();
+                var c12 = $("#c12").val();
+                var c13 = $("#c13").val();
+                var c14 = $("#c14").val();
+                var c15 = $("#c15").val();
+                var c16 = $("#c16").val();
+                var c17 = $("#c17").val();
+                var c21 = $("#c21").val();
+                var c22 = $("#c22").val();
+                var c23 = $("#c23").val();
+                var c24 = $("#c24").val();
+                var c25 = $("#c25").val();
+                var c26 = $("#c26").val();
+                var c27 = $("#c27").val();
+                var c31 = $("#c31").val();
+                var c32 = $("#c32").val();
+                var c33 = $("#c33").val();
+                var c34 = $("#c34").val();
+                var c35 = $("#c35").val();
+                var c36 = $("#c36").val();
+                var c37 = $("#c37").val();
+                var c41 = $("#c41").val();
+                var c42 = $("#c42").val();
+                var c43 = $("#c43").val();
+                var c44 = $("#c44").val();
+                var c45 = $("#c45").val();
+                var c46 = $("#c46").val();
+                var c47 = $("#c47").val();
+                var c51 = $("#c51").val();
+                var c52 = $("#c52").val();
+                var c53 = $("#c53").val();
+                var c54 = $("#c54").val();
+                var c55 = $("#c55").val();
+                var c56 = $("#c56").val();
+                var c57 = $("#c57").val();
+
+                var switcher = false;
+                if(switcher) {
+                    if(realusername == "") {
+                        $("#warn").html("姓名不能为空");
+                        $("#warn").show();
+                        setTimeout(function () {
+                            $("#warn").hide();
+                        }, 3000);
+                        return;
+                    }
+                    if(birth == "") {
+                        $("#warn").html("请选择出生日期");
+                        $("#warn").show();
+                        setTimeout(function () {
+                            $("#warn").hide();
+                        }, 3000);
+                        return;
+                    }
+                    if(tel == "") {
+                        $("#warn").html("手机号码不能为空");
+                        $("#warn").show();
+                        setTimeout(function () {
+                            $("#warn").hide();
+                        }, 3000);
+                        return;
+                    }
+                    if(idnumber == "") {
+                        $("#warn").html("身份证不能为空");
+                        $("#warn").show();
+                        setTimeout(function () {
+                            $("#warn").hide();
+                        }, 3000);
+                        return;
+                    }
+                    if(email == "") {
+                        $("#warn").html("邮箱不能为空");
+                        $("#warn").show();
+                        setTimeout(function () {
+                            $("#warn").hide();
+                        }, 3000);
+                        return;
+                    }
+                    if(xueli == "") {
+                        $("#warn").html("学历不能为空");
+                        $("#warn").show();
+                        setTimeout(function () {
+                            $("#warn").hide();
+                        }, 3000);
+                        return;
+                    }
+                    if(hunyin == "") {
+                        $("#warn").html("婚姻状况不能为空");
+                        $("#warn").show();
+                        setTimeout(function () {
+                            $("#warn").hide();
+                        }, 3000);
+                        return;
+                    }
+                    if(xuexing == "") {
+                        $("#warn").html("血型不能为空");
+                        $("#warn").show();
+                        setTimeout(function () {
+                            $("#warn").hide();
+                        }, 3000);
+                        return;
+                    }
+                    if(hight == "") {
+                        $("#warn").html("身高不能为空");
+                        $("#warn").show();
+                        setTimeout(function () {
+                            $("#warn").hide();
+                        }, 3000);
+                        return;
+                    }
+                    if(weight == "") {
+                        $("#warn").html("体重不能为空");
+                        $("#warn").show();
+                        setTimeout(function () {
+                            $("#warn").hide();
+                        }, 3000);
+                        return;
+                    }
+                    if(wishsalary == "") {
+                        $("#warn").html("期望月薪不能为空");
+                        $("#warn").show();
+                        setTimeout(function () {
+                            $("#warn").hide();
+                        }, 3000);
+                        return;
+                    }
+                    if(address == "") {
+                        $("#warn").html("邮寄送达地址不能为空");
+                        $("#warn").show();
+                        setTimeout(function () {
+                            $("#warn").hide();
+                        }, 3000);
+                        return;
+                    }
+                    if(addressnum == "") {
+                        $("#warn").html("邮政编码不能为空");
+                        $("#warn").show();
+                        setTimeout(function () {
+                            $("#warn").hide();
+                        }, 3000);
+                        return;
+                    }
+                    if(hujiaddress == "") {
+                        $("#warn").html("户籍所在地地址不能为空");
+                        $("#warn").show();
+                        setTimeout(function () {
+                            $("#warn").hide();
+                        }, 3000);
+                        return;
+                    }
+                    if(hujiaddressnum == "") {
+                        $("#warn").html("户籍所在地邮政编码不能为空");
+                        $("#warn").show();
+                        setTimeout(function () {
+                            $("#warn").hide();
+                        }, 3000);
+                        return;
+                    }
+                    if(workhours == "") {
+                        $("#warn").html("每星期上班总时数不能为空");
+                        $("#warn").show();
+                        setTimeout(function () {
+                            $("#warn").hide();
+                        }, 3000);
+                        return;
+                    }
+                    if(starttime == "") {
+                        $("#warn").html("始于/下午（时）不能为空");
+                        $("#warn").show();
+                        setTimeout(function () {
+                            $("#warn").hide();
+                        }, 3000);
+                        return;
+                    }
+                    if(distance == "") {
+                        $("#warn").html("住处距离不能为空");
+                        $("#warn").show();
+                        setTimeout(function () {
+                            $("#warn").hide();
+                        }, 3000);
+                        return;
+                    }
+                    if(wishoffer == "") {
+                        $("#warn").html("希望待遇不能为空");
+                        $("#warn").show();
+                        setTimeout(function () {
+                            $("#warn").hide();
+                        }, 3000);
+                        return;
+                    }
+                    if(vehicle == "") {
+                        $("#warn").html("交通工具不能为空");
+                        $("#warn").show();
+                        setTimeout(function () {
+                            $("#warn").hide();
+                        }, 3000);
+                        return;
+                    }
                 }
 
 
-
-                var wishoffer = $("#wishoffer").val();
-                if(wishoffer == "") {
-                    $("#warn").html("希望待遇不能为空");
-                    $("#warn").show();
-                    setTimeout(function () {
-                        $("#warn").hide();
-                    }, 3000);
-                    return;
-                }
-                var wishoffer = $("#wishoffer").val();
-                if(wishoffer == "") {
-                    $("#warn").html("希望待遇不能为空");
-                    $("#warn").show();
-                    setTimeout(function () {
-                        $("#warn").hide();
-                    }, 3000);
-                    return;
-                }
-                var wishoffer = $("#wishoffer").val();
-                if(wishoffer == "") {
-                    $("#warn").html("希望待遇不能为空");
-                    $("#warn").show();
-                    setTimeout(function () {
-                        $("#warn").hide();
-                    }, 3000);
-                    return;
-                }
-                var wishoffer = $("#wishoffer").val();
-                if(wishoffer == "") {
-                    $("#warn").html("希望待遇不能为空");
-                    $("#warn").show();
-                    setTimeout(function () {
-                        $("#warn").hide();
-                    }, 3000);
-                    return;
-                }
-                var wishoffer = $("#wishoffer").val();
-                if(wishoffer == "") {
-                    $("#warn").html("希望待遇不能为空");
-                    $("#warn").show();
-                    setTimeout(function () {
-                        $("#warn").hide();
-                    }, 3000);
-                    return;
-                }
-
-                var user = {"username": username, "password":password};
+                var user = {
+                    "realname": realusername,
+                    "gender": gender,
+                    "birthday": birth,
+                    "tel":tel,
+                    "idnum":idnumber,
+                    "email": email,
+                    "xueli":xueli,
+                    "hunyin": hunyin,
+                    "xuexing": xuexing,
+                    "jiankangzheng": jiankangzheng,
+                    "hight": hight,
+                    "weight": weight,
+                    "wishsalary": wishsalary,
+                    "address": address,
+                    "addressnum": addressnum,
+                    "hujiaddress": hujiaddress,
+                    "hujiaddressnum": hujiaddressnum,
+                    "huji": huji,
+                    "shenfen": shenfen,
+                    "worktime": worktime,
+                    "workhours": workhours,
+                    "starttime": starttime,
+                    "distance": distance,
+                    "wishoffer": wishoffer,
+                    "vehicle": vehicle,
+                    "a11": a11,
+                    "a12": a12,
+                    "a13": a13,
+                    "a14": a14,
+                    "a15": a15,
+                    "a21": a21,
+                    "a22": a22,
+                    "a23": a23,
+                    "a24": a24,
+                    "a25": a25,
+                    "a31": a31,
+                    "a32": a32,
+                    "a33": a33,
+                    "a34": a34,
+                    "a35": a35,
+                    "z1": z1,
+                    "z2": z2,
+                    "z3": z3,
+                    "z4": z4,
+                    "z5": z5,
+                    "b11": b11,
+                    "b12": b12,
+                    "b13": b13,
+                    "b14": b14,
+                    "b15": b15,
+                    "b21": b21,
+                    "b22": b22,
+                    "b23": b23,
+                    "b24": b24,
+                    "b25": b25,
+                    "b31": b31,
+                    "b32": b32,
+                    "b33": b33,
+                    "b34": b34,
+                    "b35": b35,
+                    "b41": b41,
+                    "b42": b42,
+                    "b43": b43,
+                    "b44": b44,
+                    "b45": b45,
+                    "b51": b51,
+                    "b52": b52,
+                    "b53": b53,
+                    "b54": b54,
+                    "b55": b55,
+                    "c11": c11,
+                    "c12": c12,
+                    "c13": c13,
+                    "c14": c14,
+                    "c15": c15,
+                    "c16": c16,
+                    "c17": c17,
+                    "c21": c21,
+                    "c22": c22,
+                    "c23": c23,
+                    "c24": c24,
+                    "c25": c25,
+                    "c26": c26,
+                    "c27": c27,
+                    "c31": c31,
+                    "c32": c32,
+                    "c33": c33,
+                    "c34": c34,
+                    "c35": c35,
+                    "c36": c36,
+                    "c37": c37,
+                    "c41": c41,
+                    "c42": c42,
+                    "c43": c43,
+                    "c44": c44,
+                    "c45": c45,
+                    "c46": c46,
+                    "c47": c47,
+                    "c51": c51,
+                    "c52": c52,
+                    "c53": c53,
+                    "c54": c54,
+                    "c55": c55,
+                    "c56": c56,
+                    "c57": c57
+                };
+                console.log(user);
+                console.log(JSON.stringify(user));
                 $.ajax({
-                    url:"/user/register",
+                    url:"/user/adduser",
                     type:"POST",
                     dataType:"json",
                     data:JSON.stringify(user),
                     contentType:"application/json;charset=UTF-8",
                     success:function(data) {
                         console.log(data);
-                        if(data.result == "200") {
-//                            alert("注册成功");
+                        if(data.result == "1") {
+                            setCookie("email", email);
                             $("#toast").show();
                             setTimeout(function () {
-                                location.href = "/wx/reg";
-                            }, 2000);
-                        }else if(data.result == "400"){
-//                            alert("注册失败，请重新输入用户名和密码");
-                            location.href = "/wx/reg";
-                        }else if(data.result == "500"){
-//                            alert("注册失败，用户名已存在");
-                            $("#warn1").show();
-                            setTimeout(function() {
-                                $("#warn1").hide();
+                                location.href = "/home";
                             }, 3000);
+                        }else if(data.result == "0"){
+                            alert("注册失败，请重新输入用户名和密码");
+                            location.href = "/wx/detail";
+                        }else if(data.result == "-1") {
+
                         }
                     },
                     error:function(data) {
                         alert("error");
                         console.log(data);
-                        location.href = "/wx/reg";
+                        return;
                     }
                 });
             });
@@ -324,7 +472,7 @@
 </head>
 <body>
 <form action="#">
-    <h1 class="page_title">详细信息填写</h1>
+    <h1 id="title" class="page_title">详细信息填写</h1>
     <div class="weui_cells weui_cells_form">
         <div class="weui_cell">
             <div class="weui_cell_hd">
@@ -379,7 +527,7 @@
             <div class="weui_cell">
                 <div class="weui_cell_hd"><label class="weui_label">出生年月</label></div>
                 <div class="weui_cell_bd weui_cell_primary">
-                    <input id="birth" class="weui_input" type="date" value=""/>
+                    <input id="birth" class="weui_input" type="date"/>
                 </div>
             </div>
         </div>
@@ -396,7 +544,8 @@
                     </select>
                 </div>
                 <div class="weui_cell_bd weui_cell_primary">
-                    <input id="tel" class="weui_input" type="number" pattern="[0-9]{11}" placeholder="请输入号码"/>
+                    <input id="tel" class="weui_input" type="number" pattern="[0-9]{11}"
+                           title="清输入11位手机号码" placeholder="请输入号码"/>
                 </div>
             </div>
         </div>
@@ -408,7 +557,7 @@
                 <label class="weui_label">身份证号码</label>
             </div>
             <div class="weui_cell_bd weui_cell_primary">
-                <input id="idnumber" class="weui_input" type="text" pattern="[0-9]{17}[0-9]{0,1}[x]{0,1}"
+                <input id="idnumber" class="weui_input" type="text" pattern="[0-9]{18}|[0-9]{17}[xX]{1}"
                        title="请输入正确格式的18位身份证" placeholder="请输入身份证"/>
             </div>
         </div>
@@ -441,7 +590,7 @@
                 <label class="weui_label">血型</label>
             </div>
             <div class="weui_cell_bd weui_cell_primary">
-                <input id="xuexing" class="weui_input" type="text" pattern="[ABO]{1,2,3}"
+                <input id="xuexing" class="weui_input" type="text" pattern="[ABO]{1,2}"
                        title="请输入A或B或AB或O" placeholder="A/B/AB/O"/>
             </div>
         </div>
@@ -1129,7 +1278,7 @@
                 <label class="weui_label">工作单位</label>
             </div>
             <div class="weui_cell_bd weui_cell_primary">
-                <input id="d11" class="weui_input" type="text" placeholder="工作单位"/>
+                <input id="c11" class="weui_input" type="text" placeholder="工作单位"/>
             </div>
         </div>
         <div class="weui_cell">

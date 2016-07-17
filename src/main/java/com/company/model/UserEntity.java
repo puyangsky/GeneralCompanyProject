@@ -4,25 +4,17 @@ import javax.persistence.*;
 import java.sql.Date;
 
 /**
- * Created by Administrator on 2016/7/16.
+ * Created by Administrator on 2016/7/17.
  */
 @Entity
-@Table(name = "user", schema = "", catalog = "test")
+@javax.persistence.Table(name = "user", schema = "", catalog = "test")
 public class UserEntity {
 
-
-
-    public UserEntity(Integer c57, int id, String username, String password, String hometown, String gender, Date birthday, String realname, Date outarmydate, String department, String avatar, Integer tel, String idnum, String email, String xueli, String hunyin, String xuexing, Integer jiankangzheng, Integer hight, Integer weight, Integer wishsalary, String address, Integer addressnum, String hujiaddress, Integer hujiaddressnum, String huji, String shenfen, String worktime, Integer workhours, Double starttime, Double distance, String wishoffer, String vehicle, String a11, String a12, String a13, String a14, String a15, String a21, String a22, String a23, String a24, String a25, String a31, String a32, String a33, String a34, String a35, String z1, String z2, Integer z3, Integer z4, String z5, String b11, Date b12, String b13, String b14, Integer b15, String b21, Date b22, String b23, String b24, Integer b25, String b31, Date b32, String b33, String b34, Integer b35, String b41, Date b42, String b43, String b44, Integer b45, String b51, Date b52, String b53, String b54, Integer b55, String c11, Date c12, Integer c13, String c14, String c15, String c16, Integer c17, String c21, Date c22, Integer c23, String c24, String c25, String c26, Integer c27, String c31, Date c32, Integer c33, String c34, String c35, String c36, Integer c37, String c41, Date c42, Integer c43, String c44, String c45, String c46, Integer c47, String c51, Date c52, Integer c53, String c54, String c55, String c56) {
-        this.c57 = c57;
+    public UserEntity(int id, String gender, Date birthday, String realname, String avatar, String tel, String idnum, String email, String xueli, String hunyin, String xuexing, String jiankangzheng, String hight, String weight, String wishsalary, String address, String addressnum, String hujiaddress, String hujiaddressnum, String huji, String shenfen, String worktime, String workhours, String starttime, String distance, String wishoffer, String vehicle, String a11, String a12, String a13, String a14, String a15, String a21, String a22, String a23, String a24, String a25, String a31, String a32, String a33, String a34, String a35, String z1, String z2, String z3, String z4, String z5, String b11, Date b12, String b13, String b14, String b15, String b21, Date b22, String b23, String b24, String b25, String b31, Date b32, String b33, String b34, String b35, String b41, Date b42, String b43, String b44, String b45, String b51, Date b52, String b53, String b54, String b55, String c11, Date c12, String c13, String c14, String c15, String c16, String c17, String c21, Date c22, String c23, String c24, String c25, String c26, String c27, String c31, Date c32, String c33, String c34, String c35, String c36, String c37, String c41, Date c42, String c43, String c44, String c45, String c46, String c47, String c51, Date c52, String c53, String c54, String c55, String c56, String c57) {
         this.id = id;
-        this.username = username;
-        this.password = password;
-        this.hometown = hometown;
         this.gender = gender;
         this.birthday = birthday;
         this.realname = realname;
-        this.outarmydate = outarmydate;
-        this.department = department;
         this.avatar = avatar;
         this.tel = tel;
         this.idnum = idnum;
@@ -125,6 +117,7 @@ public class UserEntity {
         this.c54 = c54;
         this.c55 = c55;
         this.c56 = c56;
+        this.c57 = c57;
     }
 
     public UserEntity() {
@@ -134,7 +127,7 @@ public class UserEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY )
-    @Column(name = "id")
+    @javax.persistence.Column(name = "id")
     public int getId() {
         return id;
     }
@@ -143,58 +136,10 @@ public class UserEntity {
         this.id = id;
     }
 
-    private String username;
-
-    @Basic
-    @Column(name = "username")
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    private String password;
-
-    @Basic
-    @Column(name = "realname")
-    private String realname;
-
-    public String getRealname() {
-        return realname;
-    }
-
-    public void setRealname(String realname) {
-        this.realname = realname;
-    }
-
-    @Basic
-    @Column(name = "password")
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    private String hometown;
-
-    @Basic
-    @Column(name = "hometown")
-    public String getHometown() {
-        return hometown;
-    }
-
-    public void setHometown(String hometown) {
-        this.hometown = hometown;
-    }
-
     private String gender;
 
     @Basic
-    @Column(name = "gender")
+    @javax.persistence.Column(name = "gender")
     public String getGender() {
         return gender;
     }
@@ -206,7 +151,7 @@ public class UserEntity {
     private Date birthday;
 
     @Basic
-    @Column(name = "birthday")
+    @javax.persistence.Column(name = "birthday")
     public Date getBirthday() {
         return birthday;
     }
@@ -215,34 +160,22 @@ public class UserEntity {
         this.birthday = birthday;
     }
 
-    private Date outarmydate;
+    private String realname;
 
     @Basic
-    @Column(name = "outarmydate")
-    public Date getOutarmydate() {
-        return outarmydate;
+    @javax.persistence.Column(name = "realname")
+    public String getRealname() {
+        return realname;
     }
 
-    public void setOutarmydate(Date outarmydate) {
-        this.outarmydate = outarmydate;
-    }
-
-    private String department;
-
-    @Basic
-    @Column(name = "department")
-    public String getDepartment() {
-        return department;
-    }
-
-    public void setDepartment(String department) {
-        this.department = department;
+    public void setRealname(String realname) {
+        this.realname = realname;
     }
 
     private String avatar;
 
     @Basic
-    @Column(name = "avatar")
+    @javax.persistence.Column(name = "avatar")
     public String getAvatar() {
         return avatar;
     }
@@ -251,22 +184,22 @@ public class UserEntity {
         this.avatar = avatar;
     }
 
-    private Integer tel;
+    private String tel;
 
     @Basic
-    @Column(name = "tel")
-    public Integer getTel() {
+    @javax.persistence.Column(name = "tel")
+    public String getTel() {
         return tel;
     }
 
-    public void setTel(Integer tel) {
+    public void setTel(String tel) {
         this.tel = tel;
     }
 
     private String idnum;
 
     @Basic
-    @Column(name = "idnum")
+    @javax.persistence.Column(name = "idnum")
     public String getIdnum() {
         return idnum;
     }
@@ -278,7 +211,7 @@ public class UserEntity {
     private String email;
 
     @Basic
-    @Column(name = "email")
+    @javax.persistence.Column(name = "email")
     public String getEmail() {
         return email;
     }
@@ -290,7 +223,7 @@ public class UserEntity {
     private String xueli;
 
     @Basic
-    @Column(name = "xueli")
+    @javax.persistence.Column(name = "xueli")
     public String getXueli() {
         return xueli;
     }
@@ -302,7 +235,7 @@ public class UserEntity {
     private String hunyin;
 
     @Basic
-    @Column(name = "hunyin")
+    @javax.persistence.Column(name = "hunyin")
     public String getHunyin() {
         return hunyin;
     }
@@ -314,7 +247,7 @@ public class UserEntity {
     private String xuexing;
 
     @Basic
-    @Column(name = "xuexing")
+    @javax.persistence.Column(name = "xuexing")
     public String getXuexing() {
         return xuexing;
     }
@@ -323,58 +256,58 @@ public class UserEntity {
         this.xuexing = xuexing;
     }
 
-    private Integer jiankangzheng;
+    private String jiankangzheng;
 
     @Basic
-    @Column(name = "jiankangzheng")
-    public Integer getJiankangzheng() {
+    @javax.persistence.Column(name = "jiankangzheng")
+    public String getJiankangzheng() {
         return jiankangzheng;
     }
 
-    public void setJiankangzheng(Integer jiankangzheng) {
+    public void setJiankangzheng(String jiankangzheng) {
         this.jiankangzheng = jiankangzheng;
     }
 
-    private Integer hight;
+    private String hight;
 
     @Basic
-    @Column(name = "hight")
-    public Integer getHight() {
+    @javax.persistence.Column(name = "hight")
+    public String getHight() {
         return hight;
     }
 
-    public void setHight(Integer hight) {
+    public void setHight(String hight) {
         this.hight = hight;
     }
 
-    private Integer weight;
+    private String weight;
 
     @Basic
-    @Column(name = "weight")
-    public Integer getWeight() {
+    @javax.persistence.Column(name = "weight")
+    public String getWeight() {
         return weight;
     }
 
-    public void setWeight(Integer weight) {
+    public void setWeight(String weight) {
         this.weight = weight;
     }
 
-    private Integer wishsalary;
+    private String wishsalary;
 
     @Basic
-    @Column(name = "wishsalary")
-    public Integer getWishsalary() {
+    @javax.persistence.Column(name = "wishsalary")
+    public String getWishsalary() {
         return wishsalary;
     }
 
-    public void setWishsalary(Integer wishsalary) {
+    public void setWishsalary(String wishsalary) {
         this.wishsalary = wishsalary;
     }
 
     private String address;
 
     @Basic
-    @Column(name = "address")
+    @javax.persistence.Column(name = "address")
     public String getAddress() {
         return address;
     }
@@ -383,22 +316,22 @@ public class UserEntity {
         this.address = address;
     }
 
-    private Integer addressnum;
+    private String addressnum;
 
     @Basic
-    @Column(name = "addressnum")
-    public Integer getAddressnum() {
+    @javax.persistence.Column(name = "addressnum")
+    public String getAddressnum() {
         return addressnum;
     }
 
-    public void setAddressnum(Integer addressnum) {
+    public void setAddressnum(String addressnum) {
         this.addressnum = addressnum;
     }
 
     private String hujiaddress;
 
     @Basic
-    @Column(name = "hujiaddress")
+    @javax.persistence.Column(name = "hujiaddress")
     public String getHujiaddress() {
         return hujiaddress;
     }
@@ -407,22 +340,22 @@ public class UserEntity {
         this.hujiaddress = hujiaddress;
     }
 
-    private Integer hujiaddressnum;
+    private String hujiaddressnum;
 
     @Basic
-    @Column(name = "hujiaddressnum")
-    public Integer getHujiaddressnum() {
+    @javax.persistence.Column(name = "hujiaddressnum")
+    public String getHujiaddressnum() {
         return hujiaddressnum;
     }
 
-    public void setHujiaddressnum(Integer hujiaddressnum) {
+    public void setHujiaddressnum(String hujiaddressnum) {
         this.hujiaddressnum = hujiaddressnum;
     }
 
     private String huji;
 
     @Basic
-    @Column(name = "huji")
+    @javax.persistence.Column(name = "huji")
     public String getHuji() {
         return huji;
     }
@@ -434,7 +367,7 @@ public class UserEntity {
     private String shenfen;
 
     @Basic
-    @Column(name = "shenfen")
+    @javax.persistence.Column(name = "shenfen")
     public String getShenfen() {
         return shenfen;
     }
@@ -446,7 +379,7 @@ public class UserEntity {
     private String worktime;
 
     @Basic
-    @Column(name = "worktime")
+    @javax.persistence.Column(name = "worktime")
     public String getWorktime() {
         return worktime;
     }
@@ -455,46 +388,46 @@ public class UserEntity {
         this.worktime = worktime;
     }
 
-    private Integer workhours;
+    private String workhours;
 
     @Basic
-    @Column(name = "workhours")
-    public Integer getWorkhours() {
+    @javax.persistence.Column(name = "workhours")
+    public String getWorkhours() {
         return workhours;
     }
 
-    public void setWorkhours(Integer workhours) {
+    public void setWorkhours(String workhours) {
         this.workhours = workhours;
     }
 
-    private Double starttime;
+    private String starttime;
 
     @Basic
-    @Column(name = "starttime")
-    public Double getStarttime() {
+    @javax.persistence.Column(name = "starttime")
+    public String getStarttime() {
         return starttime;
     }
 
-    public void setStarttime(Double starttime) {
+    public void setStarttime(String starttime) {
         this.starttime = starttime;
     }
 
-    private Double distance;
+    private String distance;
 
     @Basic
-    @Column(name = "distance")
-    public Double getDistance() {
+    @javax.persistence.Column(name = "distance")
+    public String getDistance() {
         return distance;
     }
 
-    public void setDistance(Double distance) {
+    public void setDistance(String distance) {
         this.distance = distance;
     }
 
     private String wishoffer;
 
     @Basic
-    @Column(name = "wishoffer")
+    @javax.persistence.Column(name = "wishoffer")
     public String getWishoffer() {
         return wishoffer;
     }
@@ -506,7 +439,7 @@ public class UserEntity {
     private String vehicle;
 
     @Basic
-    @Column(name = "vehicle")
+    @javax.persistence.Column(name = "vehicle")
     public String getVehicle() {
         return vehicle;
     }
@@ -518,7 +451,7 @@ public class UserEntity {
     private String a11;
 
     @Basic
-    @Column(name = "a11")
+    @javax.persistence.Column(name = "a11")
     public String getA11() {
         return a11;
     }
@@ -530,7 +463,7 @@ public class UserEntity {
     private String a12;
 
     @Basic
-    @Column(name = "a12")
+    @javax.persistence.Column(name = "a12")
     public String getA12() {
         return a12;
     }
@@ -542,7 +475,7 @@ public class UserEntity {
     private String a13;
 
     @Basic
-    @Column(name = "a13")
+    @javax.persistence.Column(name = "a13")
     public String getA13() {
         return a13;
     }
@@ -554,7 +487,7 @@ public class UserEntity {
     private String a14;
 
     @Basic
-    @Column(name = "a14")
+    @javax.persistence.Column(name = "a14")
     public String getA14() {
         return a14;
     }
@@ -566,7 +499,7 @@ public class UserEntity {
     private String a15;
 
     @Basic
-    @Column(name = "a15")
+    @javax.persistence.Column(name = "a15")
     public String getA15() {
         return a15;
     }
@@ -578,7 +511,7 @@ public class UserEntity {
     private String a21;
 
     @Basic
-    @Column(name = "a21")
+    @javax.persistence.Column(name = "a21")
     public String getA21() {
         return a21;
     }
@@ -590,7 +523,7 @@ public class UserEntity {
     private String a22;
 
     @Basic
-    @Column(name = "a22")
+    @javax.persistence.Column(name = "a22")
     public String getA22() {
         return a22;
     }
@@ -602,7 +535,7 @@ public class UserEntity {
     private String a23;
 
     @Basic
-    @Column(name = "a23")
+    @javax.persistence.Column(name = "a23")
     public String getA23() {
         return a23;
     }
@@ -614,7 +547,7 @@ public class UserEntity {
     private String a24;
 
     @Basic
-    @Column(name = "a24")
+    @javax.persistence.Column(name = "a24")
     public String getA24() {
         return a24;
     }
@@ -626,7 +559,7 @@ public class UserEntity {
     private String a25;
 
     @Basic
-    @Column(name = "a25")
+    @javax.persistence.Column(name = "a25")
     public String getA25() {
         return a25;
     }
@@ -638,7 +571,7 @@ public class UserEntity {
     private String a31;
 
     @Basic
-    @Column(name = "a31")
+    @javax.persistence.Column(name = "a31")
     public String getA31() {
         return a31;
     }
@@ -650,7 +583,7 @@ public class UserEntity {
     private String a32;
 
     @Basic
-    @Column(name = "a32")
+    @javax.persistence.Column(name = "a32")
     public String getA32() {
         return a32;
     }
@@ -662,7 +595,7 @@ public class UserEntity {
     private String a33;
 
     @Basic
-    @Column(name = "a33")
+    @javax.persistence.Column(name = "a33")
     public String getA33() {
         return a33;
     }
@@ -674,7 +607,7 @@ public class UserEntity {
     private String a34;
 
     @Basic
-    @Column(name = "a34")
+    @javax.persistence.Column(name = "a34")
     public String getA34() {
         return a34;
     }
@@ -686,7 +619,7 @@ public class UserEntity {
     private String a35;
 
     @Basic
-    @Column(name = "a35")
+    @javax.persistence.Column(name = "a35")
     public String getA35() {
         return a35;
     }
@@ -698,7 +631,7 @@ public class UserEntity {
     private String z1;
 
     @Basic
-    @Column(name = "z1")
+    @javax.persistence.Column(name = "z1")
     public String getZ1() {
         return z1;
     }
@@ -710,7 +643,7 @@ public class UserEntity {
     private String z2;
 
     @Basic
-    @Column(name = "z2")
+    @javax.persistence.Column(name = "z2")
     public String getZ2() {
         return z2;
     }
@@ -719,34 +652,34 @@ public class UserEntity {
         this.z2 = z2;
     }
 
-    private Integer z3;
+    private String z3;
 
     @Basic
-    @Column(name = "z3")
-    public Integer getZ3() {
+    @javax.persistence.Column(name = "z3")
+    public String getZ3() {
         return z3;
     }
 
-    public void setZ3(Integer z3) {
+    public void setZ3(String z3) {
         this.z3 = z3;
     }
 
-    private Integer z4;
+    private String z4;
 
     @Basic
-    @Column(name = "z4")
-    public Integer getZ4() {
+    @javax.persistence.Column(name = "z4")
+    public String getZ4() {
         return z4;
     }
 
-    public void setZ4(Integer z4) {
+    public void setZ4(String z4) {
         this.z4 = z4;
     }
 
     private String z5;
 
     @Basic
-    @Column(name = "z5")
+    @javax.persistence.Column(name = "z5")
     public String getZ5() {
         return z5;
     }
@@ -758,7 +691,7 @@ public class UserEntity {
     private String b11;
 
     @Basic
-    @Column(name = "b11")
+    @javax.persistence.Column(name = "b11")
     public String getB11() {
         return b11;
     }
@@ -770,7 +703,7 @@ public class UserEntity {
     private Date b12;
 
     @Basic
-    @Column(name = "b12")
+    @javax.persistence.Column(name = "b12")
     public Date getB12() {
         return b12;
     }
@@ -782,7 +715,7 @@ public class UserEntity {
     private String b13;
 
     @Basic
-    @Column(name = "b13")
+    @javax.persistence.Column(name = "b13")
     public String getB13() {
         return b13;
     }
@@ -794,7 +727,7 @@ public class UserEntity {
     private String b14;
 
     @Basic
-    @Column(name = "b14")
+    @javax.persistence.Column(name = "b14")
     public String getB14() {
         return b14;
     }
@@ -803,22 +736,22 @@ public class UserEntity {
         this.b14 = b14;
     }
 
-    private Integer b15;
+    private String b15;
 
     @Basic
-    @Column(name = "b15")
-    public Integer getB15() {
+    @javax.persistence.Column(name = "b15")
+    public String getB15() {
         return b15;
     }
 
-    public void setB15(Integer b15) {
+    public void setB15(String b15) {
         this.b15 = b15;
     }
 
     private String b21;
 
     @Basic
-    @Column(name = "b21")
+    @javax.persistence.Column(name = "b21")
     public String getB21() {
         return b21;
     }
@@ -830,7 +763,7 @@ public class UserEntity {
     private Date b22;
 
     @Basic
-    @Column(name = "b22")
+    @javax.persistence.Column(name = "b22")
     public Date getB22() {
         return b22;
     }
@@ -842,7 +775,7 @@ public class UserEntity {
     private String b23;
 
     @Basic
-    @Column(name = "b23")
+    @javax.persistence.Column(name = "b23")
     public String getB23() {
         return b23;
     }
@@ -854,7 +787,7 @@ public class UserEntity {
     private String b24;
 
     @Basic
-    @Column(name = "b24")
+    @javax.persistence.Column(name = "b24")
     public String getB24() {
         return b24;
     }
@@ -863,22 +796,22 @@ public class UserEntity {
         this.b24 = b24;
     }
 
-    private Integer b25;
+    private String b25;
 
     @Basic
-    @Column(name = "b25")
-    public Integer getB25() {
+    @javax.persistence.Column(name = "b25")
+    public String getB25() {
         return b25;
     }
 
-    public void setB25(Integer b25) {
+    public void setB25(String b25) {
         this.b25 = b25;
     }
 
     private String b31;
 
     @Basic
-    @Column(name = "b31")
+    @javax.persistence.Column(name = "b31")
     public String getB31() {
         return b31;
     }
@@ -890,7 +823,7 @@ public class UserEntity {
     private Date b32;
 
     @Basic
-    @Column(name = "b32")
+    @javax.persistence.Column(name = "b32")
     public Date getB32() {
         return b32;
     }
@@ -902,7 +835,7 @@ public class UserEntity {
     private String b33;
 
     @Basic
-    @Column(name = "b33")
+    @javax.persistence.Column(name = "b33")
     public String getB33() {
         return b33;
     }
@@ -914,7 +847,7 @@ public class UserEntity {
     private String b34;
 
     @Basic
-    @Column(name = "b34")
+    @javax.persistence.Column(name = "b34")
     public String getB34() {
         return b34;
     }
@@ -923,22 +856,22 @@ public class UserEntity {
         this.b34 = b34;
     }
 
-    private Integer b35;
+    private String b35;
 
     @Basic
-    @Column(name = "b35")
-    public Integer getB35() {
+    @javax.persistence.Column(name = "b35")
+    public String getB35() {
         return b35;
     }
 
-    public void setB35(Integer b35) {
+    public void setB35(String b35) {
         this.b35 = b35;
     }
 
     private String b41;
 
     @Basic
-    @Column(name = "b41")
+    @javax.persistence.Column(name = "b41")
     public String getB41() {
         return b41;
     }
@@ -950,7 +883,7 @@ public class UserEntity {
     private Date b42;
 
     @Basic
-    @Column(name = "b42")
+    @javax.persistence.Column(name = "b42")
     public Date getB42() {
         return b42;
     }
@@ -962,7 +895,7 @@ public class UserEntity {
     private String b43;
 
     @Basic
-    @Column(name = "b43")
+    @javax.persistence.Column(name = "b43")
     public String getB43() {
         return b43;
     }
@@ -974,7 +907,7 @@ public class UserEntity {
     private String b44;
 
     @Basic
-    @Column(name = "b44")
+    @javax.persistence.Column(name = "b44")
     public String getB44() {
         return b44;
     }
@@ -983,22 +916,22 @@ public class UserEntity {
         this.b44 = b44;
     }
 
-    private Integer b45;
+    private String b45;
 
     @Basic
-    @Column(name = "b45")
-    public Integer getB45() {
+    @javax.persistence.Column(name = "b45")
+    public String getB45() {
         return b45;
     }
 
-    public void setB45(Integer b45) {
+    public void setB45(String b45) {
         this.b45 = b45;
     }
 
     private String b51;
 
     @Basic
-    @Column(name = "b51")
+    @javax.persistence.Column(name = "b51")
     public String getB51() {
         return b51;
     }
@@ -1010,7 +943,7 @@ public class UserEntity {
     private Date b52;
 
     @Basic
-    @Column(name = "b52")
+    @javax.persistence.Column(name = "b52")
     public Date getB52() {
         return b52;
     }
@@ -1022,7 +955,7 @@ public class UserEntity {
     private String b53;
 
     @Basic
-    @Column(name = "b53")
+    @javax.persistence.Column(name = "b53")
     public String getB53() {
         return b53;
     }
@@ -1034,7 +967,7 @@ public class UserEntity {
     private String b54;
 
     @Basic
-    @Column(name = "b54")
+    @javax.persistence.Column(name = "b54")
     public String getB54() {
         return b54;
     }
@@ -1043,22 +976,22 @@ public class UserEntity {
         this.b54 = b54;
     }
 
-    private Integer b55;
+    private String b55;
 
     @Basic
-    @Column(name = "b55")
-    public Integer getB55() {
+    @javax.persistence.Column(name = "b55")
+    public String getB55() {
         return b55;
     }
 
-    public void setB55(Integer b55) {
+    public void setB55(String b55) {
         this.b55 = b55;
     }
 
     private String c11;
 
     @Basic
-    @Column(name = "c11")
+    @javax.persistence.Column(name = "c11")
     public String getC11() {
         return c11;
     }
@@ -1070,7 +1003,7 @@ public class UserEntity {
     private Date c12;
 
     @Basic
-    @Column(name = "c12")
+    @javax.persistence.Column(name = "c12")
     public Date getC12() {
         return c12;
     }
@@ -1079,22 +1012,22 @@ public class UserEntity {
         this.c12 = c12;
     }
 
-    private Integer c13;
+    private String c13;
 
     @Basic
-    @Column(name = "c13")
-    public Integer getC13() {
+    @javax.persistence.Column(name = "c13")
+    public String getC13() {
         return c13;
     }
 
-    public void setC13(Integer c13) {
+    public void setC13(String c13) {
         this.c13 = c13;
     }
 
     private String c14;
 
     @Basic
-    @Column(name = "c14")
+    @javax.persistence.Column(name = "c14")
     public String getC14() {
         return c14;
     }
@@ -1106,7 +1039,7 @@ public class UserEntity {
     private String c15;
 
     @Basic
-    @Column(name = "c15")
+    @javax.persistence.Column(name = "c15")
     public String getC15() {
         return c15;
     }
@@ -1118,7 +1051,7 @@ public class UserEntity {
     private String c16;
 
     @Basic
-    @Column(name = "c16")
+    @javax.persistence.Column(name = "c16")
     public String getC16() {
         return c16;
     }
@@ -1127,22 +1060,22 @@ public class UserEntity {
         this.c16 = c16;
     }
 
-    private Integer c17;
+    private String c17;
 
     @Basic
-    @Column(name = "c17")
-    public Integer getC17() {
+    @javax.persistence.Column(name = "c17")
+    public String getC17() {
         return c17;
     }
 
-    public void setC17(Integer c17) {
+    public void setC17(String c17) {
         this.c17 = c17;
     }
 
     private String c21;
 
     @Basic
-    @Column(name = "c21")
+    @javax.persistence.Column(name = "c21")
     public String getC21() {
         return c21;
     }
@@ -1154,7 +1087,7 @@ public class UserEntity {
     private Date c22;
 
     @Basic
-    @Column(name = "c22")
+    @javax.persistence.Column(name = "c22")
     public Date getC22() {
         return c22;
     }
@@ -1163,22 +1096,22 @@ public class UserEntity {
         this.c22 = c22;
     }
 
-    private Integer c23;
+    private String c23;
 
     @Basic
-    @Column(name = "c23")
-    public Integer getC23() {
+    @javax.persistence.Column(name = "c23")
+    public String getC23() {
         return c23;
     }
 
-    public void setC23(Integer c23) {
+    public void setC23(String c23) {
         this.c23 = c23;
     }
 
     private String c24;
 
     @Basic
-    @Column(name = "c24")
+    @javax.persistence.Column(name = "c24")
     public String getC24() {
         return c24;
     }
@@ -1190,7 +1123,7 @@ public class UserEntity {
     private String c25;
 
     @Basic
-    @Column(name = "c25")
+    @javax.persistence.Column(name = "c25")
     public String getC25() {
         return c25;
     }
@@ -1202,7 +1135,7 @@ public class UserEntity {
     private String c26;
 
     @Basic
-    @Column(name = "c26")
+    @javax.persistence.Column(name = "c26")
     public String getC26() {
         return c26;
     }
@@ -1211,22 +1144,22 @@ public class UserEntity {
         this.c26 = c26;
     }
 
-    private Integer c27;
+    private String c27;
 
     @Basic
-    @Column(name = "c27")
-    public Integer getC27() {
+    @javax.persistence.Column(name = "c27")
+    public String getC27() {
         return c27;
     }
 
-    public void setC27(Integer c27) {
+    public void setC27(String c27) {
         this.c27 = c27;
     }
 
     private String c31;
 
     @Basic
-    @Column(name = "c31")
+    @javax.persistence.Column(name = "c31")
     public String getC31() {
         return c31;
     }
@@ -1238,7 +1171,7 @@ public class UserEntity {
     private Date c32;
 
     @Basic
-    @Column(name = "c32")
+    @javax.persistence.Column(name = "c32")
     public Date getC32() {
         return c32;
     }
@@ -1247,22 +1180,22 @@ public class UserEntity {
         this.c32 = c32;
     }
 
-    private Integer c33;
+    private String c33;
 
     @Basic
-    @Column(name = "c33")
-    public Integer getC33() {
+    @javax.persistence.Column(name = "c33")
+    public String getC33() {
         return c33;
     }
 
-    public void setC33(Integer c33) {
+    public void setC33(String c33) {
         this.c33 = c33;
     }
 
     private String c34;
 
     @Basic
-    @Column(name = "c34")
+    @javax.persistence.Column(name = "c34")
     public String getC34() {
         return c34;
     }
@@ -1274,7 +1207,7 @@ public class UserEntity {
     private String c35;
 
     @Basic
-    @Column(name = "c35")
+    @javax.persistence.Column(name = "c35")
     public String getC35() {
         return c35;
     }
@@ -1286,7 +1219,7 @@ public class UserEntity {
     private String c36;
 
     @Basic
-    @Column(name = "c36")
+    @javax.persistence.Column(name = "c36")
     public String getC36() {
         return c36;
     }
@@ -1295,22 +1228,22 @@ public class UserEntity {
         this.c36 = c36;
     }
 
-    private Integer c37;
+    private String c37;
 
     @Basic
-    @Column(name = "c37")
-    public Integer getC37() {
+    @javax.persistence.Column(name = "c37")
+    public String getC37() {
         return c37;
     }
 
-    public void setC37(Integer c37) {
+    public void setC37(String c37) {
         this.c37 = c37;
     }
 
     private String c41;
 
     @Basic
-    @Column(name = "c41")
+    @javax.persistence.Column(name = "c41")
     public String getC41() {
         return c41;
     }
@@ -1322,7 +1255,7 @@ public class UserEntity {
     private Date c42;
 
     @Basic
-    @Column(name = "c42")
+    @javax.persistence.Column(name = "c42")
     public Date getC42() {
         return c42;
     }
@@ -1331,22 +1264,22 @@ public class UserEntity {
         this.c42 = c42;
     }
 
-    private Integer c43;
+    private String c43;
 
     @Basic
-    @Column(name = "c43")
-    public Integer getC43() {
+    @javax.persistence.Column(name = "c43")
+    public String getC43() {
         return c43;
     }
 
-    public void setC43(Integer c43) {
+    public void setC43(String c43) {
         this.c43 = c43;
     }
 
     private String c44;
 
     @Basic
-    @Column(name = "c44")
+    @javax.persistence.Column(name = "c44")
     public String getC44() {
         return c44;
     }
@@ -1358,7 +1291,7 @@ public class UserEntity {
     private String c45;
 
     @Basic
-    @Column(name = "c45")
+    @javax.persistence.Column(name = "c45")
     public String getC45() {
         return c45;
     }
@@ -1370,7 +1303,7 @@ public class UserEntity {
     private String c46;
 
     @Basic
-    @Column(name = "c46")
+    @javax.persistence.Column(name = "c46")
     public String getC46() {
         return c46;
     }
@@ -1379,22 +1312,22 @@ public class UserEntity {
         this.c46 = c46;
     }
 
-    private Integer c47;
+    private String c47;
 
     @Basic
-    @Column(name = "c47")
-    public Integer getC47() {
+    @javax.persistence.Column(name = "c47")
+    public String getC47() {
         return c47;
     }
 
-    public void setC47(Integer c47) {
+    public void setC47(String c47) {
         this.c47 = c47;
     }
 
     private String c51;
 
     @Basic
-    @Column(name = "c51")
+    @javax.persistence.Column(name = "c51")
     public String getC51() {
         return c51;
     }
@@ -1406,7 +1339,7 @@ public class UserEntity {
     private Date c52;
 
     @Basic
-    @Column(name = "c52")
+    @javax.persistence.Column(name = "c52")
     public Date getC52() {
         return c52;
     }
@@ -1415,22 +1348,22 @@ public class UserEntity {
         this.c52 = c52;
     }
 
-    private Integer c53;
+    private String c53;
 
     @Basic
-    @Column(name = "c53")
-    public Integer getC53() {
+    @javax.persistence.Column(name = "c53")
+    public String getC53() {
         return c53;
     }
 
-    public void setC53(Integer c53) {
+    public void setC53(String c53) {
         this.c53 = c53;
     }
 
     private String c54;
 
     @Basic
-    @Column(name = "c54")
+    @javax.persistence.Column(name = "c54")
     public String getC54() {
         return c54;
     }
@@ -1442,7 +1375,7 @@ public class UserEntity {
     private String c55;
 
     @Basic
-    @Column(name = "c55")
+    @javax.persistence.Column(name = "c55")
     public String getC55() {
         return c55;
     }
@@ -1454,7 +1387,7 @@ public class UserEntity {
     private String c56;
 
     @Basic
-    @Column(name = "c56")
+    @javax.persistence.Column(name = "c56")
     public String getC56() {
         return c56;
     }
@@ -1463,15 +1396,15 @@ public class UserEntity {
         this.c56 = c56;
     }
 
-    private Integer c57;
+    private String c57;
 
     @Basic
-    @Column(name = "c57")
-    public Integer getC57() {
+    @javax.persistence.Column(name = "c57")
+    public String getC57() {
         return c57;
     }
 
-    public void setC57(Integer c57) {
+    public void setC57(String c57) {
         this.c57 = c57;
     }
 
@@ -1562,27 +1495,22 @@ public class UserEntity {
         if (c55 != null ? !c55.equals(that.c55) : that.c55 != null) return false;
         if (c56 != null ? !c56.equals(that.c56) : that.c56 != null) return false;
         if (c57 != null ? !c57.equals(that.c57) : that.c57 != null) return false;
-        if (department != null ? !department.equals(that.department) : that.department != null) return false;
         if (distance != null ? !distance.equals(that.distance) : that.distance != null) return false;
         if (email != null ? !email.equals(that.email) : that.email != null) return false;
         if (gender != null ? !gender.equals(that.gender) : that.gender != null) return false;
         if (hight != null ? !hight.equals(that.hight) : that.hight != null) return false;
-        if (hometown != null ? !hometown.equals(that.hometown) : that.hometown != null) return false;
         if (huji != null ? !huji.equals(that.huji) : that.huji != null) return false;
         if (hujiaddress != null ? !hujiaddress.equals(that.hujiaddress) : that.hujiaddress != null) return false;
         if (hujiaddressnum != null ? !hujiaddressnum.equals(that.hujiaddressnum) : that.hujiaddressnum != null)
             return false;
         if (hunyin != null ? !hunyin.equals(that.hunyin) : that.hunyin != null) return false;
         if (idnum != null ? !idnum.equals(that.idnum) : that.idnum != null) return false;
-        if (realname != null ? !realname.equals(that.realname) : that.realname != null) return false;
         if (jiankangzheng != null ? !jiankangzheng.equals(that.jiankangzheng) : that.jiankangzheng != null)
             return false;
-        if (outarmydate != null ? !outarmydate.equals(that.outarmydate) : that.outarmydate != null) return false;
-        if (password != null ? !password.equals(that.password) : that.password != null) return false;
+        if (realname != null ? !realname.equals(that.realname) : that.realname != null) return false;
         if (shenfen != null ? !shenfen.equals(that.shenfen) : that.shenfen != null) return false;
         if (starttime != null ? !starttime.equals(that.starttime) : that.starttime != null) return false;
         if (tel != null ? !tel.equals(that.tel) : that.tel != null) return false;
-        if (username != null ? !username.equals(that.username) : that.username != null) return false;
         if (vehicle != null ? !vehicle.equals(that.vehicle) : that.vehicle != null) return false;
         if (weight != null ? !weight.equals(that.weight) : that.weight != null) return false;
         if (wishoffer != null ? !wishoffer.equals(that.wishoffer) : that.wishoffer != null) return false;
@@ -1603,14 +1531,9 @@ public class UserEntity {
     @Override
     public int hashCode() {
         int result = id;
-        result = 31 * result + (username != null ? username.hashCode() : 0);
-        result = 31 * result + (password != null ? password.hashCode() : 0);
-        result = 31 * result + (hometown != null ? hometown.hashCode() : 0);
         result = 31 * result + (gender != null ? gender.hashCode() : 0);
         result = 31 * result + (birthday != null ? birthday.hashCode() : 0);
         result = 31 * result + (realname != null ? realname.hashCode() : 0);
-        result = 31 * result + (outarmydate != null ? outarmydate.hashCode() : 0);
-        result = 31 * result + (department != null ? department.hashCode() : 0);
         result = 31 * result + (avatar != null ? avatar.hashCode() : 0);
         result = 31 * result + (tel != null ? tel.hashCode() : 0);
         result = 31 * result + (idnum != null ? idnum.hashCode() : 0);

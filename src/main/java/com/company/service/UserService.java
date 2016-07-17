@@ -25,17 +25,18 @@ public class UserService {
         return null;
     }
 
-    public UserEntity getUserByUsername (String username) {
-        return dao.getUserByUsername(username);
+    public UserEntity getUserByEmail (String email) {
+        return dao.getUserByEmail(email);
     }
 
 
     public boolean login(UserEntity user) {
-        UserEntity userEntity = dao.getUserByUsername(user.getUsername());
-        if (userEntity == null) {
-            return false;
-        }
-        return userEntity.getPassword().equals(user.getPassword());
+//        UserEntity userEntity = dao.getUserByEmail(user.getEmail());
+//        if (userEntity == null) {
+//            return false;
+//        }
+//        return userEntity.getPassword().equals(user.getPassword());
+        return true;
     }
 
     public List<UserEntity> getAllUser() {

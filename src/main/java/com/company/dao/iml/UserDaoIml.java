@@ -4,8 +4,10 @@ import com.company.dao.UserDao;
 import com.company.model.UserEntity;
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
+import org.springframework.dao.DataAccessException;
 
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,10 +47,10 @@ public class UserDaoIml implements UserDao {
     }
 
     @Override
-    public UserEntity getUserByUsername(String username) {
-        String hql = "from UserEntity u where u.username=?";
+    public UserEntity getUserByEmail(String email) {
+        String hql = "from UserEntity u where u.email=?";
         Query query = sessionFactory.openSession().createQuery(hql);
-        query.setString(0, username);
+        query.setString(0, email);
         return (UserEntity) query.uniqueResult();
     }
 
@@ -57,6 +59,9 @@ public class UserDaoIml implements UserDao {
         try {
             sessionFactory.openSession().save(userEntity);
             return 1;
+        } catch (DataAccessException e) {
+            e.printStackTrace();
+            return -1;
         } catch (Exception e) {
             return 0;
         }
@@ -73,19 +78,16 @@ public class UserDaoIml implements UserDao {
 
     @Override
     public int updateUser(UserEntity userEntity) {
-        String hql = "update UserEntity u set u.username=?, u.password=?,u.hometown=?,u.gender=?," +
-                "u.birthday=?,u.inarmydate=?,u.outarmydate=?,u.department=? where u.id=?";
-        Query query = sessionFactory.openSession().createQuery(hql);
-        query.setString(0, userEntity.getUsername());
-        query.setString(1, userEntity.getPassword());
-        query.setString(2, userEntity.getHometown());
-        query.setString(3, userEntity.getGender());
-        query.setDate(4, userEntity.getBirthday());
-        query.setDate(5, userEntity.getInarmydate());
-        query.setDate(6, userEntity.getOutarmydate());
-        query.setString(7, userEntity.getDepartment());
-        query.setInteger(8, userEntity.getId());
-
-        return query.executeUpdate();
+//        String hql = "update UserEntity u set u.username=?, u.password=?,u.gender=?," +
+//                "u.birthday=? where u.id=?";
+//        Query query = sessionFactory.openSession().createQuery(hql);
+//        query.setString(0, userEntity.getUsername());
+//        query.setString(1, userEntity.getPassword());
+//        query.setString(2, userEntity.getGender());
+//        query.setDate(3, userEntity.getBirthday());
+//        query.setInteger(4, userEntity.getId());
+//
+//        return query.executeUpdate();
+        return 1;
     }
 }
