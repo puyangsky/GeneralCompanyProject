@@ -18,8 +18,13 @@ public class Test {
 
         }
     }
+    public static void splitTest(String s) {
+        String[] names = s.split("\\.");
+        System.out.println(names[0]);
+    }
 
     public static void main(String[] args) {
-        reflect(new UserEntity());
+//        reflect(new UserEntity());
+        splitTest("abc.s");
     }
 }

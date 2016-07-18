@@ -80,6 +80,8 @@
                 var distance = $("#distance").val();
                 var wishoffer = $("#wishoffer").val();
                 var vehicle = $("#vehicle").val();
+                var imgurl = $("#a0").html();
+                alert(imgurl);
 
                 var a11 = $("#a11").val();
                 var a12 = $("#a12").val();
@@ -335,6 +337,7 @@
                     "gender": gender,
                     "birthday": birth,
                     "tel":tel,
+                    "avatar":imgurl,
                     "idnum":idnumber,
                     "email": email,
                     "xueli":xueli,
@@ -457,7 +460,7 @@
                             alert("注册失败，请重新输入用户名和密码");
                             location.href = "/wx/detail";
                         }else if(data.result == "-1") {
-
+                            location.href = "/wx/detail";
                         }
                     },
                     error:function(data) {
@@ -1565,12 +1568,14 @@
             <p class="weui_toast_content">注册成功</p>
         </div>
     </div>
+    <p id="a0" style="display: none;"></p>
 </form>
 
 <script>
     function uploadImg(sender) {
         console.log(window.URL.createObjectURL(sender.files[0]));
         $("#upload_img").attr("src", window.URL.createObjectURL(sender.files[0]));
+        upload();
     }
 </script>
 

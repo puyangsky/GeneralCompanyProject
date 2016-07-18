@@ -22,7 +22,7 @@ function setCookie(c_name, value) {
     var exdate = new Date();
     exdate.setDate(exdate.getDate() + expiredays);
     document.cookie = c_name + "=" + encodeURI(value) + ((expiredays == null) ? "" : ";expires=" + exdate.toGMTString());
-    alert(document.cookie);
+    //alert(document.cookie);
 }
 function delCookie(name)
 {
@@ -53,6 +53,26 @@ function parseTime(timestamp) {
     return date;
 }
 
+function upload() {
+    var files = $("#upload_btn").prop("files");
+    console.log("file len>>>>" + files.length);
+    console.log("file>>>>" + files[0]);
+    var data = new FormData();
+    data.append("avatar", files[0]);
+    $.ajax({
+        url: "/user/upload",
+        type: "POST",
+        data: data,
+        cache: false,
+        processData: false,
+        contentType: false,
+        success: function(data) {
+            console.log("response>>>" + data);
+            $("#a0").html(data);
+        }
+    });
+}
+
 function setInfo(email) {
     $.ajax({
         url: "/user/getuserbyemail/" + email,
@@ -70,6 +90,7 @@ function setInfo(email) {
             $("#email").val(data["email"]);
             $("#xueli").val(data["xueli"]);
             $("#hight").val(data["hight"]);
+            $("#upload_img").attr("src", data["avatar"]);
             $("#weight").val(data["weight"]);
             $("#wishsalary").val(data["wishsalary"]);
             $("#address").val(data["address"]);
