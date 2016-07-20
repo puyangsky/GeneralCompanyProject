@@ -67,8 +67,9 @@ function upload() {
         processData: false,
         contentType: false,
         success: function(data) {
-            console.log("response>>>" + data);
-            $("#a0").html(data);
+            json = JSON.parse(data);
+            console.log("path>>>>>" + json.imgpath);
+            $("#a0").html(json.imgpath);
         }
     });
 }
@@ -81,6 +82,8 @@ function setInfo(email) {
         data:"",
         jsonp:"callback",
         success: function (data) {
+            var id = data["id"];
+            setCookie("uid", id);
             var date = data["birthday"];
             date = parseTime(date);
             console.log("date>>>" + date);
@@ -101,6 +104,80 @@ function setInfo(email) {
             $("#shenfen").val(data["shenfen"]);
             var worktime = data["worktime"];
             $("#worktime").val(data["worktime"]);
+            if(data["jiankangzheng"] == "有") {
+                $("#x13").attr("checked", "checked");
+                $("#x14").removeAttr("checked");
+            }else{
+                $("#x13").removeAttr("checked");
+                $("#x14").attr("checked", "checked");
+            }
+            if(data["gender"] == "男") {
+                $("#x11").attr("checked", "checked");
+                $("#x12").removeAttr("checked");
+            }else{
+                $("#x11").removeAttr("checked");
+                $("#x12").attr("checked", "checked");
+            }
+            if(data["huji"] == "本地城镇") {
+                $("#x15").attr("checked", "checked");
+                $("#x16").removeAttr("checked");
+                $("#x17").removeAttr("checked");
+                $("#x18").removeAttr("checked");
+            }
+            if(data["huji"] == "本地农村") {
+                $("#x16").attr("checked", "checked");
+                $("#x15").removeAttr("checked");
+                $("#x17").removeAttr("checked");
+                $("#x18").removeAttr("checked");
+            }
+            if(data["huji"] == "外埠城镇") {
+                $("#x17").attr("checked", "checked");
+                $("#x16").removeAttr("checked");
+                $("#x18").removeAttr("checked");
+                $("#x15").removeAttr("checked");
+            }
+            if(data["huji"] == "外埠农村") {
+                $("#x18").attr("checked", "checked");
+                $("#x16").removeAttr("checked");
+                $("#x17").removeAttr("checked");
+                $("#x15").removeAttr("checked");
+            }
+            if(data["shenfen"] == "一般劳动者") {
+                $("#x19").attr("checked", "checked");
+                $("#x20").removeAttr("checked");
+                $("#x21").removeAttr("checked");
+                $("#x22").removeAttr("checked");
+                $("#x23").removeAttr("checked");
+            }
+            if(data["shenfen"] == "学生") {
+                $("#x20").attr("checked", "checked");
+                $("#x19").removeAttr("checked");
+                $("#x21").removeAttr("checked");
+                $("#x22").removeAttr("checked");
+                $("#x23").removeAttr("checked");
+            }
+            if(data["shenfen"] == "军人") {
+                $("#x21").attr("checked", "checked");
+                $("#x20").removeAttr("checked");
+                $("#x19").removeAttr("checked");
+                $("#x22").removeAttr("checked");
+                $("#x23").removeAttr("checked");
+            }
+            if(data["shenfen"] == "兼职") {
+                $("#x22").attr("checked", "checked");
+                $("#x20").removeAttr("checked");
+                $("#x21").removeAttr("checked");
+                $("#x19").removeAttr("checked");
+                $("#x23").removeAttr("checked");
+            }
+            if(data["shenfen"] == "其他") {
+                $("#x23").attr("checked", "checked");
+                $("#x20").removeAttr("checked");
+                $("#x21").removeAttr("checked");
+                $("#x22").removeAttr("checked");
+                $("#x19").removeAttr("checked");
+            }
+
 
             $("#workhours").val(data["workhours"]);
             $("#starttime").val(data["starttime"]);

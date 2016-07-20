@@ -24,7 +24,12 @@ public class Test {
     }
 
     public static void main(String[] args) {
-//        reflect(new UserEntity());
-        splitTest("abc.s");
+        reflect(new UserEntity());
+//        splitTest("abc.s");
+//        int i = 1;
+//        while (i<=108) {
+//            System.out.println(i + ",");
+//            i++;
+//        }
     }
 }

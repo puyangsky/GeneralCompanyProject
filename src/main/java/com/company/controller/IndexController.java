@@ -3,6 +3,7 @@ package com.company.controller;
 import com.alibaba.fastjson.JSONObject;
 import com.company.model.UserEntity;
 import com.company.service.UserService;
+import com.company.util.Constant;
 import com.company.util.JsonUtil;
 import com.company.util.StringCheck;
 import org.springframework.stereotype.Controller;
@@ -12,9 +13,14 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import javax.annotation.Resource;
+import javax.imageio.ImageIO;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.awt.image.BufferedImage;
 import java.io.*;
+import java.nio.ByteBuffer;
+import java.nio.channels.FileChannel;
 import java.util.Calendar;
 import java.util.Iterator;
 import java.util.List;
@@ -87,22 +93,28 @@ public class IndexController {
         return json.toString();
     }
     @RequestMapping(value = "/upload")
-    public@ResponseBody String upload(MultipartHttpServletRequest request) throws Exception {
+    @ResponseBody
+    public String upload(MultipartHttpServletRequest request,
+                         HttpServletResponse response) throws Exception {
         Iterator<String> itr =  request.getFileNames();
         MultipartFile mpf = request.getFile(itr.next());
 
-        ufile = new UploadedFile(mpf.getBytes(), mpf.getOriginalFilename(), mpf.getContentType(),
-                mpf.getBytes().length);
-        String name = "default";
+        String name = Calendar.getInstance().getTimeInMillis() + "";
         String type = "jpg";
-        if (ufile.name.contains(".")) {
-            String[] names = ufile.name.split("\\.");
-            name = names[0];
+        String originName = mpf.getOriginalFilename();
+        if (originName.contains(".")) {
+            String[] names = originName.split("\\.");
             type = names[1];
         }
+        ufile = new UploadedFile(mpf.getBytes(), name + "." + type, mpf.getContentType(),
+                mpf.getBytes().length);
+
         String imagePath = "http://" + request.getServerName() + ":" + request.getServerPort() + "/user/image/" +
                 name + "/" + type;
-        return imagePath;
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("imgpath", imagePath);
+        response.setContentType("text/html;charset=UTF-8");
+        return jsonObject.toString();
     }
 
     @RequestMapping(value = "/image/{name}/{type}", method = RequestMethod.GET)
@@ -110,23 +122,16 @@ public class IndexController {
                          @PathVariable String type,
                          HttpServletResponse response) throws IOException{
 
-        InputStream inputStream = null;
         OutputStream out = null;
+        BufferedImage image = null;
         try {
-            File file = new File("D:\\image\\" + name + "." + type);
-            inputStream = new FileInputStream(file);
+            File file = new File(Constant.IMGDIR + name + "." + type);
+            image = ImageIO.read(file);
             out = response.getOutputStream();
-            // pic size = 1M
-            byte[] bytes = new byte[5 * 1024 * 1024];
-            int len = 0;
-            while ((len = inputStream.read(bytes)) > 0) {
-                out.write(bytes, 0, len);
-            }
+            ImageIO.write(image, type, out);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            if (inputStream != null)
-                inputStream.close();
             if (out != null)
                 out.close();
         }
@@ -189,6 +194,37 @@ public class IndexController {
         return json.toString();
     }
 
+    @RequestMapping(value = "/updateuser", method = RequestMethod.POST)
+    @ResponseBody
+    public String updateUser(@RequestBody UserEntity userEntity, HttpServletRequest request) {
+        System.out.println(JsonUtil.toJsonString(userEntity));
+//        Cookie[] cookies = request.getCookies();
+//        int len = cookies.length;
+//        for (int i=0;i<len;i++) {
+//            if (cookies[i].getName().equals("id")) {
+//                id = cookies[i].getValue();
+//            }
+//        }
+        String id = "0";
+        int uid;
+        id = request.getHeader("UID");
+        try {
+            uid = Integer.valueOf(id);
+        } catch (Exception e) {
+            e.printStackTrace();
+            uid = 0;
+        }
+        userEntity.setId(uid);
+        boolean res = userService.updateUser(userEntity);
+        JSONObject object = new JSONObject();
+        if (res) {
+            object.put("result", 1);
+        } else {
+            object.put("result", 0);
+        }
+        return object.toString();
+    }
+
     @RequestMapping(value = "/v1/getusers", method = RequestMethod.GET)
     public String getUsersPage(ModelMap model) {
         List<UserEntity> userEntityList = userService.getAllUser();
@@ -223,7 +259,7 @@ public class IndexController {
             this.name = name;
             this.type = type;
             this.length = length;
-            File file = new File("D:\\image\\" + name);
+            File file = new File(Constant.IMGDIR + name);
             if (file.exists()) {
                 file.delete();
             }

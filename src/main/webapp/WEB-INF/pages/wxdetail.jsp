@@ -35,12 +35,17 @@
     <script type="text/javascript" src="/js/myjs.js"></script>
     <script>
         $(document).ready(function() {
+            var url = "/user/adduser";
             var existEmail = getCookie("email");
-            if(existEmail != null) {
-                $("#title").html("编辑详细信息");
+            if(existEmail != null && existEmail != "") {
+                $("#title").html("更新详细信息");
                 setInfo(existEmail + ".abc");
+                url = "/user/updateuser";
             }
             $("#regbtn").click(function () {
+                if (getCookie("uid") != undefined) {
+                    var uid = getCookie("uid");
+                }
                 var realusername = $("#realusername").val();
                 var gender = $('input[name="radio1"]:checked').val();
                 var birth = $("#birth").val();
@@ -80,7 +85,7 @@
                 var distance = $("#distance").val();
                 var wishoffer = $("#wishoffer").val();
                 var vehicle = $("#vehicle").val();
-                var imgurl = $("#a0").html();
+                var imgurl = $("#a0").text();
                 alert(imgurl);
 
                 var a11 = $("#a11").val();
@@ -438,13 +443,17 @@
                     "c54": c54,
                     "c55": c55,
                     "c56": c56,
-                    "c57": c57
+                    "c57": c57,
+                    "updatetime": new Date().getTime()
                 };
                 console.log(user);
                 console.log(JSON.stringify(user));
                 $.ajax({
-                    url:"/user/adduser",
+                    url: url,
                     type:"POST",
+                    headers: {
+                        UID: uid
+                    },
                     dataType:"json",
                     data:JSON.stringify(user),
                     contentType:"application/json;charset=UTF-8",
@@ -465,6 +474,7 @@
                     },
                     error:function(data) {
                         alert("error");
+                        setCookie("email", email);
                         console.log(data);
                         return;
                     }
@@ -681,7 +691,7 @@
                 <label class="weui_label">户籍所在地邮政编码</label>
             </div>
             <div class="weui_cell_bd weui_cell_primary">
-                <input id="hujiaddressnum" class="weui_input" type="number" pattern="[0-9]*"
+                <input id="hujiaddressnum" class="weui_input" type="number" pattern="[0-9]{6}"
                        title="请输入数字" placeholder="邮政编码"/>
             </div>
         </div>
@@ -1568,7 +1578,7 @@
             <p class="weui_toast_content">注册成功</p>
         </div>
     </div>
-    <p id="a0" style="display: none;"></p>
+    <div id="a0" style="display: none"></div>
 </form>
 
 <script>
