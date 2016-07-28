@@ -13,22 +13,27 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
     <title>详细信息页</title>
     <link rel="stylesheet" href="/css/weui.min.css"/>
+    <link rel="stylesheet" href="/css/example.css"/>
     <style type="text/css">
-        .page_title {
-            text-align:center;
-            font-size:2em;
-            color:#3cc51f;
-            font-weight: bold;
-            margin:0 15%
-        }
+        /*.page_title{*/
+            /*text-align:center;*/
+            /*font-size:34px;*/
+            /*color:#3cc51f;*/
+            /*font-weight:400;*/
+            /*margin:0 15%*/
+        /*}*/
         .sub_title {
             text-align:center;
-            font-size:1.5em;
+            font-size:24px;
             color:#3cc51f;
-            margin:3% 10%
+            font-weight:400;
+            margin:0 10%;
         }
         form {
             overflow-x:hidden
+        }
+        .pad {
+            padding-top: 20px;
         }
     </style>
     <script type="text/javascript" src="/js/jquery-1.9.1.min.js"></script>
@@ -38,7 +43,7 @@
             var url = "/user/adduser";
             var existEmail = getCookie("email");
             if(existEmail != null && existEmail != "") {
-                $("#title").html("更新详细信息");
+//                $("#title").html("更新详细信息");
                 setInfo(existEmail + ".abc");
                 url = "/user/updateuser";
             }
@@ -86,7 +91,7 @@
                 var wishoffer = $("#wishoffer").val();
                 var vehicle = $("#vehicle").val();
                 var imgurl = $("#a0").text();
-                alert(imgurl);
+//                alert(imgurl);
 
                 var a11 = $("#a11").val();
                 var a12 = $("#a12").val();
@@ -172,7 +177,7 @@
                 var c56 = $("#c56").val();
                 var c57 = $("#c57").val();
 
-                var switcher = false;
+                var switcher = true;
                 if(switcher) {
                     if(realusername == "") {
                         $("#warn").html("姓名不能为空");
@@ -463,20 +468,20 @@
                             setCookie("email", email);
                             $("#toast").show();
                             setTimeout(function () {
-                                location.href = "/home";
+                                location.href = "/wx/detail";
                             }, 3000);
-                        }else if(data.result == "0"){
+                        }else {
                             alert("注册失败，请重新输入用户名和密码");
-                            location.href = "/wx/detail";
-                        }else if(data.result == "-1") {
                             location.href = "/wx/detail";
                         }
                     },
                     error:function(data) {
-                        alert("error");
                         setCookie("email", email);
                         console.log(data);
-                        return;
+                        alert("注册失败，请重新注册");
+                        setTimeout(function () {
+                            location.href = "/wx/detail";
+                        }, 3000);
                     }
                 });
             });
@@ -485,18 +490,18 @@
 </head>
 <body>
 <form action="#">
-    <h1 id="title" class="page_title">详细信息填写</h1>
+    <h1 id="title" class="page_title pad">详细信息填写</h1>
     <div class="weui_cells weui_cells_form">
         <div class="weui_cell">
             <div class="weui_cell_hd">
-                <label class="weui_label">姓名</label>
+                <label class="weui_label">姓名<font color="FF0000">*</font></label>
             </div>
             <div class="weui_cell_bd weui_cell_primary">
                 <input id="realusername" class="weui_input" type="text" placeholder="请输入用户名(中文)"/>
             </div>
         </div>
     </div>
-    <div class="weui_cells_title">性别</div>
+    <div class="weui_cells_title">性别<font color="FF0000">*</font></div>
     <div class="weui_cells weui_cells_radio">
         <label class="weui_cell weui_check_label" for="x11">
             <div class="weui_cell_bd weui_cell_primary">
@@ -523,7 +528,7 @@
             <div class="weui_cell_bd weui_cell_primary">
                 <div class="weui_uploader">
                     <div class="weui_uploader_hd weui_cell">
-                        <div class="weui_cell_bd weui_cell_primary">照片上传</div>
+                        <div class="weui_cell_bd weui_cell_primary">照片上传<font color="FF0000">*</font></div>
                     </div>
                     <div class="weui_uploader_bd">
                         <div>
@@ -538,13 +543,13 @@
         </div>
         <div class="weui_cells weui_cells_form">
             <div class="weui_cell">
-                <div class="weui_cell_hd"><label class="weui_label">出生年月</label></div>
+                <div class="weui_cell_hd"><label class="weui_label">出生年月<font color="FF0000">*</font></label></div>
                 <div class="weui_cell_bd weui_cell_primary">
                     <input id="birth" class="weui_input" type="date"/>
                 </div>
             </div>
         </div>
-        <div class="weui_cells_title">联系电话</div>
+        <div class="weui_cells_title">联系电话<font color="FF0000">*</font></div>
         <div class="weui_cells">
 
             <div class="weui_cell weui_cell_select weui_select_before">
@@ -567,7 +572,7 @@
 
         <div class="weui_cell">
             <div class="weui_cell_hd">
-                <label class="weui_label">身份证号码</label>
+                <label class="weui_label">身份证号码<font color="FF0000">*</font></label>
             </div>
             <div class="weui_cell_bd weui_cell_primary">
                 <input id="idnumber" class="weui_input" type="text" pattern="[0-9]{18}|[0-9]{17}[xX]{1}"
@@ -576,7 +581,7 @@
         </div>
         <div class="weui_cell">
             <div class="weui_cell_hd">
-                <label class="weui_label">电子邮箱</label>
+                <label class="weui_label">电子邮箱<font color="FF0000">*</font></label>
             </div>
             <div class="weui_cell_bd weui_cell_primary">
                 <input id="email" class="weui_input" type="email" title="请输入正确格式的email" placeholder="请输入email"/>
@@ -584,7 +589,7 @@
         </div>
         <div class="weui_cell">
             <div class="weui_cell_hd">
-                <label class="weui_label">最高学历</label>
+                <label class="weui_label">最高学历<font color="FF0000">*</font></label>
             </div>
             <div class="weui_cell_bd weui_cell_primary">
                 <input id="xueli" class="weui_input" type="text" placeholder="请输入最高学历"/>
@@ -592,7 +597,7 @@
         </div>
         <div class="weui_cell">
             <div class="weui_cell_hd">
-                <label class="weui_label">婚姻状况</label>
+                <label class="weui_label">婚姻状况<font color="FF0000">*</font></label>
             </div>
             <div class="weui_cell_bd weui_cell_primary">
                 <input id="hunyin" class="weui_input" type="text" placeholder="已婚/未婚/离异"/>
@@ -600,7 +605,7 @@
         </div>
         <div class="weui_cell">
             <div class="weui_cell_hd">
-                <label class="weui_label">血型</label>
+                <label class="weui_label">血型<font color="FF0000">*</font></label>
             </div>
             <div class="weui_cell_bd weui_cell_primary">
                 <input id="xuexing" class="weui_input" type="text" pattern="[ABO]{1,2}"
@@ -608,7 +613,7 @@
             </div>
         </div>
     </div>
-    <div class="weui_cells_title">有无健康证</div>
+    <div class="weui_cells_title">有无健康证<font color="FF0000">*</font></div>
     <div class="weui_cells weui_cells_radio">
         <label class="weui_cell weui_check_label" for="x13">
             <div class="weui_cell_bd weui_cell_primary">
@@ -633,25 +638,25 @@
     <div class="weui_cells weui_cells_form">
         <div class="weui_cell">
             <div class="weui_cell_hd">
-                <label class="weui_label">身高</label>
+                <label class="weui_label">身高<font color="FF0000">*</font></label>
             </div>
             <div class="weui_cell_bd weui_cell_primary">
-                <input id="hight" class="weui_input" type="number" pattern="[0-9]{3}"
+                <input id="hight" class="weui_input" type="number" pattern="[0-9]*"
                        title="请输入数字" placeholder="厘米"/>
             </div>
         </div>
         <div class="weui_cell">
             <div class="weui_cell_hd">
-                <label class="weui_label">体重</label>
+                <label class="weui_label">体重<font color="FF0000">*</font></label>
             </div>
             <div class="weui_cell_bd weui_cell_primary">
-                <input id="weight" class="weui_input" type="number" pattern="[0-9]{3}"
+                <input id="weight" class="weui_input" type="number" pattern="[0-9]*"
                        title="请输入数字" placeholder="公斤"/>
             </div>
         </div>
         <div class="weui_cell">
             <div class="weui_cell_hd">
-                <label class="weui_label">希望月平均收入</label>
+                <label class="weui_label">希望月平均收入<font color="FF0000">*</font></label>
             </div>
             <div class="weui_cell_bd weui_cell_primary">
                 <input id="wishsalary" class="weui_input" type="number" pattern="[0-9]*"
@@ -661,7 +666,7 @@
 
         <div class="weui_cell">
             <div class="weui_cell_hd">
-                <label class="weui_label">邮寄送达地址</label>
+                <label class="weui_label">邮寄送达地址<font color="FF0000">*</font></label>
             </div>
             <div class="weui_cell_bd weui_cell_primary">
                 <input id="address" class="weui_input" type="text" placeholder="邮寄送达地址"/>
@@ -670,17 +675,17 @@
 
         <div class="weui_cell">
             <div class="weui_cell_hd">
-                <label class="weui_label">邮政编码</label>
+                <label class="weui_label">邮政编码<font color="FF0000">*</font></label>
             </div>
             <div class="weui_cell_bd weui_cell_primary">
-                <input id="addressnum" class="weui_input" type="number" pattern="[0-9]*"
+                <input id="addressnum" class="weui_input" type="number" pattern="[0-9]{6}"
                        title="请输入数字" placeholder="邮政编码"/>
             </div>
         </div>
 
         <div class="weui_cell">
             <div class="weui_cell_hd">
-                <label class="weui_label">户籍所在地地址</label>
+                <label class="weui_label">户籍所在地地址<font color="FF0000">*</font></label>
             </div>
             <div class="weui_cell_bd weui_cell_primary">
                 <input id="hujiaddress" class="weui_input" type="text" placeholder="户籍所在地地址"/>
@@ -688,7 +693,7 @@
         </div>
         <div class="weui_cell">
             <div class="weui_cell_hd">
-                <label class="weui_label">户籍所在地邮政编码</label>
+                <label class="weui_label">户籍所在地邮政编码<font color="FF0000">*</font></label>
             </div>
             <div class="weui_cell_bd weui_cell_primary">
                 <input id="hujiaddressnum" class="weui_input" type="number" pattern="[0-9]{6}"
@@ -697,7 +702,7 @@
         </div>
     </div>
 
-    <div class="weui_cells_title">户籍状况</div>
+    <div class="weui_cells_title">户籍状况<font color="FF0000">*</font></div>
     <div class="weui_cells weui_cells_radio">
         <label class="weui_cell weui_check_label" for="x15">
             <div class="weui_cell_bd weui_cell_primary">
@@ -794,7 +799,7 @@
         </label>
     </div>
 
-    <div class="weui_cells_title">可工作时间</div>
+    <div class="weui_cells_title">可工作时间<font color="FF0000">*</font></div>
     <div class="weui_cells weui_cells_checkbox">
         <label class="weui_cell weui_check_label" for="s11">
             <div class="weui_cell_hd">
@@ -864,8 +869,7 @@
     <div class="weui_cells weui_cells_form">
         <div class="weui_cell">
             <div class="weui_cell_hd">
-                <label class="weui_label">每星期上班总时数
-                </label>
+                <label class="weui_label">每星期上班总时数<font color="FF0000">*</font></label>
             </div>
             <div class="weui_cell_bd weui_cell_primary">
                 <input id="workhours" class="weui_input" type="number" placeholder="每星期上班总时数"/>
@@ -874,7 +878,7 @@
 
         <div class="weui_cell">
             <div class="weui_cell_hd">
-                <label class="weui_label">始于/下午（时）</label>
+                <label class="weui_label">始于/下午（时）<font color="FF0000">*</font></label>
             </div>
             <div class="weui_cell_bd weui_cell_primary">
                 <input id="starttime" class="weui_input" type="number" placeholder="始于/下午（时）"/>
@@ -883,7 +887,7 @@
 
         <div class="weui_cell">
             <div class="weui_cell_hd">
-                <label class="weui_label">住处距离</label>
+                <label class="weui_label">住处距离<font color="FF0000">*</font></label>
             </div>
             <div class="weui_cell_bd weui_cell_primary">
                 <input id="distance" class="weui_input" type="number" placeholder="住处距离"/>
@@ -891,7 +895,7 @@
         </div>
         <div class="weui_cell">
             <div class="weui_cell_hd">
-                <label class="weui_label">希望待遇</label>
+                <label class="weui_label">希望待遇<font color="FF0000">*</font></label>
             </div>
             <div class="weui_cell_bd weui_cell_primary">
                 <input id="wishoffer" class="weui_input" type="text" placeholder="希望待遇"/>
@@ -899,15 +903,15 @@
         </div>
         <div class="weui_cell">
             <div class="weui_cell_hd">
-                <label class="weui_label">交通工具</label>
+                <label class="weui_label">交通工具<font color="FF0000">*</font></label>
             </div>
             <div class="weui_cell_bd weui_cell_primary">
                 <input id="vehicle" class="weui_input" type="text" placeholder="交通工具"/>
             </div>
         </div>
     </div>
+    <div class="sub_title pad">家庭状况</div>
     <div class="weui_cells weui_cells_form">
-        <div class="sub_title">家庭状况</div>
         <div class="weui_cells_title">家庭成员一</div>
         <div class="weui_cell">
             <div class="weui_cell_hd">
@@ -1034,11 +1038,11 @@
             </div>
         </div>
     </div>
+    <div class="sub_title pad">紧急联络人</div>
     <div class="weui_cells weui_cells_form">
-        <div class="sub_title">紧急联络人</div>
         <div class="weui_cell">
             <div class="weui_cell_hd">
-                <label class="weui_label">联络人姓名</label>
+                <label class="weui_label">联络人姓名<font color="FF0000">*</font></label>
             </div>
             <div class="weui_cell_bd weui_cell_primary">
                 <input id="z1" class="weui_input" type="text" placeholder="联络人姓名"/>
@@ -1046,7 +1050,7 @@
         </div>
         <div class="weui_cell">
             <div class="weui_cell_hd">
-                <label class="weui_label">与本人关系</label>
+                <label class="weui_label">与本人关系<font color="FF0000">*</font></label>
             </div>
             <div class="weui_cell_bd weui_cell_primary">
                 <input id="z2" class="weui_input" type="text" placeholder="与本人关系"/>
@@ -1054,7 +1058,7 @@
         </div>
         <div class="weui_cell">
             <div class="weui_cell_hd">
-                <label class="weui_label">固定电话</label>
+                <label class="weui_label">固定电话<font color="FF0000">*</font></label>
             </div>
             <div class="weui_cell_bd weui_cell_primary">
                 <input id="z3" class="weui_input" type="number" placeholder="固定电话"/>
@@ -1062,7 +1066,7 @@
         </div>
         <div class="weui_cell">
             <div class="weui_cell_hd">
-                <label class="weui_label">移动电话</label>
+                <label class="weui_label">移动电话<font color="FF0000">*</font></label>
             </div>
             <div class="weui_cell_bd weui_cell_primary">
                 <input id="z4" class="weui_input" type="number" placeholder="移动电话"/>
@@ -1070,7 +1074,7 @@
         </div>
         <div class="weui_cell">
             <div class="weui_cell_hd">
-                <label class="weui_label">紧急联络人地址</label>
+                <label class="weui_label">紧急联络人地址<font color="FF0000">*</font></label>
             </div>
             <div class="weui_cell_bd weui_cell_primary">
                 <input id="z5" class="weui_input" type="text" placeholder="紧急联络人地址"/>
@@ -1078,8 +1082,8 @@
         </div>
     </div>
 
+    <div class="sub_title pad">主要学习经历</div>
     <div class="weui_cells weui_cells_form">
-        <div class="sub_title">主要学习经历</div>
         <div class="weui_cells_title">学习经历一</div>
         <div class="weui_cell">
             <div class="weui_cell_hd">
@@ -1281,10 +1285,8 @@
         </div>
     </div>
 
-
+    <div class="sub_title pad">主要工作经历（如有曾在本公司的工作经历则必须注明）</div>
     <div class="weui_cells weui_cells_form">
-        <div class="sub_title">主要工作经历（如有曾在本公司的工作经历则必须注明）</div>
-
         <div class="weui_cells_title">工作经历一</div>
         <div class="weui_cell">
             <div class="weui_cell_hd">

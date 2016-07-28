@@ -16,7 +16,7 @@ public class WexinController {
 
     @RequestMapping("index")
     public String index() {
-        return "wxdetail";
+        return "wxindex";
     }
 
     @RequestMapping("login")
@@ -28,4 +28,5 @@ public class WexinController {
     public String detail() {
         return "wxdetail";
     }
+
 }

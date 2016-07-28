@@ -3,11 +3,9 @@ package com.company.dao.iml;
 import com.company.dao.UserDao;
 import com.company.model.UserEntity;
 import org.hibernate.Query;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.springframework.dao.DataAccessException;
 
-
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,17 +22,23 @@ public class UserDaoIml implements UserDao {
 
     @Override
     public UserEntity getUserById(int id) {
-        String hql = "from UserEntity u where u.id=?";
-        Query query = sessionFactory.openSession().createQuery(hql);
-        query.setInteger(0, id);
-        return (UserEntity) query.uniqueResult();
+        String hql = "from UserEntity u where u.id=:id";
+        Session session = sessionFactory.openSession();
+        Query query = session.createQuery(hql);
+        query.setParameter("id", id);
+        UserEntity userEntity = (UserEntity) query.uniqueResult();
+        session.close();
+        return userEntity;
     }
 
     @Override
     public List getAllUser() {
         String hql = "from UserEntity";
-        Query query = sessionFactory.openSession().createQuery(hql);
-        return query.list();
+        Session session = sessionFactory.openSession();
+        Query query = session.createQuery(hql);
+        List<UserEntity> list = query.list();
+        session.close();
+        return list;
     }
 
     @Override
@@ -48,38 +52,40 @@ public class UserDaoIml implements UserDao {
 
     @Override
     public UserEntity getUserByEmail(String email) {
-        String hql = "from UserEntity u where u.email=?";
-        Query query = sessionFactory.openSession().createQuery(hql);
-        query.setString(0, email);
-        return (UserEntity) query.uniqueResult();
+        String hql = "from UserEntity u where u.email=:email";
+        Session session = sessionFactory.openSession();
+        Query query = session.createQuery(hql);
+        query.setParameter("email", email);
+        UserEntity userEntity = (UserEntity) query.uniqueResult();
+        session.close();
+        return userEntity;
     }
 
     @Override
     public int addUser(UserEntity userEntity) {
-        try {
-            sessionFactory.openSession().save(userEntity);
-            return 1;
-        } catch (DataAccessException e) {
-            e.printStackTrace();
-            return -1;
-        } catch (Exception e) {
-            return 0;
-        }
-
+        Session session = sessionFactory.openSession();
+        session.save(userEntity);
+        session.close();
+        return 1;
     }
 
     @Override
     public int delUserById(int id) {
         String hql = "delete UserEntity u where u.id=?";
-        Query query = sessionFactory.openSession().createQuery(hql);
+        Session session = sessionFactory.openSession();
+        Query query = session.createQuery(hql);
         query.setInteger(0, id);
-        return query.executeUpdate();
+        int res = query.executeUpdate();
+        session.close();
+        return res;
     }
 
     @Override
     public int updateUser(UserEntity userEntity) {
+        int res = 0;
+        Session session = sessionFactory.openSession();
         String hql = "update UserEntity u set u.gender=:gender,u.birthday=:birthday,u.realname=:realname,u.avatar=:avatar,u.tel=:tel,u.idnum=:idnum,u.email=:email,u.xueli=:xueli,u.hunyin=:hunyin,u.xuexing=:xuexing,u.jiankangzheng=:jiankangzheng,u.hight=:hight,u.weight=:weight,u.wishsalary=:wishsalary,u.address=:address,u.addressnum=:addressnum,u.hujiaddress=:hujiaddress,u.hujiaddressnum=:hujiaddressnum,u.huji =:huji,u.shenfen=:shenfen,u.worktime=:worktime,u.workhours=:workhours,u.starttime=:starttime,u.distance=:distance,u.wishoffer=:wishoffer,u.vehicle=:vehicle,u.a11=:a11,u.a12=:a12,u.a13=:a13,u.a14=:a14,u.a15=:a15,u.a21=:a21,u.a22=:a22,u.a23=:a23,u.a24=:a24,u.a25=:a25,u.a31=:a31,u.a32=:a32,u.a33=:a33,u.a34=:a34,u.a35=:a35,u.z1=:z1,u.z2=:z2,u.z3=:z3,u.z4=:z4,u.z5=:z5,u.b11=:b11,u.b12=:b12,u.b13=:b13,u.b14=:b14,u.b15=:b15,u.b21=:b21,u.b22=:b22,u.b23=:b23,u.b24=:b24,u.b25=:b25,u.b31=:b31,u.b32=:b32,u.b33=:b33,u.b34=:b34,u.b35=:b35,u.b41=:b41,u.b42=:b42,u.b43=:b43,u.b44=:b44,u.b45=:b45,u.b51=:b51,u.b52=:b52,u.b53=:b53,u.b54=:b54,u.b55=:b55,u.c11=:c11,u.c12=:c12,u.c13=:c13,u.c14=:c14,u.c15=:c15,u.c16=:c16,u.c17=:c17,u.c21=:c21,u.c22=:c22,u.c23=:c23,u.c24=:c24,u.c25=:c25,u.c26=:c26,u.c27=:c27,u.c31=:c31,u.c32=:c32,u.c33=:c33,u.c34=:c34,u.c35=:c35,u.c36=:c36,u.c37=:c37,u.c41=:c41,u.c42=:c42,u.c43=:c43,u.c44=:c44,u.c45=:c45,u.c46=:c46,u.c47=:c47,u.c51=:c51,u.c52=:c52,u.c53=:c53,u.c54=:c54,u.c55=:c55,u.c56=:c56,u.c57=:c57,u.updatetime=:updatetime where u.id=:id";
-        Query query = sessionFactory.openSession().createQuery(hql);
+        Query query = session.createQuery(hql);
         query.setParameter("gender", userEntity.getGender());
         query.setParameter("birthday", userEntity.getBirthday());
         query.setParameter("realname", userEntity.getRealname());
@@ -188,7 +194,8 @@ public class UserDaoIml implements UserDao {
         query.setParameter("c57", userEntity.getC57());
         query.setParameter("updatetime", userEntity.getUpdatetime());
         query.setParameter("id", userEntity.getId());
-//
-        return query.executeUpdate();
+        res = query.executeUpdate();
+        session.close();
+        return res;
     }
 }

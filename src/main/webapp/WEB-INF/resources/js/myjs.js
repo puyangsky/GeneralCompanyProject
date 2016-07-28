@@ -35,16 +35,17 @@ function delCookie(name)
 function format(date) {
     dates = date.split("/");
     if(dates.length == 3) {
-
+        if(dates[1].length == 1) {
+            dates[1] = "0" + dates[1];
+        }
+        if (dates[2].length == 1) {
+            dates[2] = "0" + dates[2];
+        }
+        date = dates.join("-");
+        return date;
+    } else {
+        return null;
     }
-    if(dates[1].length == 1) {
-        dates[1] = "0" + dates[1];
-    }
-    if (dates[2].length == 1) {
-        dates[2] = "0" + dates[2];
-    }
-    date = dates.join("-");
-    return date;
 }
 function parseTime(timestamp) {
     var date = new Date(parseInt(timestamp)).toLocaleDateString();
@@ -55,8 +56,6 @@ function parseTime(timestamp) {
 
 function upload() {
     var files = $("#upload_btn").prop("files");
-    console.log("file len>>>>" + files.length);
-    console.log("file>>>>" + files[0]);
     var data = new FormData();
     data.append("avatar", files[0]);
     $.ajax({
@@ -86,7 +85,7 @@ function setInfo(email) {
             setCookie("uid", id);
             var date = data["birthday"];
             date = parseTime(date);
-            console.log("date>>>" + date);
+            //console.log("date>>>" + date);
             $("#birth").val(date);
             $("#tel").val(data["tel"]);
             $("#idnumber").val(data["idnum"]);
