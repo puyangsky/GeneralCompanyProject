@@ -150,11 +150,13 @@ public class IndexController {
     @RequestMapping(value = "/adduser", method = RequestMethod.POST)
     @ResponseBody
     public String addUser(@RequestBody UserEntity userEntity) {
-
-        System.out.println(JsonUtil.toJsonString(userEntity));
-
-        int result = userService.addUser(userEntity);
         JSONObject json = new JSONObject();
+        if(StringCheck.isNullOrEmpty(userEntity.getEmail())) {
+            json.put("result", "email is null");
+            return json.toString();
+        }
+        System.out.println(JsonUtil.toJsonString(userEntity));
+        int result = userService.addUser(userEntity);
         json.put("result", result);
         return json.toString();
     }

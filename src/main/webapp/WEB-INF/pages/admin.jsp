@@ -5,18 +5,19 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
     <link href="/css/bootstrap.min.css" rel="stylesheet" />
-    <title></title>
+    <title>威远中保管理系统</title>
     <link href="/css/Common.css" rel="stylesheet" />
     <link href="/css/Index.css" rel="stylesheet" />
+    <link rel="shortcut icon" href="/img/favicon.ico">
 </head>
 <body>
     <div class="header">
 
         <img class="logo" src="/img/logo.png" />
-        <label class="logo-title">通用后台模板</label>
+        <label class="logo-title">威远中保后台管理页面</label>
         <ul class="inline">
             <li>
-                <img src="/img/32/client.png" />&nbsp;&nbsp;欢迎您,Admin
+                <img src="/img/32/client.png" />&nbsp;&nbsp;欢迎您,管理员
             </li>
             <li class="dropdown">
                 <a class="dropdown-toggle mymsg" data-toggle="dropdown" href="#"><img src="/img/32/166.png" />&nbsp;&nbsp;修改个人信息<b class="caret"></b></a>
@@ -74,10 +75,10 @@
                                 <img class="left-icon-child" src="/img/32/612.png" /><span class="left-body"> 单位管理</span>
 
                             </div>
-                            <div class="accordion-inner">
-                                <img class="left-icon-child" src="/img/32/8.png" /><span class="left-body"> 字典管理</span>
+                            <%--<div class="accordion-inner">--%>
+                                <%--<img class="left-icon-child" src="/img/32/8.png" /><span class="left-body"> 字典管理</span>--%>
 
-                            </div>
+                            <%--</div>--%>
                         </div>
                     </div>
                 </div>

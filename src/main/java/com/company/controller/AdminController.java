@@ -50,7 +50,7 @@ public class AdminController {
     @RequestMapping(value = "/admin", method = RequestMethod.GET)
     public String admin(HttpServletRequest request) {
         if(request.getSession().getAttribute("admin") != null) {
-            System.out.println("登录成功！");
+//            System.out.println("登录成功！");
             return "admin";
         }
         return "login";

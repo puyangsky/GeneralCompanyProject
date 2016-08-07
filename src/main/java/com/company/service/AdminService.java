@@ -17,4 +17,8 @@ public class AdminService {
         if (entity == null) return false;
         return entity.getPassword().equals(adminEntity.getPassword());
     }
+
+    public boolean changePwd(AdminEntity adminEntity) {
+        return dao.changePwd(adminEntity) > 0;
+    }
 }

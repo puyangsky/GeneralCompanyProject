@@ -7,4 +7,5 @@ import com.company.model.AdminEntity;
  */
 public interface AdminDao {
     public AdminEntity login(String username);
+    public int changePwd(AdminEntity entity);
 }

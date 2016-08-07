@@ -2,7 +2,7 @@
 var curr = 1;
 $(function () {
     loadData();
-});;
+});
 
 function loadData() {
     $.ajax({
@@ -17,14 +17,19 @@ function loadData() {
                 var birthday = data[i].birthday;
                 try {
                     var id = data[i].id;
-                    var username = data[i].username;
+                    var username = data[i].realname;
                     var gender = data[i].gender;
-                    var hometown = data[i].hometown;
+                    var hometown = data[i].address;
                     var date = new Date(birthday);
                     var Y = date.getFullYear() + '-';
                     var M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
-                    var D = date.getDate();
+                    var D = date.getDate() < 10 ? '0'+ date.getDate() : date.getDate();
                     var formatbirthday = Y+M+D;
+                    var tel = data[i].tel;
+                    var email = data[i].email;
+                    var xueli = data[i].xueli;
+                    var hunyin = data[i].hunyin;
+                    var idnum = data[i].idnum;
                 }catch(ex) {
                     id = "空";
                     username = "空";
@@ -39,6 +44,11 @@ function loadData() {
                 trbody += "<td>" + formatbirthday + "</td>";
                 trbody += "<td>" + gender + "</td>";
                 trbody += "<td>" + hometown + "</td>";
+                trbody += "<td>" + tel + "</td>";
+                trbody += "<td>" + email + "</td>";
+                trbody += "<td>" + xueli + "</td>";
+                trbody += "<td>" + hunyin + "</td>";
+                trbody += "<td>" + idnum + "</td>";
                 var trend = "</tr>";
                 var tr = trbegin + trbody + trend;
                 $("#tbody").append(tr);
@@ -84,7 +94,7 @@ function load(curr) {
 }
 
 function openadd() {
-    $("#myModalLabel").text("添加成绩");
+    $("#myModalLabel").text("添加人员信息");
     $("#userName").attr("readonly", false);
     $("input").val("");
     $("#addModal").modal("show");

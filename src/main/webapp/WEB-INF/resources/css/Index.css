@@ -13,7 +13,8 @@
 .logo {
     position: absolute;
     left: 1%;
-    width: 5%;
+    width: 3.5%;
+    /*height: 3%;*/
 }
 
 .logo-title {
@@ -55,7 +56,7 @@
 
 .breadcrumb {
     margin: 0;
-    background-color: none !important;
+    background-color: #FFF;
 }
 
 .date {
@@ -118,5 +119,4 @@
 }
 
 .content {
-    margin;
 }
