@@ -470,7 +470,9 @@
                             setTimeout(function () {
                                 location.href = "/wx/detail";
                             }, 3000);
-                        }else {
+                        } else if(data.result == "-1") {
+                            alert("注册失败，该邮箱已注册！");
+                        } else {
                             alert("注册失败，请重新输入用户名和密码");
                             location.href = "/wx/detail";
                         }

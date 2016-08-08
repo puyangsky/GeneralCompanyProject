@@ -157,8 +157,9 @@ public class IndexController {
             json.put("result", "email is null");
             return json.toString();
         }
-        System.out.println(JsonUtil.toJsonString(userEntity));
+//        System.out.println(JsonUtil.toJsonString(userEntity));
         int result = userService.addUser(userEntity);
+
         json.put("result", result);
         return json.toString();
     }

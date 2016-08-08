@@ -17,6 +17,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Iterator;
 import java.util.List;
@@ -55,11 +56,13 @@ public class UserService {
 
     public List<UserEntity> getAllUser() {
         List<UserEntity> list = dao.getAllUser();
+        List<UserEntity> delList = new ArrayList<UserEntity>();
         for (UserEntity u : list) {
             if (u.getStatus() != 1) {
-                list.remove(u);
+                delList.add(u);
             }
         }
+        list.removeAll(delList);
         return list;
     }
 

@@ -17,19 +17,23 @@ function loadData() {
                 var birthday = data[i].birthday;
                 try {
                     var id = data[i].id;
-                    var username = data[i].realname;
-                    var gender = data[i].gender;
-                    var hometown = data[i].address;
+                    var username = (data[i].realname == undefined) ? "" : data[i].realname;
+                    var gender = (data[i].gender == undefined) ? "" : data[i].gender;
+                    var hometown = (data[i].address == undefined) ? "" : data[i].address;
                     var date = new Date(birthday);
                     var Y = date.getFullYear() + '-';
                     var M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
                     var D = date.getDate() < 10 ? '0'+ date.getDate() : date.getDate();
                     var formatbirthday = Y+M+D;
-                    var tel = data[i].tel;
-                    var email = data[i].email;
-                    var xueli = data[i].xueli;
-                    var hunyin = data[i].hunyin;
-                    var idnum = data[i].idnum;
+                    var tel = (data[i].tel == undefined) ? "" : data[i].tel;
+                    var email = (data[i].email == undefined) ? "" : data[i].email;
+                    var xueli = (data[i].xueli == undefined) ? "" : data[i].xueli;
+                    var hunyin = (data[i].hunyin == undefined) ? "" : data[i].hunyin;
+                    var idnum = (data[i].idnum == undefined) ? "" : data[i].idnum;
+                    var updatetime = (data[i].updatetime == undefined) ? "" : data[i].updatetime;
+                    var updateDate = new Date();
+                    updateDate.setTime(updatetime);
+                    updatetime = updateDate.toLocaleString();
                 }catch(ex) {
                     id = "空";
                     username = "空";
@@ -50,6 +54,7 @@ function loadData() {
                 trbody += "<td>" + xueli + "</td>";
                 trbody += "<td>" + hunyin + "</td>";
                 trbody += "<td>" + idnum + "</td>";
+                trbody += "<td>" + updatetime + "</td>";
                 var trend = "</tr>";
                 var tr = trbegin + trbody + trend;
                 $("#tbody").append(tr);
@@ -233,13 +238,14 @@ function edt() {
 }
 
 
-function del(userName) {
+function del() {
     var check = $("input[name='check_list']:checked");
-    if($(check).length == 0) {
+    var num = $(check).length;
+    if(num == 0) {
         layer.alert("您需要选取删除的对象！");
     }else {
         //询问框
-        layer.confirm('您确定要删除？', {
+        layer.confirm('您确定要删除这' + num + '项？', {
             btn: ['确定', '取消'] //按钮
         }, function () {
             var userIds = [];
@@ -257,8 +263,12 @@ function del(userName) {
                 data: id_json,
                 contentType:"application/json;charset=UTF-8",
                 success: function (data) {
-                    layer.alert(data.msg);
-                    //load(curr);
+                    console.log(data);
+                    if(data.res == true)
+                        layer.alert("删除成功");
+                    setTimeout(function () {
+                        loadData();
+                    }, 1000);
                 }
             })
         }, function () {

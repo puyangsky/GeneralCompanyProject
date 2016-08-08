@@ -5,6 +5,7 @@ import com.company.model.UserEntity;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.springframework.dao.DuplicateKeyException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -64,7 +65,12 @@ public class UserDaoIml implements UserDao {
     @Override
     public int addUser(UserEntity userEntity) {
         Session session = sessionFactory.openSession();
-        session.save(userEntity);
+        try {
+            session.save(userEntity);
+        }catch (Exception e) {
+            e.printStackTrace();
+            return -1;
+        }
         session.close();
         return 1;
     }
