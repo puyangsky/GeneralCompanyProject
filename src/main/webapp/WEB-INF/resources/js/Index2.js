@@ -39,7 +39,8 @@ function loadData() {
                     console.log(ex);
                 }
                 var trbegin = "<tr>";
-                var trbody = "<td>" + id + "</td>";
+                var trbody = "<td> <input name='check_list' type='checkbox' id='" + id +  "'/> </td>";
+                trbody += "<td>" + id + "</td>";
                 trbody += "<td>" + username + "</td>";
                 trbody += "<td>" + formatbirthday + "</td>";
                 trbody += "<td>" + gender + "</td>";
@@ -93,7 +94,7 @@ function load(curr) {
     })
 }
 
-function openadd() {
+function addItem() {
     $("#myModalLabel").text("添加人员信息");
     $("#userName").attr("readonly", false);
     $("input").val("");
@@ -102,6 +103,32 @@ function openadd() {
     $("#edt").hide();
 }
 
+function deleteItem() {
+    //$("#delModal").modal("show");
+    //$("#del").show();
+    del();
+}
+function del1() {
+
+}
+function updateItem() {
+
+}
+
+function selectAll() {
+    $("input[name='check_list']").prop("checked", true);
+}
+//反选，使用了jquery的each函数，并且发现通过attr("checked", true)来设置经常失效，但是采用了prop就可以
+//应该跟jquery版本有关····反正多试试吧···
+function reverseAll() {
+    $("input[name='check_list']").each(function () {
+        if($(this).is(":checked")) {
+            $(this).removeAttr("checked");
+        }else {
+            $(this).prop("checked", true);
+        }
+    });
+}
 
 function add() {
     if ($("#userName").val() == "") {
@@ -207,23 +234,35 @@ function edt() {
 
 
 function del(userName) {
-    //询问框
-    layer.confirm('您确定要删除？', {
-        btn: ['确定', '取消'] //按钮
-    }, function () {
-        $.ajax({
-            url: "",
-            timeout: 300000,
-            dataType: "json",
-            type: "post",
-            data: { "flag": "del", "userName": userName },
-            success: function (data) {
-                layer.alert(data.msg);
-                load(curr);
-            }
-        })
-    }, function () {
-        //  layer.close();
-    });
-
+    var check = $("input[name='check_list']:checked");
+    if($(check).length == 0) {
+        layer.alert("您需要选取删除的对象！");
+    }else {
+        //询问框
+        layer.confirm('您确定要删除？', {
+            btn: ['确定', '取消'] //按钮
+        }, function () {
+            var userIds = [];
+            $("input[name='check_list']:checked").each(function () {
+                var id = {"id":$(this).attr("id")};
+                userIds.push(id);
+            });
+            var id_json = JSON.stringify(userIds);
+            console.log("id in json>>>>" + id_json);
+            $.ajax({
+                url: "/user/deleteusers",
+                timeout: 300000,
+                dataType: "json",
+                type: "POST",
+                data: id_json,
+                contentType:"application/json;charset=UTF-8",
+                success: function (data) {
+                    layer.alert(data.msg);
+                    //load(curr);
+                }
+            })
+        }, function () {
+            //  layer.close();
+        });
+    }
 }

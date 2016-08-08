@@ -2,6 +2,7 @@ package com.company.service;
 
 import com.company.dao.UserDao;
 import com.company.model.UserEntity;
+import com.company.test.proxy.Interface;
 import com.company.util.Constant;
 import com.company.util.UploadedFile;
 import org.springframework.stereotype.Service;
@@ -53,7 +54,13 @@ public class UserService {
     }
 
     public List<UserEntity> getAllUser() {
-        return dao.getAllUser();
+        List<UserEntity> list = dao.getAllUser();
+        for (UserEntity u : list) {
+            if (u.getStatus() != 1) {
+                list.remove(u);
+            }
+        }
+        return list;
     }
 
     public int addUser(UserEntity userEntity) {
@@ -62,6 +69,14 @@ public class UserService {
 
     public boolean delUser(int id) {
         return dao.delUserById(id) > 0;
+    }
+
+    public boolean delUsers(List<Integer> ids) {
+        boolean res = false;
+        for (int id : ids) {
+            res = delUser(id);
+        }
+        return res;
     }
 
     public boolean updateUser(UserEntity userEntity) {

@@ -2,6 +2,7 @@ package com.company.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.company.model.UserEntity;
+import com.company.model.params.UserId;
 import com.company.service.UserService;
 import com.company.util.JsonUtil;
 import com.company.util.StringCheck;
@@ -14,6 +15,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -205,5 +207,22 @@ public class IndexController {
         return result;
     }
 
-
+    @RequestMapping(value = "/deleteusers", method = RequestMethod.POST,
+                    produces = "application/json; charset=utf-8")
+    @ResponseBody
+    public String deleteUsers(@RequestBody List<UserId> Ids) {
+        ArrayList<Integer> id_list = new ArrayList<Integer>();
+        for (UserId userId : Ids) {
+            System.out.println("id>>>>>>>>>>>>>>" + userId.getId());
+            try {
+                int id = Integer.valueOf(userId.getId());
+                id_list.add(id);
+            }catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        JSONObject json = new JSONObject();
+        json.put("res", userService.delUsers(id_list));
+        return json.toString();
+    }
 }

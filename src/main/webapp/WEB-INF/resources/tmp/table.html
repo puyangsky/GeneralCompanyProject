@@ -8,17 +8,30 @@
     <title></title>
     <link href="/css/Common.css" rel="stylesheet" />
     <link href="/css/Index2.css" rel="stylesheet" />
+    <style rel="stylesheet" type="text/css">
+        .action {
+            margin: 0 5px;
+        }
+    </style>
 </head>
 <body>
     <div class="container-fluid">
         <div class="row-fluid">
             <h4>数据列表</h4>
-            <div class="add"><a class="btn btn-success" onclick="openadd();">新增</a></div>
+            <div class="add">
+                操作：
+                <a id="select" class="btn btn-success action" onclick="selectAll();">全选</a>
+                <a class="btn btn-success action" onclick="reverseAll();">反选</a>
+                <a class="btn btn-success action" onclick="addItem();">新增</a>
+                <a class="btn btn-success action" onclick="deleteItem();">删除</a>
+                <a class="btn btn-success action" onclick="updateItem();">修改</a>
+            </div>
             <div class="w">
                 <div class="span12">
                     <table class="table table-condensed table-bordered table-hover tab">
                         <thead>
                             <tr>
+                                <th></th>
                                 <th>ID</th>
                                 <th>姓名</th>
                                 <th>出生日期</th>
@@ -41,7 +54,7 @@
             <div id="addModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                    <h3 id="myModalLabel">添加成绩</h3>
+                    <h3 id="myModalLabel">添加人员信息</h3>
                 </div>
                 <div class="modal-body">
                     <form class="form-horizontal">
@@ -77,6 +90,23 @@
                     <button class="btn btn-primary" id="edt" onclick="edt();">保存</button>
                 </div>
             </div>
+
+            <div id="delModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h3>确认删除?</h3>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        hello
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
+                    <button class="btn btn-primary" id="del" onclick="del();">确认</button>
+                </div>
+            </div>
+
         </div>
     </div>
 

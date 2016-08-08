@@ -123,7 +123,8 @@ public class JsonUtil {
         jo.put("c55", userEntity.getC55());
         jo.put("c56", userEntity.getC56());
         jo.put("c57", userEntity.getC57());
-
+        jo.put("updatetime", userEntity.getUpdatetime());
+        jo.put("status", userEntity.getStatus());
         return jo.toString();
     }
 
@@ -238,6 +239,8 @@ public class JsonUtil {
             jo.put("c55", userEntity.getC55());
             jo.put("c56", userEntity.getC56());
             jo.put("c57", userEntity.getC57());
+            jo.put("updatetime", userEntity.getUpdatetime());
+            jo.put("status", userEntity.getStatus());
 
             json.add(jo);
         }

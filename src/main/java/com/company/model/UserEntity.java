@@ -14,7 +14,7 @@ public class UserEntity {
     public UserEntity() {
     }
 
-    public UserEntity(int id, String gender, Date birthday, String realname, String avatar, String tel, String idnum, String email, String xueli, String hunyin, String xuexing, String jiankangzheng, String hight, String weight, String wishsalary, String address, String addressnum, String hujiaddress, String hujiaddressnum, String huji, String shenfen, String worktime, String workhours, String starttime, String distance, String wishoffer, String vehicle, String a11, String a12, String a13, String a14, String a15, String a21, String a22, String a23, String a24, String a25, String a31, String a32, String a33, String a34, String a35, String z1, String z2, String z3, String z4, String z5, String b11, Date b12, String b13, String b14, String b15, String b21, Date b22, String b23, String b24, String b25, String b31, Date b32, String b33, String b34, String b35, String b41, Date b42, String b43, String b44, String b45, String b51, Date b52, String b53, String b54, String b55, String c11, Date c12, String c13, String c14, String c15, String c16, String c17, String c21, Date c22, String c23, String c24, String c25, String c26, String c27, String c31, Date c32, String c33, String c34, String c35, String c36, String c37, String c41, Date c42, String c43, String c44, String c45, String c46, String c47, String c51, Date c52, String c53, String c54, String c55, String c56, String c57, Timestamp updatetime) {
+    public UserEntity(int id, String gender, Date birthday, String realname, String avatar, String tel, String idnum, String email, String xueli, String hunyin, String xuexing, String jiankangzheng, String hight, String weight, String wishsalary, String address, String addressnum, String hujiaddress, String hujiaddressnum, String huji, String shenfen, String worktime, String workhours, String starttime, String distance, String wishoffer, String vehicle, String a11, String a12, String a13, String a14, String a15, String a21, String a22, String a23, String a24, String a25, String a31, String a32, String a33, String a34, String a35, String z1, String z2, String z3, String z4, String z5, String b11, Date b12, String b13, String b14, String b15, String b21, Date b22, String b23, String b24, String b25, String b31, Date b32, String b33, String b34, String b35, String b41, Date b42, String b43, String b44, String b45, String b51, Date b52, String b53, String b54, String b55, String c11, Date c12, String c13, String c14, String c15, String c16, String c17, String c21, Date c22, String c23, String c24, String c25, String c26, String c27, String c31, Date c32, String c33, String c34, String c35, String c36, String c37, String c41, Date c42, String c43, String c44, String c45, String c46, String c47, String c51, Date c52, String c53, String c54, String c55, String c56, String c57, Timestamp updatetime, int status) {
         this.id = id;
         this.gender = gender;
         this.birthday = birthday;
@@ -123,6 +123,7 @@ public class UserEntity {
         this.c56 = c56;
         this.c57 = c57;
         this.updatetime = updatetime;
+        this.status = status;
     }
 
     private int id;
@@ -1422,6 +1423,18 @@ public class UserEntity {
         this.updatetime = updatetime;
     }
 
+    @Basic
+    @javax.persistence.Column(name = "status")
+    private int status;
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -1539,6 +1552,7 @@ public class UserEntity {
         if (z3 != null ? !z3.equals(that.z3) : that.z3 != null) return false;
         if (z4 != null ? !z4.equals(that.z4) : that.z4 != null) return false;
         if (z5 != null ? !z5.equals(that.z5) : that.z5 != null) return false;
+        if (status != that.status) return false;
 
         return true;
     }
@@ -1653,6 +1667,7 @@ public class UserEntity {
         result = 31 * result + (c56 != null ? c56.hashCode() : 0);
         result = 31 * result + (c57 != null ? c57.hashCode() : 0);
         result = 31 * result + (updatetime != null ? updatetime.hashCode() : 0);
+        result = 31 * result + status;
         return result;
     }
 }

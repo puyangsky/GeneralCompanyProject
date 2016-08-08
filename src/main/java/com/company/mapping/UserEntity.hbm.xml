@@ -113,5 +113,6 @@
         <property name="c56" column="c56"/>
         <property name="c57" column="c57"/>
         <property name="updatetime" column="updatetime"/>
+        <property name="status" column="status"/>
     </class>
 </hibernate-mapping>
