@@ -6,6 +6,7 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.dao.DuplicateKeyException;
+import sun.security.krb5.internal.PAData;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,13 +34,25 @@ public class UserDaoIml implements UserDao {
     }
 
     @Override
-    public List getAllUser() {
-        String hql = "from UserEntity";
+    public List getAllUser(int page) {
+        String hql = "from UserEntity u where u.status=:status";
         Session session = sessionFactory.openSession();
-        Query query = session.createQuery(hql);
+        Query query = session.createQuery(hql).setFirstResult((page - 1) * 20).setMaxResults(page * 20);
+        query.setParameter("status", 1);
         List<UserEntity> list = query.list();
         session.close();
         return list;
+    }
+
+    @Override
+    public int getUserCount() {
+        String hql = "from UserEntity u where u.status=:status";
+        Session session = sessionFactory.openSession();
+        Query query = session.createQuery(hql);
+        query.setParameter("status", 1);
+        List<UserEntity> list = query.list();
+        session.close();
+        return list.size();
     }
 
     @Override

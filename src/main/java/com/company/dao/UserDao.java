@@ -9,7 +9,8 @@ import java.util.List;
  */
 public interface UserDao {
     public UserEntity getUserById(int id);
-    public List getAllUser();
+    public List getAllUser(int page);
+    public int getUserCount();
     public List<UserEntity> getUsersById(List<Integer> ids);
     public UserEntity getUserByEmail(String email);
     public int addUser(UserEntity userEntity);

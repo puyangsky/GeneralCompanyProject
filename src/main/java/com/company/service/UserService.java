@@ -54,16 +54,22 @@ public class UserService {
         return true;
     }
 
-    public List<UserEntity> getAllUser() {
-        List<UserEntity> list = dao.getAllUser();
-        List<UserEntity> delList = new ArrayList<UserEntity>();
-        for (UserEntity u : list) {
-            if (u.getStatus() != 1) {
-                delList.add(u);
-            }
-        }
-        list.removeAll(delList);
+    public List<UserEntity>
+    getAllUser(int page) {
+        List<UserEntity> list = dao.getAllUser(page);
+//        去掉status不为1的用户
+//        List<UserEntity> delList = new ArrayList<UserEntity>();
+//        for (UserEntity u : list) {
+//            if (u.getStatus() != 1) {
+//                delList.add(u);
+//            }
+//        }
+//        list.removeAll(delList);
         return list;
+    }
+
+    public int getUserCount() {
+        return dao.getUserCount();
     }
 
     public int addUser(UserEntity userEntity) {

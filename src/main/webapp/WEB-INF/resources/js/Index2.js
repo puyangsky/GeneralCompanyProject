@@ -1,36 +1,39 @@
 ﻿
 var curr = 1;
 $(function () {
-    loadData();
+    loadData(curr);
 });
 
-function loadData() {
+function loadData(curr) {
     $.ajax({
-        url:"/user/getusers",
+        url:"/user/getusers/p/" + curr,
         type:"GET",
         dataType:"JSONP",
         data:"",
         jsonp:"callback",
         success: function (data) {
-            console.log(data);
-            for(var i=0;i<data.length;i++) {
-                var birthday = data[i].birthday;
+            //console.log("cnt>>>" + data.cnt);
+            //console.log("data>>>" + data);
+            var tbody = "#";
+            var items = data.item;
+            for(var i=0;i<items.length;i++) {
+                var birthday = items[i].birthday;
                 try {
-                    var id = data[i].id;
-                    var username = (data[i].realname == undefined) ? "" : data[i].realname;
-                    var gender = (data[i].gender == undefined) ? "" : data[i].gender;
-                    var hometown = (data[i].address == undefined) ? "" : data[i].address;
+                    var id = items[i].id;
+                    var username = (items[i].realname == undefined) ? "" : items[i].realname;
+                    var gender = (items[i].gender == undefined) ? "" : items[i].gender;
+                    var hometown = (items[i].address == undefined) ? "" : items[i].address;
                     var date = new Date(birthday);
                     var Y = date.getFullYear() + '-';
                     var M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
                     var D = date.getDate() < 10 ? '0'+ date.getDate() : date.getDate();
                     var formatbirthday = Y+M+D;
-                    var tel = (data[i].tel == undefined) ? "" : data[i].tel;
-                    var email = (data[i].email == undefined) ? "" : data[i].email;
-                    var xueli = (data[i].xueli == undefined) ? "" : data[i].xueli;
-                    var hunyin = (data[i].hunyin == undefined) ? "" : data[i].hunyin;
-                    var idnum = (data[i].idnum == undefined) ? "" : data[i].idnum;
-                    var updatetime = (data[i].updatetime == undefined) ? "" : data[i].updatetime;
+                    var tel = (items[i].tel == undefined) ? "" : items[i].tel;
+                    var email = (items[i].email == undefined) ? "" : items[i].email;
+                    var xueli = (items[i].xueli == undefined) ? "" : items[i].xueli;
+                    var hunyin = (items[i].hunyin == undefined) ? "" : items[i].hunyin;
+                    var idnum = (items[i].idnum == undefined) ? "" : items[i].idnum;
+                    var updatetime = (items[i].updatetime == undefined) ? "" : items[i].updatetime;
                     var updateDate = new Date();
                     updateDate.setTime(updatetime);
                     updatetime = updateDate.toLocaleString();
@@ -57,8 +60,29 @@ function loadData() {
                 trbody += "<td>" + updatetime + "</td>";
                 var trend = "</tr>";
                 var tr = trbegin + trbody + trend;
-                $("#tbody").append(tr);
+                tbody += tr;
             }
+            //console.log("tbody>>>>>>>>>>>>>" + tbody);
+            //$.each(data, function(i, item) {
+            //    console.log("i:" + i);
+            //    console.log("item:" + item);
+            //    $.each(item, function (k, v) {
+            //        console.log("v>>>>>>" + v);
+            //    })
+            //});
+            $("#tbody").html(tbody);
+            laypage({
+                cont: 'page', //容器。值支持id名、原生dom对象，jquery对象。【如该容器为】：<div id="page1"></div>
+                pages: Math.ceil(data.cnt / 20), //通过后台拿到的总页数
+                skin: "#49afcd",
+                curr: curr || 1, //当前页
+                jump: function (obj, first) { //触发分页后的回调
+                    if (!first) { //点击跳页触发函数自身，并传递当前页：obj.curr
+                        curr = obj.curr;
+                        loadData(curr);
+                    }
+                }
+            });
         }
     });
 }
@@ -113,8 +137,11 @@ function deleteItem() {
     //$("#del").show();
     del();
 }
-function del1() {
-
+function refresh() {
+    layer.msg("加载中", {icon: 16});
+    setTimeout(function () {
+        location.reload();
+    }, 1000);
 }
 function updateItem() {
 
@@ -248,6 +275,7 @@ function del() {
         layer.confirm('您确定要删除这' + num + '项？', {
             btn: ['确定', '取消'] //按钮
         }, function () {
+            layer.msg('删除中', {icon: 16});
             var userIds = [];
             $("input[name='check_list']:checked").each(function () {
                 var id = {"id":$(this).attr("id")};
@@ -263,16 +291,18 @@ function del() {
                 data: id_json,
                 contentType:"application/json;charset=UTF-8",
                 success: function (data) {
-                    console.log(data);
+                    //console.log(data);
+
                     if(data.res == true)
                         layer.alert("删除成功");
                     setTimeout(function () {
-                        loadData();
-                    }, 1000);
+                        //loadData();
+                        location.reload();
+                    }, 2000);
                 }
             })
         }, function () {
-            //  layer.close();
+              layer.close();
         });
     }
 }

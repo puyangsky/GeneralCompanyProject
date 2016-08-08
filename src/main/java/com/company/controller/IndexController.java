@@ -1,5 +1,6 @@
 package com.company.controller;
 
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.company.model.UserEntity;
 import com.company.model.params.UserId;
@@ -188,9 +189,9 @@ public class IndexController {
         return object.toString();
     }
 
-    @RequestMapping(value = "/v1/getusers", method = RequestMethod.GET)
-    public String getUsersPage(ModelMap model) {
-        List<UserEntity> userEntityList = userService.getAllUser();
+    @RequestMapping(value = "/v1/getusers/p/{page}", method = RequestMethod.GET)
+    public String getUsersPage(@PathVariable int page, ModelMap model) {
+        List<UserEntity> userEntityList = userService.getAllUser(page);
         for (UserEntity user:userEntityList) {
             System.out.println(JsonUtil.toJsonString(user));
         }
@@ -198,13 +199,17 @@ public class IndexController {
         return "userList";
     }
 
-    @RequestMapping(value = "/getusers", method = RequestMethod.GET,
+    @RequestMapping(value = "/getusers/p/{page}", method = RequestMethod.GET,
                     produces = "application/json; charset=utf-8")
     @ResponseBody
-    public String getUsers(HttpServletRequest request) {
-        List<UserEntity> userEntityList = userService.getAllUser();
+    public String getUsers(@PathVariable int page, HttpServletRequest request) {
+        List<UserEntity> userEntityList = userService.getAllUser(page);
         String callback = request.getParameter("callback");
-        String result = callback + "(" + JsonUtil.listToJsonString(userEntityList) + ")";
+        JSONArray array = JsonUtil.listToJsonString(userEntityList);
+        JSONObject object = new JSONObject();
+        object.put("item", array);
+        object.put("cnt", userService.getUserCount());
+        String result = callback + "(" + object.toString() + ")";
         return result;
     }
 

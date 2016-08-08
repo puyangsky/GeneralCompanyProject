@@ -128,7 +128,7 @@ public class JsonUtil {
         return jo.toString();
     }
 
-    public static String listToJsonString(List<UserEntity> userEntities) {
+    public static JSONArray listToJsonString(List<UserEntity> userEntities) {
         JSONArray json = new JSONArray();
         for (UserEntity userEntity : userEntities) {
             JSONObject jo = new JSONObject();
@@ -244,6 +244,6 @@ public class JsonUtil {
 
             json.add(jo);
         }
-        return json.toString();
+        return json;
     }
 }
