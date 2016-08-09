@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.ws.rs.POST;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -230,5 +231,18 @@ public class IndexController {
         JSONObject json = new JSONObject();
         json.put("res", userService.delUsers(id_list));
         return json.toString();
+    }
+
+    @RequestMapping(value = "/find/name/{username}", method = RequestMethod.GET,
+                    produces = "application/json; charset=utf-8")
+    @ResponseBody
+    public String findUser(@PathVariable String username) {
+        if (StringCheck.isNullOrEmpty(username)) {
+            JSONObject json = new JSONObject();
+            json.put("result", "Invalid Parameter");
+            return json.toString();
+        }
+        List<UserEntity> list = userService.getUserByName(username);
+        return JsonUtil.listToJsonString(list).toString();
     }
 }

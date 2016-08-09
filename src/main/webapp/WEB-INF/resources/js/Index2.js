@@ -12,77 +12,83 @@ function loadData(curr) {
         data:"",
         jsonp:"callback",
         success: function (data) {
-            //console.log("cnt>>>" + data.cnt);
-            //console.log("data>>>" + data);
-            var tbody = "#";
+            var tbody = "";
             var items = data.item;
-            for(var i=0;i<items.length;i++) {
-                var birthday = items[i].birthday;
-                try {
-                    var id = items[i].id;
-                    var username = (items[i].realname == undefined) ? "" : items[i].realname;
-                    var gender = (items[i].gender == undefined) ? "" : items[i].gender;
-                    var hometown = (items[i].address == undefined) ? "" : items[i].address;
-                    var date = new Date(birthday);
-                    var Y = date.getFullYear() + '-';
-                    var M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
-                    var D = date.getDate() < 10 ? '0'+ date.getDate() : date.getDate();
-                    var formatbirthday = Y+M+D;
-                    var tel = (items[i].tel == undefined) ? "" : items[i].tel;
-                    var email = (items[i].email == undefined) ? "" : items[i].email;
-                    var xueli = (items[i].xueli == undefined) ? "" : items[i].xueli;
-                    var hunyin = (items[i].hunyin == undefined) ? "" : items[i].hunyin;
-                    var idnum = (items[i].idnum == undefined) ? "" : items[i].idnum;
-                    var updatetime = (items[i].updatetime == undefined) ? "" : items[i].updatetime;
-                    var updateDate = new Date();
-                    updateDate.setTime(updatetime);
-                    updatetime = updateDate.toLocaleString();
-                }catch(ex) {
-                    id = "空";
-                    username = "空";
-                    gender = "空";
-                    hometown = "空";
-                    formatbirthday = "空";
-                    console.log(ex);
-                }
-                var trbegin = "<tr>";
-                var trbody = "<td> <input name='check_list' type='checkbox' id='" + id +  "'/> </td>";
-                trbody += "<td>" + id + "</td>";
-                trbody += "<td>" + username + "</td>";
-                trbody += "<td>" + formatbirthday + "</td>";
-                trbody += "<td>" + gender + "</td>";
-                trbody += "<td>" + hometown + "</td>";
-                trbody += "<td>" + tel + "</td>";
-                trbody += "<td>" + email + "</td>";
-                trbody += "<td>" + xueli + "</td>";
-                trbody += "<td>" + hunyin + "</td>";
-                trbody += "<td>" + idnum + "</td>";
-                trbody += "<td>" + updatetime + "</td>";
-                var trend = "</tr>";
-                var tr = trbegin + trbody + trend;
-                tbody += tr;
-            }
-            //console.log("tbody>>>>>>>>>>>>>" + tbody);
-            //$.each(data, function(i, item) {
-            //    console.log("i:" + i);
-            //    console.log("item:" + item);
-            //    $.each(item, function (k, v) {
-            //        console.log("v>>>>>>" + v);
-            //    })
-            //});
-            $("#tbody").html(tbody);
-            laypage({
-                cont: 'page', //容器。值支持id名、原生dom对象，jquery对象。【如该容器为】：<div id="page1"></div>
-                pages: Math.ceil(data.cnt / 20), //通过后台拿到的总页数
-                skin: "#49afcd",
-                curr: curr || 1, //当前页
-                jump: function (obj, first) { //触发分页后的回调
-                    if (!first) { //点击跳页触发函数自身，并传递当前页：obj.curr
-                        curr = obj.curr;
-                        loadData(curr);
+            if(items.length == 0) {
+                $("#tbody").html("");
+                $("#nonedata").html("<h3>暂无数据</h3>").show();
+                $("#page").hide();
+            }else {
+                $("#page").show();
+                $("#nonedata").hide();
+                for(var i=0;i<items.length;i++) {
+                    var birthday = items[i].birthday;
+                    try {
+                        var id = items[i].id;
+                        var username = (items[i].realname == undefined) ? "" : items[i].realname;
+                        var gender = (items[i].gender == undefined) ? "" : items[i].gender;
+                        var hometown = (items[i].address == undefined) ? "" : items[i].address;
+                        var date = new Date(birthday);
+                        var Y = date.getFullYear() + '-';
+                        var M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
+                        var D = date.getDate() < 10 ? '0'+ date.getDate() : date.getDate();
+                        var formatbirthday = Y+M+D;
+                        var tel = (items[i].tel == undefined) ? "" : items[i].tel;
+                        var email = (items[i].email == undefined) ? "" : items[i].email;
+                        var xueli = (items[i].xueli == undefined) ? "" : items[i].xueli;
+                        var hunyin = (items[i].hunyin == undefined) ? "" : items[i].hunyin;
+                        var idnum = (items[i].idnum == undefined) ? "" : items[i].idnum;
+                        var updatetime = (items[i].updatetime == undefined) ? "" : items[i].updatetime;
+                        var updateDate = new Date();
+                        updateDate.setTime(updatetime);
+                        updatetime = updateDate.toLocaleString();
+                    }catch(ex) {
+                        id = "空";
+                        username = "空";
+                        gender = "空";
+                        hometown = "空";
+                        formatbirthday = "空";
+                        console.log(ex);
                     }
+                    var trbegin = "<tr>";
+                    var trbody = "<td> <input name='check_list' type='checkbox' id='" + id +  "'/> </td>";
+                    trbody += "<td>" + id + "</td>";
+                    trbody += "<td>" + username + "</td>";
+                    trbody += "<td>" + formatbirthday + "</td>";
+                    trbody += "<td>" + gender + "</td>";
+                    trbody += "<td>" + hometown + "</td>";
+                    trbody += "<td>" + tel + "</td>";
+                    trbody += "<td>" + email + "</td>";
+                    trbody += "<td>" + xueli + "</td>";
+                    trbody += "<td>" + hunyin + "</td>";
+                    trbody += "<td>" + idnum + "</td>";
+                    trbody += "<td>" + updatetime + "</td>";
+                    trbody += "<td><a href='http://localhost:8080/user/id/" + id +"'>点击查看</a></td>";
+                    var trend = "</tr>";
+                    tbody += trbegin + trbody + trend;
                 }
-            });
+                //$.each(data, function(i, item) {
+                //    console.log("i:" + i);
+                //    console.log("item:" + item);
+                //    $.each(item, function (k, v) {
+                //        console.log("v>>>>>>" + v);
+                //    })
+                //});
+                $("#tbody").html(tbody);
+                laypage({
+                    cont: 'page', //容器。值支持id名、原生dom对象，jquery对象。【如该容器为】：<div id="page1"></div>
+                    pages: Math.ceil(data.cnt / 20), //通过后台拿到的总页数
+                    skin: "#49afcd",
+                    curr: curr || 1, //当前页
+                    jump: function (obj, first) { //触发分页后的回调
+                        if (!first) { //点击跳页触发函数自身，并传递当前页：obj.curr
+                            curr = obj.curr;
+                            loadData(curr);
+                        }
+                    }
+                });
+            }
+
         }
     });
 }
@@ -145,6 +151,81 @@ function refresh() {
 }
 function updateItem() {
 
+}
+
+function searchUser() {
+    var username = $("#searchname").val();
+    console.log(username);
+    if (username == "") {
+        $("#searchname").focus();
+        return;
+    }
+    $.ajax({
+        url: "/user/find/name/" + username,
+        type: "GET",
+        dataType: "json",
+        data: "",
+        contentType: "application/json;charset=UTF-8",
+        success: function(data) {
+            var tbody = "";
+            var cnt = data.length;
+            if(cnt == 0) {
+                $("#tbody").html("");
+                $("#nonedata").html("<h3>无相关数据</h3>").show();
+                $("#page").hide();
+            }else {
+                for(var i=0;i<cnt;i++) {
+                    $("#nonedata").hide();
+                    $("#page").hide();
+                    var birthday = data[i].birthday;
+                    try {
+                        var id = data[i].id;
+                        var username = (data[i].realname == undefined) ? "" : data[i].realname;
+                        var gender = (data[i].gender == undefined) ? "" : data[i].gender;
+                        var hometown = (data[i].address == undefined) ? "" : data[i].address;
+                        var date = new Date(birthday);
+                        var Y = date.getFullYear() + '-';
+                        var M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
+                        var D = date.getDate() < 10 ? '0'+ date.getDate() : date.getDate();
+                        var formatbirthday = Y+M+D;
+                        var tel = (data[i].tel == undefined) ? "" : data[i].tel;
+                        var email = (data[i].email == undefined) ? "" : data[i].email;
+                        var xueli = (data[i].xueli == undefined) ? "" : data[i].xueli;
+                        var hunyin = (data[i].hunyin == undefined) ? "" : data[i].hunyin;
+                        var idnum = (data[i].idnum == undefined) ? "" : data[i].idnum;
+                        var updatetime = (data[i].updatetime == undefined) ? "" : data[i].updatetime;
+                        var updateDate = new Date();
+                        updateDate.setTime(updatetime);
+                        updatetime = updateDate.toLocaleString();
+                    }catch(ex) {
+                        id = "空";
+                        username = "空";
+                        gender = "空";
+                        hometown = "空";
+                        formatbirthday = "空";
+                        console.log(ex);
+                    }
+                    var trbegin = "<tr>";
+                    var trbody = "<td> <input name='check_list' type='checkbox' id='" + id +  "'/> </td>";
+                    trbody += "<td>" + id + "</td>";
+                    trbody += "<td>" + username + "</td>";
+                    trbody += "<td>" + formatbirthday + "</td>";
+                    trbody += "<td>" + gender + "</td>";
+                    trbody += "<td>" + hometown + "</td>";
+                    trbody += "<td>" + tel + "</td>";
+                    trbody += "<td>" + email + "</td>";
+                    trbody += "<td>" + xueli + "</td>";
+                    trbody += "<td>" + hunyin + "</td>";
+                    trbody += "<td>" + idnum + "</td>";
+                    trbody += "<td>" + updatetime + "</td>";
+                    trbody += "<td><a href='http://localhost:8080/user/id/" + id +"'>点击查看</a></td>";
+                    var trend = "</tr>";
+                    tbody += trbegin + trbody + trend;
+                }
+                $("#tbody").html(tbody);
+            }
+        }
+    });
 }
 
 function selectAll() {

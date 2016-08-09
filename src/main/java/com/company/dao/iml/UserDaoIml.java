@@ -219,4 +219,15 @@ public class UserDaoIml implements UserDao {
         session.close();
         return res;
     }
+
+    @Override
+    public List<UserEntity> getUserByName(String username) {
+        Session session = sessionFactory.openSession();
+        String hql = "from UserEntity u where u.realname like :username";
+        Query query = session.createQuery(hql);
+        query.setParameter("username", "%" + username + "%");
+        List<UserEntity> list = query.list();
+        session.close();
+        return list;
+    }
 }

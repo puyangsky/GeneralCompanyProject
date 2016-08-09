@@ -127,4 +127,8 @@ public class UserService {
                 name + "/" + type;
         return imagePath;
     }
+
+    public List<UserEntity> getUserByName(String username) {
+        return dao.getUserByName(username);
+    }
 }

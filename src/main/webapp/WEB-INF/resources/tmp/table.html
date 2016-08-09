@@ -12,6 +12,14 @@
         .action {
             margin: 0 5px;
         }
+        #searchname {
+            margin-bottom: 0;
+        }
+        #search {
+            display: inline;
+            float: right;
+            margin-right: 20px;
+        }
     </style>
 </head>
 <body>
@@ -25,7 +33,11 @@
                 <a class="btn btn-success action" onclick="addItem();">新增</a>
                 <a class="btn btn-success action" onclick="deleteItem();">删除</a>
                 <a class="btn btn-success action" onclick="updateItem();">修改</a>
-                <a class="btn btn-success action" onclick="refresh();">刷新</a>
+                <a class="btn btn-success action" onclick="refresh();">显示所有</a>
+                <div id="search">
+                    <input type="text" id="searchname" placeholder="请输入姓名中的关键字"/>
+                    <a class="btn btn-success action" onclick="searchUser();">搜索</a>
+                </div>
             </div>
             <div class="w">
                 <div class="span12">
@@ -44,10 +56,12 @@
                                 <th>婚姻状况</th>
                                 <th>身份证号码</th>
                                 <th>更新时间</th>
+                                <th>查看更多</th>
                             </tr>
                         </thead>
                         <tbody id="tbody"></tbody>
                     </table>
+                    <div id="nonedata" style="display: none;"></div>
                     <div id="page" class="tr"></div>
                 </div>
             </div>
