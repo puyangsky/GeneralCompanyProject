@@ -63,7 +63,8 @@ function loadData(curr) {
                     trbody += "<td>" + hunyin + "</td>";
                     trbody += "<td>" + idnum + "</td>";
                     trbody += "<td>" + updatetime + "</td>";
-                    trbody += "<td><a href='http://localhost:8080/user/id/" + id +"'>点击查看</a></td>";
+                    //trbody += "<td><a href='http://localhost:8080/user/id/" + id +"'>点击查看</a></td>";
+                    trbody += "<td><button type='button' class=\"btn btn-info mybtn\" onclick=\"showUserInfo(" + id +  ");\">点击查看</button></td>";
                     var trend = "</tr>";
                     tbody += trbegin + trbody + trend;
                 }
@@ -152,6 +153,40 @@ function refresh() {
 function updateItem() {
 
 }
+
+function showUserInfo(id) {
+    $.ajax({
+        url: "/user/id/" + id,
+        type: "GET",
+        dataType: "json",
+        data: "",
+        contentType: "application/json;charset=UTF-8",
+        success: function(data) {
+            console.log(data);
+            //$.each(data, function (k, v) {
+            //    console.log("k", k);
+            //    console.log("v", v);
+            //});
+            var index = layer.open({
+                type: 2,
+                content: 'http://120.27.110.105/user/userInfo/' + id,
+                area: ['320px', '195px'],
+                maxmin: true
+            });
+            layer.full(index);
+            //layer.open({
+            //    type: 1,
+            //    title: false,
+            //    closeBtn: 0,
+            //    shadeClose: true,
+            //    skin: 'yourclass',
+            //    content: 'http://localhost:8080/dashboard/detail.html'
+            //});
+        }
+    });
+
+}
+
 
 function searchUser() {
     var username = $("#searchname").val();

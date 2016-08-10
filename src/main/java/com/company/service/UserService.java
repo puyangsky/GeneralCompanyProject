@@ -40,6 +40,10 @@ public class UserService {
         return null;
     }
 
+    public UserEntity getUserById(int id) {
+        return dao.getUserById(id);
+    }
+
     public UserEntity getUserByEmail (String email) {
         return dao.getUserByEmail(email);
     }

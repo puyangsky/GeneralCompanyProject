@@ -11,11 +11,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.ws.rs.POST;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +26,6 @@ import java.util.List;
 @Controller
 @RequestMapping("/user")
 public class IndexController {
-
 
     @Resource(name = "userServiceIml")
     UserService userService;
@@ -44,6 +43,20 @@ public class IndexController {
         String result = callback + "(" + JsonUtil.toJsonString(userEntity) + ")";
         return result;
     }
+
+    @RequestMapping(value = "/id/{id}", method = RequestMethod.GET, produces = "application/json; charset=utf-8")
+    @ResponseBody
+    public String getUserById(@PathVariable int id) {
+        UserEntity user = userService.getUserById(id);
+        if (user != null) {
+            return JsonUtil.toJsonString(user);
+        }else {
+            JSONObject json = new JSONObject();
+            json.put("result", "null");
+            return json.toString();
+        }
+    }
+
 
     @RequestMapping(value = "/getuserbyemail/{email}", method = RequestMethod.GET,
             produces = "application/json; charset=utf-8")
@@ -128,6 +141,18 @@ public class IndexController {
         return "index";
     }
 
+    @RequestMapping(value = "/userInfo/{id}")
+    public String getUserInfo(@PathVariable int id, ModelMap model) {
+        UserEntity user = userService.getUserById(id);
+        if (user == null) {
+            return "error";
+        }
+//        model.addAttribute("id", user.getId());
+//        model.addAttribute("name", user.getRealname());
+        model.addAttribute("user", user);
+        return "userInfo";
+    }
+
     @RequestMapping(value = "/register", method = RequestMethod.POST,
             produces = "application/json; charset=utf-8")
     @ResponseBody
@@ -159,7 +184,6 @@ public class IndexController {
             json.put("result", "email is null");
             return json.toString();
         }
-//        System.out.println(JsonUtil.toJsonString(userEntity));
         int result = userService.addUser(userEntity);
 
         json.put("result", result);
@@ -177,6 +201,7 @@ public class IndexController {
             uid = Integer.valueOf(id);
         } catch (Exception e) {
             e.printStackTrace();
+            //TODO 如果user ID为空，直接返回
             uid = 0;
         }
         userEntity.setId(uid);
